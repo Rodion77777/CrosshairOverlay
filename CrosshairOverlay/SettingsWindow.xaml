@@ -5,6 +5,22 @@
         Height="300" Width="300"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,16,0,0">
+            <TextBlock Text="Crosshair radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="-" Width="30" Click="DecreaseRadius_Click"/>
+                <TextBlock x:Name="RadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                <Button Content="+" Width="30" Click="IncreaseRadius_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,80,0,0">
+            <TextBlock Text="Crosshair 2 radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="-" Width="30" Click="DecreaseOutlineRadius_Click"/>
+                <TextBlock x:Name="OutlineRadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                <Button Content="+" Width="30" Click="IncreaseOutlineRadius_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
