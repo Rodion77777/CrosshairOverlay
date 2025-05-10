@@ -36,7 +36,6 @@ namespace CrosshairOverlay
             SubscribeGlobalHook();
 
             this.PreviewKeyDown += MainWindow_PreviewKeyDown;
-            this.KeyDown += MainWindow_KeyDown;
             this.Focusable = true;
             this.Focus();
         }
@@ -85,9 +84,9 @@ namespace CrosshairOverlay
             };
 
             // Центрируем
-            outline.HorizontalAlignment = HorizontalAlignment.Center;
+            outline.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             outline.VerticalAlignment = VerticalAlignment.Center;
-            circle.HorizontalAlignment = HorizontalAlignment.Center;
+            circle.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             circle.VerticalAlignment = VerticalAlignment.Center;
 
             grid.Children.Add(outline);
@@ -122,7 +121,7 @@ namespace CrosshairOverlay
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ошибка при обновлении конфигурации: " + ex.Message);
+                        System.Windows.MessageBox.Show("Ошибка при обновлении конфигурации: " + ex.Message);
                     }
                 });
             };
@@ -130,7 +129,7 @@ namespace CrosshairOverlay
             configWatcher.EnableRaisingEvents = true;
         }
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
         {
             base.OnKeyDown(e);
 
@@ -149,12 +148,7 @@ namespace CrosshairOverlay
             }
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            OnKeyDown(e);
-        }
-
-        private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void MainWindow_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Home)
             {
@@ -191,7 +185,6 @@ namespace CrosshairOverlay
         {
             _globalHook.KeyDown -= GlobalHook_KeyDown;
             _globalHook.Dispose();
-            base.OnClosed(e);
 
             configWatcher?.Dispose(); // остановить FileSystemWatcher
             base.OnClosed(e);         // вызвать базовую реализацию
