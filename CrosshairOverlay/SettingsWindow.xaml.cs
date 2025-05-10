@@ -57,6 +57,8 @@ namespace CrosshairOverlay
         {
             RadiusValueText.Text = radius.ToString();
             OutlineRadiusValueText.Text = outlineRadius.ToString();
+            ThicknessValueText.Text = thickness.ToString();
+            OutlineThicknessValueText.Text = outlineThickness.ToString();
             SaveConfig();
         }
 
@@ -128,7 +130,7 @@ namespace CrosshairOverlay
 
         private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (thickness < 5)
+            if (outlineThickness < 5)
             {
                 outlineThickness += 1;
                 UpdateConfigDisplay();
