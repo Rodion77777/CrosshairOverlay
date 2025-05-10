@@ -25,6 +25,7 @@ namespace CrosshairOverlay
         private int outlineRadius;
         private int thickness;
         private int outlineThickness;
+
         public SettingsWindow()
         {
             InitializeComponent();
