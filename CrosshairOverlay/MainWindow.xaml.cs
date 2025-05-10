@@ -19,6 +19,9 @@ namespace CrosshairOverlay
         private SettingsWindow settingsWindow;
         private IKeyboardMouseEvents _globalHook;
 
+        private double? lastSettingsLeft;
+        private double? lastSettingsTop;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -142,9 +145,29 @@ namespace CrosshairOverlay
                         settingsWindow = new SettingsWindow
                         {
                             Owner = this,
-                            WindowStartupLocation = WindowStartupLocation.CenterOwner
+                            WindowStartupLocation = WindowStartupLocation.Manual
                         };
-                        settingsWindow.Closed += (s, args) => settingsWindow = null; // очистка ссылки
+
+                        // Если координаты есть — применяем
+                        if (lastSettingsLeft.HasValue && lastSettingsTop.HasValue)
+                        {
+                            settingsWindow.Left = lastSettingsLeft.Value;
+                            settingsWindow.Top = lastSettingsTop.Value;
+                        }
+                        else
+                        {
+                            // Первый запуск — центрируем
+                            settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                        }
+
+                        settingsWindow.Closed += (s, args) =>
+                        {
+                            // Сохраняем позицию перед закрытием
+                            lastSettingsLeft = settingsWindow.Left;
+                            lastSettingsTop = settingsWindow.Top;
+                            settingsWindow = null;
+                        };
+
                         settingsWindow.Show();
                     }
                     else
@@ -155,6 +178,7 @@ namespace CrosshairOverlay
                 });
             }
         }
+
 
         protected override void OnClosed(EventArgs e)
         {
