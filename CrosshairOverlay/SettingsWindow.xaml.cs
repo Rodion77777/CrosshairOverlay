@@ -29,21 +29,20 @@ namespace CrosshairOverlay
         {
             InitializeComponent();
             LoadConfig();
-            UpdateRadiusDisplay();
+            UpdateConfigDisplay();
         }
 
-        private void UpdateRadiusDisplay()
+        private void UpdateConfigDisplay()
         {
             RadiusValueText.Text = radius.ToString();
             OutlineRadiusValueText.Text = outlineRadius.ToString();
-            SaveRadius(radius); // при каждом изменении сохраняем в config.json
-            SaveOutlineRadius(outlineRadius);
+            SaveConfig();
         }
 
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
             radius += 1;
-            UpdateRadiusDisplay();
+            UpdateConfigDisplay();
         }
 
         private void DecreaseRadius_Click(object sender, RoutedEventArgs e)
@@ -51,14 +50,14 @@ namespace CrosshairOverlay
             if (radius > 1)
             {
                 radius -= 1;
-                UpdateRadiusDisplay();
+                UpdateConfigDisplay();
             }
         }
 
         private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
             outlineRadius += 1;
-            UpdateRadiusDisplay();
+            UpdateConfigDisplay();
         }
 
         private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
@@ -66,7 +65,7 @@ namespace CrosshairOverlay
             if (outlineRadius > 1)
             {
                 outlineRadius -= 1;
-                UpdateRadiusDisplay();
+                UpdateConfigDisplay();
             }
         }
 
@@ -90,28 +89,16 @@ namespace CrosshairOverlay
             }
         }
 
-        private void SaveRadius(int newRadius)
+        private void SaveConfig()
         {
             try
             {
                 string json = File.ReadAllText("config.json");
                 var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
-                config.Radius = newRadius;
-                File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
-            }
-        }
-
-        private void SaveOutlineRadius(int newOutlineRadius)
-        {
-            try
-            {
-                string json = File.ReadAllText("config.json");
-                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
-                config.OutlineRadius = newOutlineRadius;
+                config.Radius = radius;
+                config.OutlineRadius = outlineRadius;
+                config.Thickness = thickness;
+                config.OutlineThickness = outlineThickness;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             }
             catch (Exception ex)
