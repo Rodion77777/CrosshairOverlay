@@ -1,7 +1,8 @@
 {
-  "radius": 30,
-  "thickness": 1,
+  "radius": 25,
+  "outlineRadius": 25,
+  "thickness": 2,
   "outlineThickness": 1,
   "strokeColor": "#FF0000",
-  "outlineColor": "#0000FF"
+  "outlineColor": "#0F0F5F"
 }

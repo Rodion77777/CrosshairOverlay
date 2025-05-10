@@ -8,13 +8,15 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Gma.System.MouseKeyHook;
 
 namespace CrosshairOverlay
-{    public partial class MainWindow : Window
+{   public partial class MainWindow : Window
     {
         private FileSystemWatcher configWatcher;
         private CrosshairConfig config;
         private SettingsWindow settingsWindow;
+        private IKeyboardMouseEvents _globalHook;
 
         public MainWindow()
         {
@@ -30,6 +32,7 @@ namespace CrosshairOverlay
             SetupOverlay();
             MakeWindowTransparentToMouse(null, null);
             StartConfigWatcher();
+            SubscribeGlobalHook();
 
             this.PreviewKeyDown += MainWindow_PreviewKeyDown;
             this.KeyDown += MainWindow_KeyDown;
@@ -57,7 +60,7 @@ namespace CrosshairOverlay
             Left = 0;
             Top = 0;
 
-            var outerRadius = config.Radius + config.OutlineThickness;
+            var outerRadius = config.OutlineRadius + config.OutlineThickness;
             var innerRadius = config.Radius;
 
             var grid = new Grid();
@@ -126,12 +129,6 @@ namespace CrosshairOverlay
             configWatcher.EnableRaisingEvents = true;
         }
 
-        protected override void OnClosed(EventArgs e)
-        {
-            configWatcher?.Dispose(); // остановить FileSystemWatcher
-            base.OnClosed(e);         // вызвать базовую реализацию
-        }
-
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -165,6 +162,38 @@ namespace CrosshairOverlay
                 settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 settingsWindow.Show();
             }
+        }
+
+        private void SubscribeGlobalHook()
+        {
+            _globalHook = Hook.GlobalEvents();
+            _globalHook.KeyDown += GlobalHook_KeyDown;
+        }
+
+        private void GlobalHook_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Home)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    var settingsWindow = new SettingsWindow
+                    {
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterOwner
+                    };
+                    settingsWindow.Show();
+                });
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _globalHook.KeyDown -= GlobalHook_KeyDown;
+            _globalHook.Dispose();
+            base.OnClosed(e);
+
+            configWatcher?.Dispose(); // остановить FileSystemWatcher
+            base.OnClosed(e);         // вызвать базовую реализацию
         }
 
         private const int GWL_EXSTYLE = -20;
