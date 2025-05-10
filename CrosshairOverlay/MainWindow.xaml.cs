@@ -137,12 +137,21 @@ namespace CrosshairOverlay
             {
                 Dispatcher.Invoke(() =>
                 {
-                    var settingsWindow = new SettingsWindow
+                    if (settingsWindow == null || !settingsWindow.IsVisible)
                     {
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterOwner
-                    };
-                    settingsWindow.Show();
+                        settingsWindow = new SettingsWindow
+                        {
+                            Owner = this,
+                            WindowStartupLocation = WindowStartupLocation.CenterOwner
+                        };
+                        settingsWindow.Closed += (s, args) => settingsWindow = null; // очистка ссылки
+                        settingsWindow.Show();
+                    }
+                    else
+                    {
+                        settingsWindow.Close();
+                        settingsWindow = null;
+                    }
                 });
             }
         }
