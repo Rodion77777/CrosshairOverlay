@@ -34,10 +34,6 @@ namespace CrosshairOverlay
             MakeWindowTransparentToMouse(null, null);
             StartConfigWatcher();
             SubscribeGlobalHook();
-
-            this.PreviewKeyDown += MainWindow_PreviewKeyDown;
-            this.Focusable = true;
-            this.Focus();
         }
 
         private void LoadConfig()
@@ -127,36 +123,6 @@ namespace CrosshairOverlay
             };
 
             configWatcher.EnableRaisingEvents = true;
-        }
-
-        protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-
-            if (e.Key == Key.Home)
-            {
-                if (settingsWindow == null || !settingsWindow.IsVisible)
-                {
-                    settingsWindow = new SettingsWindow();
-                    settingsWindow.Show();
-                }
-                else
-                {
-                    settingsWindow.Close();
-                    settingsWindow = null;
-                }
-            }
-        }
-
-        private void MainWindow_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Home)
-            {
-                var settingsWindow = new SettingsWindow();
-                settingsWindow.Owner = this;
-                settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                settingsWindow.Show();
-            }
         }
 
         private void SubscribeGlobalHook()
