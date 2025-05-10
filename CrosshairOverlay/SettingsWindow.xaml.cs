@@ -32,6 +32,26 @@ namespace CrosshairOverlay
             UpdateConfigDisplay();
         }
 
+        private void LoadConfig()
+        {
+            try
+            {
+                string json = File.ReadAllText("config.json");
+                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json);
+                radius = (int)(config?.Radius ?? 10);
+                outlineRadius = (int)(config?.OutlineRadius ?? 10);
+                thickness = (int)(config?.Thickness ?? 1);
+                outlineThickness = (int)(config?.OutlineThickness ?? 1);
+            }
+            catch
+            {
+                radius = 10;
+                outlineRadius = 10;
+                thickness = 1;
+                outlineThickness = 1;
+            }
+        }
+
         private void UpdateConfigDisplay()
         {
             RadiusValueText.Text = radius.ToString();
@@ -39,6 +59,24 @@ namespace CrosshairOverlay
             SaveConfig();
         }
 
+        private void SaveConfig()
+        {
+            try
+            {
+                string json = File.ReadAllText("config.json");
+                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
+                config.Radius = radius;
+                config.OutlineRadius = outlineRadius;
+                config.Thickness = thickness;
+                config.OutlineThickness = outlineThickness;
+                File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
+            }
+        }
+        
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
             radius += 1;
@@ -69,41 +107,39 @@ namespace CrosshairOverlay
             }
         }
 
-        private void LoadConfig()
+        private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (thickness < 5)
             {
-                string json = File.ReadAllText("config.json");
-                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json);
-                radius = (int)(config?.Radius ?? 10);
-                outlineRadius = (int)(config?.OutlineRadius ?? 10);
-                thickness = (int)(config?.Thickness ?? 1);
-                outlineThickness = (int)(config?.OutlineThickness ?? 1);
-            }
-            catch
-            {
-                radius = 10;
-                outlineRadius = 10;
-                thickness = 1;
-                outlineThickness = 1;
+                thickness += 1;
+                UpdateConfigDisplay();
             }
         }
 
-        private void SaveConfig()
+        private void DecreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (thickness > 0)
             {
-                string json = File.ReadAllText("config.json");
-                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
-                config.Radius = radius;
-                config.OutlineRadius = outlineRadius;
-                config.Thickness = thickness;
-                config.OutlineThickness = outlineThickness;
-                File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
+                thickness -= 1;
+                UpdateConfigDisplay();
             }
-            catch (Exception ex)
+        }
+
+        private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (thickness < 5)
             {
-                System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
+                outlineThickness += 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineThickness > 0)
+            {
+                outlineThickness -= 1;
+                UpdateConfigDisplay();
             }
         }
     }
