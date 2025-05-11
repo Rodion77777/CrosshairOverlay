@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,8 @@ namespace CrosshairOverlay
             OutlineColorValueText.Text = outlineColor.ToString();
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
             CounterStrafeDurationText.Text = csPressureDuration.ToString();
+            setBackgroundCrosshairColorIndicatorButton(strokeColor);
+            setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
             SaveConfig();
         }
 
@@ -176,9 +179,13 @@ namespace CrosshairOverlay
                 {
                     strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateConfigDisplay();
-
                 }
             }
+        }
+
+        private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
+        {
+            CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(strokeColor);
         }
 
         private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
@@ -192,7 +199,12 @@ namespace CrosshairOverlay
                 }
             }
         }
-               
+
+        private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
+        {
+            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
+        }
+
         private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             isCounterStrafeEnabled = true;
