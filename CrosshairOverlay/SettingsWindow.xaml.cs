@@ -28,8 +28,10 @@ namespace CrosshairOverlay
         private int outlineThickness;
         private string strokeColor;
         private string outlineColor;
+        private double strokeOpacity;
+        private double outlineOpacity;
         private bool isCounterStrafeEnabled;
-        private int csPressureDuration = 100; // in ms
+        private int csPressureDuration;
 
         public SettingsWindow()
         {
@@ -50,6 +52,8 @@ namespace CrosshairOverlay
                 outlineThickness = (int)(config?.OutlineThickness ?? 1);
                 strokeColor = config?.StrokeColor ?? "#FF0000";
                 outlineColor = config?.OutlineColor ?? "#0000FF";
+                strokeOpacity = config?.StrokeOpacity ?? 1.0;
+                outlineOpacity = config?.OutlineOpacity ?? 1.0;
                 isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
                 csPressureDuration = config?.csPressureDuration ?? 100;
             }
@@ -61,6 +65,8 @@ namespace CrosshairOverlay
                 outlineThickness = 1;
                 strokeColor = "#FF0000";
                 outlineColor = "#0000FF";
+                strokeOpacity = 1.0;
+                outlineOpacity = 1.0;
                 isCounterStrafeEnabled = false;
                 csPressureDuration = 100;
             }
@@ -74,6 +80,8 @@ namespace CrosshairOverlay
             OutlineThicknessValueText.Text = outlineThickness.ToString();
             ColorValueText.Text = strokeColor.ToString();
             OutlineColorValueText.Text = outlineColor.ToString();
+            CrosshairOpacity.Text = strokeOpacity.ToString();
+            OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
             CounterStrafeDurationText.Text = csPressureDuration.ToString();
             setBackgroundCrosshairColorIndicatorButton(strokeColor);
@@ -95,6 +103,8 @@ namespace CrosshairOverlay
                 config.OutlineThickness = outlineThickness;
                 config.StrokeColor = strokeColor;
                 config.OutlineColor = outlineColor;
+                config.StrokeOpacity = strokeOpacity;
+                config.OutlineOpacity = outlineOpacity;
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 config.csPressureDuration = csPressureDuration;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
@@ -203,6 +213,42 @@ namespace CrosshairOverlay
         private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
         {
             OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
+        }
+
+        private void IncreaseOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (strokeOpacity < 1.0)
+            {
+                strokeOpacity += 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (strokeOpacity > 0.2)
+            {
+                strokeOpacity -= 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineOpacity < 1.0)
+            {
+                outlineOpacity += 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineOpacity > 0.2)
+            {
+                outlineOpacity -= 0.1;
+                UpdateConfigDisplay();
+            }
         }
 
         private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)

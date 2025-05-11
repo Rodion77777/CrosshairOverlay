@@ -73,7 +73,8 @@ namespace CrosshairOverlay
                 Width = outerRadius * 2,
                 Height = outerRadius * 2,
                 Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.OutlineColor)),
-                StrokeThickness = config.OutlineThickness
+                StrokeThickness = config.OutlineThickness,
+                Opacity = config.OutlineOpacity
             };
 
             // Внутренний круг (прицел)
@@ -82,7 +83,8 @@ namespace CrosshairOverlay
                 Width = innerRadius * 2,
                 Height = innerRadius * 2,
                 Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.StrokeColor)),
-                StrokeThickness = config.Thickness
+                StrokeThickness = config.Thickness,
+                Opacity = config.StrokeOpacity
             };
 
             // Центрируем
