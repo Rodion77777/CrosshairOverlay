@@ -27,8 +27,6 @@ namespace CrosshairOverlay
         private int outlineThickness;
         private string strokeColor;
         private string outlineColor;
-        private Color strokeColorValue;
-        private Color outlineColorValue;
 
         public SettingsWindow()
         {
@@ -178,16 +176,5 @@ namespace CrosshairOverlay
                 UpdateConfigDisplay();
             }
         }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateConfigDisplay();
-            SaveConfig();
-        }
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }
