@@ -40,5 +40,21 @@
                 <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
             </StackPanel>
         </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0">
+            <TextBlock Text="Crosshair color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+            <StackPanel Orientation="Horizontal" Width="130">
+                <TextBlock x:Name="ColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
+                <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,130,0,0">
+            <TextBlock Text="Crosshair 2 color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+            <StackPanel Orientation="Horizontal" Width="130">
+                <TextBlock x:Name="OutlineColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
+                <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

@@ -25,6 +25,10 @@ namespace CrosshairOverlay
         private int outlineRadius;
         private int thickness;
         private int outlineThickness;
+        private string strokeColor;
+        private string outlineColor;
+        private Color strokeColorValue;
+        private Color outlineColorValue;
 
         public SettingsWindow()
         {
@@ -43,6 +47,8 @@ namespace CrosshairOverlay
                 outlineRadius = (int)(config?.OutlineRadius ?? 10);
                 thickness = (int)(config?.Thickness ?? 1);
                 outlineThickness = (int)(config?.OutlineThickness ?? 1);
+                strokeColor = config?.StrokeColor ?? "#FF0000";
+                outlineColor = config?.OutlineColor ?? "#0000FF";
             }
             catch
             {
@@ -50,6 +56,8 @@ namespace CrosshairOverlay
                 outlineRadius = 10;
                 thickness = 1;
                 outlineThickness = 1;
+                strokeColor = "#FF0000";
+                outlineColor = "#0000FF";
             }
         }
 
@@ -59,6 +67,8 @@ namespace CrosshairOverlay
             OutlineRadiusValueText.Text = outlineRadius.ToString();
             ThicknessValueText.Text = thickness.ToString();
             OutlineThicknessValueText.Text = outlineThickness.ToString();
+            ColorValueText.Text = strokeColor;
+            OutlineColorValueText.Text = outlineColor;
             SaveConfig();
         }
 
@@ -72,6 +82,8 @@ namespace CrosshairOverlay
                 config.OutlineRadius = outlineRadius;
                 config.Thickness = thickness;
                 config.OutlineThickness = outlineThickness;
+                config.StrokeColor = strokeColor;
+                config.OutlineColor = outlineColor;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             }
             catch (Exception ex)
@@ -145,5 +157,37 @@ namespace CrosshairOverlay
                 UpdateConfigDisplay();
             }
         }
+
+        private void ColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+            var colorDialog = new System.Windows.Forms.ColorDialog();
+            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                UpdateConfigDisplay();
+
+            }
+        }
+
+        private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+            var colorDialog = new System.Windows.Forms.ColorDialog();
+            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateConfigDisplay();
+            SaveConfig();
+        }
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
