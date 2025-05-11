@@ -65,8 +65,8 @@ namespace CrosshairOverlay
             OutlineRadiusValueText.Text = outlineRadius.ToString();
             ThicknessValueText.Text = thickness.ToString();
             OutlineThicknessValueText.Text = outlineThickness.ToString();
-            ColorValueText.Text = strokeColor;
-            OutlineColorValueText.Text = outlineColor;
+            ColorValueText.Text = strokeColor.ToString();
+            OutlineColorValueText.Text = outlineColor.ToString();
             SaveConfig();
         }
 

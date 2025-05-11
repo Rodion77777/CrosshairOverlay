@@ -1,60 +1,70 @@
 ﻿<Window x:Class="CrosshairOverlay.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Crosshair Overlay settings"
+        Title="Crosshair Overlay by 'Метелик' (settings)"
         Height="300" Width="300"
+        ResizeMode="NoResize"
+        FontWeight="Light"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-            <TextBlock Text="Crosshair radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="-" Width="30" Click="DecreaseRadius_Click"/>
-                <TextBlock x:Name="RadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
-                <Button Content="+" Width="30" Click="IncreaseRadius_Click"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+            
+            <StackPanel>
+                <TextBlock Text="Crosshair radius" FontSize="13" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="-" Width="30" Click="DecreaseRadius_Click"/>
+                    <TextBlock x:Name="RadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                    <Button Content="+" Width="30" Click="IncreaseRadius_Click"/>
+                </StackPanel>
             </StackPanel>
+            
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Crosshair thickness" FontSize="13" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="-" Width="30" Click="DecreaseThickness_Click"/>
+                    <TextBlock x:Name="ThicknessValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                    <Button Content="+" Width="30" Click="IncreaseThickness_Click"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Crosshair color" FontSize="13" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal" Width="130">
+                    <TextBlock x:Name="ColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
+                    <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+            
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0">
-            <TextBlock Text="Crosshair thickness" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="-" Width="30" Click="DecreaseThickness_Click"/>
-                <TextBlock x:Name="ThicknessValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
-                <Button Content="+" Width="30" Click="IncreaseThickness_Click"/>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,5,10,0">
+            
+            <StackPanel>
+                <TextBlock Text="Crosshair 2 radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="-" Width="30" Click="DecreaseOutlineRadius_Click"/>
+                    <TextBlock x:Name="OutlineRadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                    <Button Content="+" Width="30" Click="IncreaseOutlineRadius_Click"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,10,0,0">
-            <TextBlock Text="Crosshair 2 radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="-" Width="30" Click="DecreaseOutlineRadius_Click"/>
-                <TextBlock x:Name="OutlineRadiusValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
-                <Button Content="+" Width="30" Click="IncreaseOutlineRadius_Click"/>
+            
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Crosshair 2 thickness" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="-" Width="30" Click="DecreaseOutlineThickness_Click"/>
+                    <TextBlock x:Name="OutlineThicknessValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
+                    <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,70,0,0">
-            <TextBlock Text="Crosshair 2 thickness" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="-" Width="30" Click="DecreaseOutlineThickness_Click"/>
-                <TextBlock x:Name="OutlineThicknessValueText" Width="50" TextAlignment="Center" Margin="10,0" FontSize="14"/>
-                <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
+            
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Crosshair 2 color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
+                <StackPanel Orientation="Horizontal" Width="130">
+                    <TextBlock x:Name="OutlineColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
+                    <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0">
-            <TextBlock Text="Crosshair color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal" Width="130">
-                <TextBlock x:Name="ColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
-                <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
-            </StackPanel>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,130,0,0">
-            <TextBlock Text="Crosshair 2 color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
-            <StackPanel Orientation="Horizontal" Width="130">
-                <TextBlock x:Name="OutlineColorValueText" Width="100" TextAlignment="Center" FontSize="14"/>
-                <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
-            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Window>
