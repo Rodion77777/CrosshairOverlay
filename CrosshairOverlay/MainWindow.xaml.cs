@@ -182,31 +182,25 @@ namespace CrosshairOverlay
                 });
             }
         }
-
+               
         private void GlobalHook_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (!config.IsCounterStrafeEnabled) return;
+            if (!config.IsCounterStrafeEnabled || !isGlobalHookEnable) return;
 
-            //Console.WriteLine($"Key released: {e.KeyCode}");
-
-            if (isGlobalHookEnable)
+            switch (e.KeyCode)
             {
-                if (e.KeyCode == Keys.A)
-                {
+                case Keys.A:
                     SimulateKeyPress(Keys.D);
-                }
-                else if (e.KeyCode == Keys.D)
-                {
+                    break;
+                case Keys.D:
                     SimulateKeyPress(Keys.A);
-                }
-                else if (e.KeyCode == Keys.W)
-                {
+                    break;
+                case Keys.W:
                     SimulateKeyPress(Keys.S);
-                }
-                else if (e.KeyCode == Keys.S)
-                {
+                    break;
+                case Keys.S:
                     SimulateKeyPress(Keys.W);
-                }
+                    break;
             }
         }
 
