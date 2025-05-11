@@ -6,4 +6,5 @@ public class CrosshairConfig
     public double OutlineThickness { get; set; } = 1;
     public string StrokeColor { get; set; } = "#FF0000";
     public string OutlineColor { get; set; } = "#0000FF";
+    public bool IsCounterStrafeEnabled { get; set; } = false;
 }

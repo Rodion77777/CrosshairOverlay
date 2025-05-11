@@ -35,6 +35,12 @@
                 </StackPanel>
             </StackPanel>
 
+            <CheckBox x:Name="CounterStrafeCheckbox"
+              Content="CounterStrafe"
+              Margin="10"
+              Checked="CounterStrafeCheckbox_Checked"
+              Unchecked="CounterStrafeCheckbox_Unchecked"/>
+
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,5,10,0">

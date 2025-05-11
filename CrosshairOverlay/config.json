@@ -4,5 +4,6 @@
   "thickness": 1,
   "outlineThickness": 1,
   "strokeColor": "#FF0000",
-  "outlineColor": "#0000FF"
+  "outlineColor": "#0000FF",
+  "isCounterStrafeEnabled":  false
 }

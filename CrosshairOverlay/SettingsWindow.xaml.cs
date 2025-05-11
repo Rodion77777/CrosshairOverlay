@@ -27,6 +27,7 @@ namespace CrosshairOverlay
         private int outlineThickness;
         private string strokeColor;
         private string outlineColor;
+        private bool isCounterStrafeEnabled;
 
         public SettingsWindow()
         {
@@ -47,6 +48,7 @@ namespace CrosshairOverlay
                 outlineThickness = (int)(config?.OutlineThickness ?? 1);
                 strokeColor = config?.StrokeColor ?? "#FF0000";
                 outlineColor = config?.OutlineColor ?? "#0000FF";
+                isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
             }
             catch
             {
@@ -56,6 +58,7 @@ namespace CrosshairOverlay
                 outlineThickness = 1;
                 strokeColor = "#FF0000";
                 outlineColor = "#0000FF";
+                isCounterStrafeEnabled = false;
             }
         }
 
@@ -67,6 +70,7 @@ namespace CrosshairOverlay
             OutlineThicknessValueText.Text = outlineThickness.ToString();
             ColorValueText.Text = strokeColor.ToString();
             OutlineColorValueText.Text = outlineColor.ToString();
+            CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
             SaveConfig();
         }
 
@@ -76,12 +80,15 @@ namespace CrosshairOverlay
             {
                 string json = File.ReadAllText("config.json");
                 var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
+                //var config = JsonConvert.DeserializeObject<CrosshairConfig>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
+
                 config.Radius = radius;
                 config.OutlineRadius = outlineRadius;
                 config.Thickness = thickness;
                 config.OutlineThickness = outlineThickness;
                 config.StrokeColor = strokeColor;
                 config.OutlineColor = outlineColor;
+                config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             }
             catch (Exception ex)
@@ -179,6 +186,18 @@ namespace CrosshairOverlay
                     UpdateConfigDisplay();
                 }
             }
+        }
+               
+        private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            isCounterStrafeEnabled = true;
+            UpdateConfigDisplay();
+        }
+
+        private void CounterStrafeCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            isCounterStrafeEnabled = false;
+            UpdateConfigDisplay();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

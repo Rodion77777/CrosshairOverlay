@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
+using System.Threading.Tasks;
 
 namespace CrosshairOverlay
 {   public partial class MainWindow : Window
@@ -21,6 +22,8 @@ namespace CrosshairOverlay
 
         private double? lastSettingsLeft;
         private double? lastSettingsTop;
+
+        private bool isGlobalHookEnable = true;
 
         public MainWindow()
         {
@@ -132,6 +135,7 @@ namespace CrosshairOverlay
         {
             _globalHook = Hook.GlobalEvents();
             _globalHook.KeyDown += GlobalHook_KeyDown;
+            _globalHook.KeyUp += GlobalHook_KeyUp;
         }
 
         private void GlobalHook_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -179,6 +183,42 @@ namespace CrosshairOverlay
             }
         }
 
+        private void GlobalHook_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (!config.IsCounterStrafeEnabled) return;
+
+            //Console.WriteLine($"Key released: {e.KeyCode}");
+
+            if (isGlobalHookEnable)
+            {
+                if (e.KeyCode == Keys.A)
+                {
+                    SimulateKeyPress(Keys.D);
+                }
+                else if (e.KeyCode == Keys.D)
+                {
+                    SimulateKeyPress(Keys.A);
+                }
+                else if (e.KeyCode == Keys.W)
+                {
+                    SimulateKeyPress(Keys.S);
+                }
+                else if (e.KeyCode == Keys.S)
+                {
+                    SimulateKeyPress(Keys.W);
+                }
+            }
+        }
+
+        private void SimulateKeyPress(Keys key)
+        {
+            isGlobalHookEnable = false; // отключаем глобальный хук, чтобы избежать зацикливания
+            // Короткое нажатие клавиши
+            keybd_event((byte)key, 0, 0, 0); // key down
+            Task.Delay(200).Wait();          // пауза 30 мс
+            keybd_event((byte)key, 0, 2, 0); // key up
+            isGlobalHookEnable = true;  // включаем глобальный хук обратно
+        }
 
         protected override void OnClosed(EventArgs e)
         {
@@ -192,6 +232,10 @@ namespace CrosshairOverlay
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_TRANSPARENT = 0x00000020;
         private const int WS_EX_LAYERED = 0x00080000;
+
+        // Импорт функции из WinAPI
+        [DllImport("user32.dll")]
+        private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
 
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hwnd, int index);
