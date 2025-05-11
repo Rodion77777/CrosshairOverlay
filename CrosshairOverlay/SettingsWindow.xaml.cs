@@ -158,23 +158,33 @@ namespace CrosshairOverlay
 
         private void ColorPicker_Click(object sender, RoutedEventArgs e)
         {
-            var colorDialog = new System.Windows.Forms.ColorDialog();
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            using (var colorDialog = new System.Windows.Forms.ColorDialog())
             {
-                strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                UpdateConfigDisplay();
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                    UpdateConfigDisplay();
 
+                }
             }
         }
 
         private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
         {
-            var colorDialog = new System.Windows.Forms.ColorDialog();
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            using (var colorDialog = new System.Windows.Forms.ColorDialog())
             {
-                outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                UpdateConfigDisplay();
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                    UpdateConfigDisplay();
+                }
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Закрываем главное окно, а вместе с ним и всё приложение
+            Application.Current.Shutdown();
         }
     }
 }

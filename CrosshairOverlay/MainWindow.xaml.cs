@@ -59,7 +59,7 @@ namespace CrosshairOverlay
             Left = 0;
             Top = 0;
 
-            var outerRadius = config.OutlineRadius + config.OutlineThickness;
+            var outerRadius = config.OutlineRadius + config.OutlineThickness - 1;
             var innerRadius = config.Radius;
 
             var grid = new Grid();
