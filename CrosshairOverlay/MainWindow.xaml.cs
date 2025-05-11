@@ -213,9 +213,8 @@ namespace CrosshairOverlay
         private void SimulateKeyPress(Keys key)
         {
             isGlobalHookEnable = false; // отключаем глобальный хук, чтобы избежать зацикливания
-            // Короткое нажатие клавиши
             keybd_event((byte)key, 0, 0, 0); // key down
-            Task.Delay(200).Wait();          // пауза 30 мс
+            Task.Delay(config.csPressureDuration).Wait();
             keybd_event((byte)key, 0, 2, 0); // key up
             isGlobalHookEnable = true;  // включаем глобальный хук обратно
         }

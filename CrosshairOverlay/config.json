@@ -5,5 +5,6 @@
   "outlineThickness": 1,
   "strokeColor": "#FF0000",
   "outlineColor": "#0000FF",
-  "isCounterStrafeEnabled":  false
+  "isCounterStrafeEnabled": false,
+  "csPressureDuration": 100
 }

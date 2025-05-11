@@ -7,4 +7,5 @@ public class CrosshairConfig
     public string StrokeColor { get; set; } = "#FF0000";
     public string OutlineColor { get; set; } = "#0000FF";
     public bool IsCounterStrafeEnabled { get; set; } = false;
+    public int csPressureDuration { get; set; } = 100;
 }

@@ -28,6 +28,7 @@ namespace CrosshairOverlay
         private string strokeColor;
         private string outlineColor;
         private bool isCounterStrafeEnabled;
+        private int csPressureDuration = 100; // in ms
 
         public SettingsWindow()
         {
@@ -49,6 +50,7 @@ namespace CrosshairOverlay
                 strokeColor = config?.StrokeColor ?? "#FF0000";
                 outlineColor = config?.OutlineColor ?? "#0000FF";
                 isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
+                csPressureDuration = config?.csPressureDuration ?? 100;
             }
             catch
             {
@@ -59,6 +61,7 @@ namespace CrosshairOverlay
                 strokeColor = "#FF0000";
                 outlineColor = "#0000FF";
                 isCounterStrafeEnabled = false;
+                csPressureDuration = 100;
             }
         }
 
@@ -71,6 +74,7 @@ namespace CrosshairOverlay
             ColorValueText.Text = strokeColor.ToString();
             OutlineColorValueText.Text = outlineColor.ToString();
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
+            CounterStrafeDurationText.Text = csPressureDuration.ToString();
             SaveConfig();
         }
 
@@ -89,6 +93,7 @@ namespace CrosshairOverlay
                 config.StrokeColor = strokeColor;
                 config.OutlineColor = outlineColor;
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
+                config.csPressureDuration = csPressureDuration;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             }
             catch (Exception ex)
@@ -198,6 +203,24 @@ namespace CrosshairOverlay
         {
             isCounterStrafeEnabled = false;
             UpdateConfigDisplay();
+        }
+
+        private void IncreaseCSDuration_Click(object sender, RoutedEventArgs e)
+        {
+            if (csPressureDuration < 500)
+            {
+                csPressureDuration += 10;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseCSDuration_Click(object sender, RoutedEventArgs e)
+        {
+            if (csPressureDuration > 0)
+            {
+                csPressureDuration -= 10;
+                UpdateConfigDisplay();
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
