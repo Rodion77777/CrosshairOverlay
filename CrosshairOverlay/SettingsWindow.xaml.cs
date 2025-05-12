@@ -32,12 +32,15 @@ namespace CrosshairOverlay
         private double outlineOpacity;
         private bool isCounterStrafeEnabled;
         private int csPressureDuration;
+        private ConfigManager configManager;
 
         public SettingsWindow()
         {
             InitializeComponent();
             LoadConfig();
             UpdateConfigDisplay();
+            configManager = new ConfigManager();
+            LoadConfigList();
         }
 
         private void LoadConfig()
@@ -302,6 +305,67 @@ namespace CrosshairOverlay
             if (CSTestBox.Text.Length > maxLength)
             {
                 CSTestBox.Text = ""; // Очистка, если превышен лимит
+            }
+        }
+
+        private void SaveConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            string fileName = ConfigNameTextBox.Text.Trim(); // Получаем имя из TextBox
+
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                MessageBox.Show("Введите корректное имя файла!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                var config = new CrosshairConfig(); // Создаем объект конфигурации
+                configManager.SaveConfig(config, fileName); // Сохраняем файл
+                LoadConfigList(); // Обновляем список конфигов
+                MessageBox.Show($"Конфиг '{fileName}' успешно сохранен!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void LoadConfigList()
+        {
+            СonfigSelector.Items.Clear(); // Очищаем список перед обновлением
+            string[] configs = configManager.ListConfigs(); // Получаем список конфигов
+
+            foreach (string config in configs)
+            {
+                СonfigSelector.Items.Add(config); // Добавляем файлы в ComboBox
+            }
+
+            if (СonfigSelector.Items.Count > 0)
+            {
+                СonfigSelector.SelectedIndex = 0; // Выбираем первый конфиг по умолчанию
+            }
+        }
+
+        private void LoadConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConfirmDeleteConfig.IsChecked == false) return;
+            string fileName = СonfigSelector.Text; // Получаем имя выбранного конфига
+            try
+            {
+                configManager.DeleteConfig(fileName); // Удаляем выбранный конфиг
+                ConfirmDeleteConfig.IsChecked = false; // Сбрасываем состояние чекбокса
+                LoadConfigList(); // Обновляем список конфигов
+                MessageBox.Show($"Конфиг '{fileName}' успешно удален!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
