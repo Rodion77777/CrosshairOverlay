@@ -11,7 +11,6 @@
             <TabItem Header="Crosshair">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-
                         <StackPanel>
                             <TextBlock Text="Crosshair radius" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
@@ -20,7 +19,6 @@
                                 <Button Content="+" Width="30" Click="IncreaseRadius_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair thickness" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
@@ -29,7 +27,6 @@
                                 <Button Content="+" Width="30" Click="IncreaseThickness_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair color" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal" Width="130">
@@ -38,7 +35,6 @@
                                 <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair opacity" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
@@ -47,11 +43,8 @@
                                 <Button Content="+" Width="30" Click="IncreaseOpacity_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                     </StackPanel>
-
                     <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,5,10,0">
-
                         <StackPanel>
                             <TextBlock Text="Crosshair 2 radius" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
                             <StackPanel Orientation="Horizontal">
@@ -60,7 +53,6 @@
                                 <Button Content="+" Width="30" Click="IncreaseOutlineRadius_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair 2 thickness" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
                             <StackPanel Orientation="Horizontal">
@@ -69,7 +61,6 @@
                                 <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair 2 color" FontWeight="Light" Margin="0,0,0,10" FontSize="13"/>
                             <StackPanel Orientation="Horizontal" Width="130">
@@ -78,7 +69,6 @@
                                 <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
                             </StackPanel>
                         </StackPanel>
-                        
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Crosshair 2 opacity" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
@@ -87,9 +77,7 @@
                                 <Button Content="+" Width="30" Click="IncreaseOutlineOpacity_Click"/>
                             </StackPanel>
                         </StackPanel>
-                        
                     </StackPanel>
-
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>
             </TabItem>
@@ -100,7 +88,6 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-
                         <StackPanel>
                             <TextBlock Text="C.Strafe press. duration" FontSize="13" Margin="0,0,0,10"/>
                             <StackPanel Orientation="Horizontal">
@@ -109,24 +96,19 @@
                                 <Button Content="+" Width="30" Click="IncreaseCSDuration_Click"/>
                             </StackPanel>
                         </StackPanel>
-
                         <CheckBox x:Name="CounterStrafeCheckbox" Content="CounterStrafe (wasd)" Margin="0,10,0,0" Checked="CounterStrafeCheckbox_Checked" Unchecked="CounterStrafeCheckbox_Unchecked" Width="130"/>
-
                     </StackPanel>
-
                     <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Grid.Column="1">
                         <TextBlock Text="C.Strafe keyboard test" FontSize="13" Margin="0,0,0,10"/>
-                        <TextBox Width="130" Height="45" AcceptsReturn="True"/>
+                        <TextBox x:Name="CSTestBox" Width="130" Height="45" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
-
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click" Grid.Column="1"></Button>
-
                 </Grid>
             </TabItem>
             <TabItem Header="Custom">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                        <TextBlock Text="In development..."></TextBlock>
+                        <TextBlock Text="In development..."/>
                     </StackPanel>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>
@@ -134,7 +116,7 @@
             <TabItem Header="Config">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                        <TextBlock Text="In development..."></TextBlock>
+                        <TextBlock Text="In development..."/>
                     </StackPanel>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>    

@@ -281,6 +281,15 @@ namespace CrosshairOverlay
             }
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int maxLength = 60; // Устанавливаем лимит символов
+            if (CSTestBox.Text.Length > maxLength)
+            {
+                CSTestBox.Text = ""; // Очистка, если превышен лимит
+            }
+        }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             // Закрываем главное окно, а вместе с ним и всё приложение
