@@ -96,10 +96,9 @@
             <TabItem Header="C.Strafe">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
 
                         <StackPanel>
@@ -116,6 +115,8 @@
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Grid.Column="1">
+                        <TextBlock Text="C.Strafe keyboard test" FontSize="13" Margin="0,0,0,10"/>
+                        <TextBox Width="130" Height="45" AcceptsReturn="True"/>
                     </StackPanel>
 
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click" Grid.Column="1"></Button>
