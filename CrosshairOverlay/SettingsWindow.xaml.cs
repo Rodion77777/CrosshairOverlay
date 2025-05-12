@@ -59,17 +59,22 @@ namespace CrosshairOverlay
             }
             catch
             {
-                radius = 10;
-                outlineRadius = 10;
-                thickness = 1;
-                outlineThickness = 1;
-                strokeColor = "#FF0000";
-                outlineColor = "#0000FF";
-                strokeOpacity = 1.0;
-                outlineOpacity = 1.0;
-                isCounterStrafeEnabled = false;
-                csPressureDuration = 100;
+                LoadConfigDefault();
             }
+        }
+
+        private void LoadConfigDefault()
+        {
+            radius = 24;
+            outlineRadius = 25;
+            thickness = 1;
+            outlineThickness = 1;
+            strokeColor = "#FF0000";
+            outlineColor = "#0000FF";
+            strokeOpacity = 1.0;
+            outlineOpacity = 1.0;
+            isCounterStrafeEnabled = false;
+            csPressureDuration = 100;
         }
 
         private void UpdateConfigDisplay()
@@ -247,6 +252,16 @@ namespace CrosshairOverlay
             if (outlineOpacity > 0.2)
             {
                 outlineOpacity -= 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CrosshairResetConfirmCheckbox.IsChecked == true)
+            {
+                LoadConfigDefault();
+                CrosshairResetConfirmCheckbox.IsChecked = false; // Сбросить состояние чекбокса
                 UpdateConfigDisplay();
             }
         }

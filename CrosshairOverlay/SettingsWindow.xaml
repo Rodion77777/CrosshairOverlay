@@ -78,6 +78,8 @@
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Reset" Width="50" Height="20" Margin="10,0,0,10" Click="CrosshairResetButton_Click"></Button>
+                    <CheckBox x:Name="CrosshairResetConfirmCheckbox" VerticalAlignment="Bottom" Content="Confirm reset!" Margin="0,0,0,12" Width="165"/>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>
             </TabItem>
