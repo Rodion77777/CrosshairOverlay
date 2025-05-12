@@ -119,6 +119,19 @@
                 <Grid Background="#FFE5E5E5">
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                         <TextBlock Text="In development..."/>
+                        <TextBlock Text="New config name:" Margin="0,20,0,0"/>
+                        <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap" TextChanged="ConfigNameTextBox_TextChanged"/>
+                        <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
+                        <ComboBox x:Name="ConfigComboBox" Margin="0,30,0,0" Width="150" Height="20">
+                            <ComboBoxItem Content="Config 1"/>
+                            <ComboBoxItem Content="Config 2"/>
+                            <ComboBoxItem Content="Config 3"/>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
+                            <Button x:Name="LoadConfigButton" HorizontalAlignment="Left" Content="Load" Width="50" Height="20" Click="LoadConfigButton_Click"/>
+                            <CheckBox Margin="30,2,4,0"/>
+                            <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
+                        </StackPanel>
                     </StackPanel>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>    
