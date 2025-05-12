@@ -49,5 +49,18 @@ namespace CrosshairOverlay
                             .Select(Path.GetFileNameWithoutExtension)
                             .ToArray();
         }
+
+        public bool DeleteConfig(string fileName)
+        {
+            string fullPath = Path.Combine(configDirectory, fileName + ".json");
+
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+                return true; // Успешное удаление
+            }
+
+            return false; // Файл не найден
+        }
     }
 }
