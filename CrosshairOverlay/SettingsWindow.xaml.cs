@@ -321,6 +321,16 @@ namespace CrosshairOverlay
             try
             {
                 var config = new CrosshairConfig(); // Создаем объект конфигурации
+                config.Radius = radius;
+                config.OutlineRadius = outlineRadius;
+                config.Thickness = thickness;
+                config.OutlineThickness = outlineThickness;
+                config.StrokeColor = strokeColor;
+                config.OutlineColor = outlineColor;
+                config.StrokeOpacity = strokeOpacity;
+                config.OutlineOpacity = outlineOpacity;
+                config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
+                config.csPressureDuration = csPressureDuration;
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
                 MessageBox.Show($"Конфиг '{fileName}' успешно сохранен!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -349,7 +359,36 @@ namespace CrosshairOverlay
 
         private void LoadConfigButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //Получаем имя выбранного конфига
+            string fileName = СonfigSelector.Text;
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                MessageBox.Show("Выберите конфиг для загрузки!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                var config = configManager.LoadConfig(fileName); // Загружаем конфиг
+                radius = (int)(config?.Radius ?? 24);
+                outlineRadius = (int)(config?.OutlineRadius ?? 25);
+                thickness = (int)(config?.Thickness ?? 1);
+                outlineThickness = (int)(config?.OutlineThickness ?? 1);
+                strokeColor = config?.StrokeColor ?? "#FF0000";
+                outlineColor = config?.OutlineColor ?? "#0000FF";
+                strokeOpacity = config?.StrokeOpacity ?? 1.0;
+                outlineOpacity = config?.OutlineOpacity ?? 1.0;
+                isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
+                csPressureDuration = config?.csPressureDuration ?? 100;
+                UpdateConfigDisplay(); // Обновляем отображение
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Файл не найден!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteConfigButton_Click(object sender, RoutedEventArgs e)
