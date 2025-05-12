@@ -122,6 +122,22 @@
 
                 </Grid>
             </TabItem>
+            <TabItem Header="Custom">
+                <Grid Background="#FFE5E5E5">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+                        <TextBlock Text="In development..."></TextBlock>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Config">
+                <Grid Background="#FFE5E5E5">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+                        <TextBlock Text="In development..."></TextBlock>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
+                </Grid>    
+            </TabItem>
             <TabItem Header="About">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
