@@ -22,14 +22,27 @@ namespace CrosshairOverlay
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        // Параметры Ellips A
         private int radius;
-        private int outlineRadius;
         private int thickness;
-        private int outlineThickness;
         private string strokeColor;
-        private string outlineColor;
         private double strokeOpacity;
+        // Параметры Ellips B
+        private int outlineRadius;
+        private int outlineThickness;
+        private string outlineColor;
         private double outlineOpacity;
+        private double outlineOffsetX;
+        private double outlineOffsetY;
+        // Параметры Ellips C
+        private double unrestrictedWidth;
+        private double unrestrictedHeight;
+        private double unrestrictedTickness;
+        private string unrestrictedColor;
+        private double unrestrictedOpacity;
+        private double unrestrictedOffsetX;
+        private double unrestrictedOffsetY;
+        // Параметры CounterStrafe
         private bool isCounterStrafeEnabled;
         private int csPressureDuration;
         private ConfigManager configManager;
