@@ -135,16 +135,16 @@ namespace CrosshairOverlay
             UpdateOutlineOffsetXValueText();
             UpdateOutlineOffsetYValueText();
             // Параметры Ellips C
-            UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
-            UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
-            UnrestrictedThicknessValueText.Text = unrestrictedTickness.ToString();
-            UnrestrictedColorValueText.Text = unrestrictedColor.ToString();
-            UnrestrictedOpacityValueText.Text = unrestrictedOpacity.ToString();
-            UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
-            UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
+            UpdateUnrestrictedWidthValueText();
+            UpdateUnrestrictedHeightValueText();
+            UpdateUnrestrictedThicknessValueText();
+            UpdateUnrestrictedColorValueText();
+            UpdateUnrestrictedOpacityValueText();
+            UpdateUnrestrictedOffsetXValueText();
+            UpdateUnrestrictedOffsetYValueText();
             // Параметры CounterStrafe
-            CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
-            CounterStrafeDurationText.Text = csPressureDuration.ToString();
+            UpdateCSCheckbox();
+            UpdateCSDurationValueText();
 
             setBackgroundCrosshairColorIndicatorButton(strokeColor);
             setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
@@ -587,26 +587,22 @@ namespace CrosshairOverlay
         }
 
         // Параметры CounterStrafe
-        private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (CrosshairResetConfirmCheckbox.IsChecked == true)
-            {
-                LoadConfigDefault();
-                CrosshairResetConfirmCheckbox.IsChecked = false; // Сбросить состояние чекбокса
-                UpdateConfigDisplay();
-            }
-        }
-
         private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             isCounterStrafeEnabled = true;
-            UpdateConfigDisplay();
+            UpdateCSCheckbox();
         }
 
         private void CounterStrafeCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             isCounterStrafeEnabled = false;
-            UpdateConfigDisplay();
+            UpdateCSCheckbox();
+        }
+
+        private void UpdateCSCheckbox()
+        {
+            CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
+            SaveConfig();
         }
 
         private void IncreaseCSDuration_Click(object sender, RoutedEventArgs e)
@@ -614,7 +610,7 @@ namespace CrosshairOverlay
             if (csPressureDuration < 500)
             {
                 csPressureDuration += 10;
-                UpdateConfigDisplay();
+                UpdateCSDurationValueText();
             }
         }
 
@@ -623,8 +619,14 @@ namespace CrosshairOverlay
             if (csPressureDuration > 0)
             {
                 csPressureDuration -= 10;
-                UpdateConfigDisplay();
+                UpdateCSDurationValueText();
             }
+        }
+
+        private void UpdateCSDurationValueText()
+        {
+            CounterStrafeDurationText.Text = csPressureDuration.ToString();
+            SaveConfig();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -733,6 +735,16 @@ namespace CrosshairOverlay
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CrosshairResetConfirmCheckbox.IsChecked == true)
+            {
+                LoadConfigDefault();
+                CrosshairResetConfirmCheckbox.IsChecked = false; // Сбросить состояние чекбокса
+                UpdateConfigDisplay();
             }
         }
 
