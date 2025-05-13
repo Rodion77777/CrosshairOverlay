@@ -20,6 +20,13 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="0,1"/>
             </Style>
+            <Style x:Key="Control_Group_Bottom" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="7,0,7,6"/>
+                <Setter Property="Background" Value="#FFE5E5E5"/>
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="30"/>
                 <Setter Property="Height" Value="20"/>
@@ -61,14 +68,12 @@
                 <Setter Property="Content" Value="Reset"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Margin" Value="10,0,0,10"/>
                 <Setter Property="Background" Value="LightYellow"/>
             </Style>
             <Style x:Key="ConfirmReset" TargetType="CheckBox">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Content" Value="Confirm reset!"/>
-                <Setter Property="Margin" Value="5,0,0,12"/>
-                <Setter Property="Width" Value="165"/>
+                <Setter Property="Margin" Value="5,0,90,2"/>
                 <Setter Property="Background" Value="LightYellow"/>
             </Style>
             <Style x:Key="Exit" TargetType="Button">
@@ -77,7 +82,6 @@
                 <Setter Property="Content" Value="Exit"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Margin" Value="0,0,10,10"/>
                 <Setter Property="Background" Value="LightCoral"/>
             </Style>
         </Grid.Resources>
@@ -220,6 +224,7 @@
                                         <TextBlock x:Name="UnrestrictedCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedVertical_Click"/>
                                     </StackPanel>
+                                    <StackPanel Height="20" Style="{StaticResource Control_Group_Inline}"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>
@@ -260,7 +265,7 @@
                         <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
                         <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
                         <ComboBox x:Name="СonfigSelector" Margin="0,30,0,0" Width="150" Height="20">
-                            
+
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
                             <Button x:Name="LoadConfigButton" HorizontalAlignment="Left" Content="Load" Width="50" Height="20" Click="LoadConfigButton_Click"/>
@@ -268,7 +273,7 @@
                             <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
                         </StackPanel>
                     </StackPanel>
-                </Grid>    
+                </Grid>
             </TabItem>
             <TabItem Header="About">
                 <Grid>
@@ -283,7 +288,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Style="{StaticResource Control_Group_Bottom}">
             <Button Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
             <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
             <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
