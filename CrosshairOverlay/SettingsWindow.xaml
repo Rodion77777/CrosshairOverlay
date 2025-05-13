@@ -69,11 +69,12 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="LightYellow"/>
+                <Setter Property="Margin" Value="7,0,0,7"/>
             </Style>
             <Style x:Key="ConfirmReset" TargetType="CheckBox">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Content" Value="Confirm reset!"/>
-                <Setter Property="Margin" Value="5,0,90,2"/>
+                <Setter Property="Margin" Value="60,0,0,9"/>
                 <Setter Property="Background" Value="LightYellow"/>
             </Style>
             <Style x:Key="Exit" TargetType="Button">
@@ -83,6 +84,7 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="LightCoral"/>
+                <Setter Property="Margin" Value="0,0,7,7"/>
             </Style>
         </Grid.Resources>
         <TabControl>
@@ -288,10 +290,10 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel Style="{StaticResource Control_Group_Bottom}">
-            <Button Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
-            <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
-            <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
-        </StackPanel>
+        <!--<StackPanel Style="{StaticResource Control_Group_Bottom}">-->
+        <Button Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
+        <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
+        <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
+        <!--</StackPanel>-->
     </Grid>
 </Window>
