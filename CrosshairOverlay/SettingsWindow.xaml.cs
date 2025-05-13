@@ -62,14 +62,27 @@ namespace CrosshairOverlay
             {
                 string json = File.ReadAllText("config.json");
                 var config = JsonConvert.DeserializeObject<CrosshairConfig>(json);
-                radius = (int)(config?.Radius ?? 10);
-                outlineRadius = (int)(config?.OutlineRadius ?? 10);
-                thickness = (int)(config?.Thickness ?? 1);
-                outlineThickness = (int)(config?.OutlineThickness ?? 1);
+                // Параметры Ellips A
+                radius = config?.Radius ?? 10;
+                thickness = config?.Thickness ?? 1;
                 strokeColor = config?.StrokeColor ?? "#FF0000";
-                outlineColor = config?.OutlineColor ?? "#0000FF";
                 strokeOpacity = config?.StrokeOpacity ?? 1.0;
+                // Параметры Ellips B
+                outlineRadius = config?.OutlineRadius ?? 10;
+                outlineThickness = config?.OutlineThickness ?? 1;
+                outlineColor = config?.OutlineColor ?? "#0000FF";
                 outlineOpacity = config?.OutlineOpacity ?? 1.0;
+                outlineOffsetX = config?.OutlineOffsetX ?? 0;
+                outlineOffsetY = config?.OutlineOffsetY ?? 0;
+                // Параметры Ellips C
+                unrestrictedWidth = config?.UnrestrictedWidth ?? 0;
+                unrestrictedHeight = config?.UnrestrictedHeight ?? 0;
+                unrestrictedTickness = config?.UnrestrictedTickness ?? 0;
+                unrestrictedColor = config?.UnrestrictedColor ?? "#00FF00";
+                unrestrictedOpacity = config?.UnrestrictedOpacity ?? 1;
+                unrestrictedOffsetX = config?.UnrestrictedOffsetX ?? 0;
+                unrestrictedOffsetY = config?.UnrestrictedOffsetY ?? 0;
+                // Параметры CounterStrafe
                 isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
                 csPressureDuration = config?.csPressureDuration ?? 100;
             }
@@ -81,32 +94,60 @@ namespace CrosshairOverlay
 
         private void LoadConfigDefault()
         {
+            // Параметры Ellips A
             radius = 24;
-            outlineRadius = 25;
             thickness = 1;
-            outlineThickness = 1;
             strokeColor = "#FF0000";
-            outlineColor = "#0000FF";
             strokeOpacity = 1.0;
+            // Параметры Ellips B
+            outlineRadius = 25;
+            outlineThickness = 1;
+            outlineColor = "#0000FF";
             outlineOpacity = 1.0;
+            outlineOffsetX = 0;
+            outlineOffsetY = 0;
+            // Параметры Ellips C
+            unrestrictedWidth = 0;
+            unrestrictedHeight = 0;
+            unrestrictedTickness = 0;
+            unrestrictedColor = "#00FF00";
+            unrestrictedOpacity = 1;
+            unrestrictedOffsetX = 0;
+            unrestrictedOffsetY = 0;
+            // Параметры CounterStrafe
             isCounterStrafeEnabled = false;
             csPressureDuration = 100;
         }
 
         private void UpdateConfigDisplay()
         {
+            // Параметры Ellips A
             RadiusValueText.Text = radius.ToString();
-            OutlineRadiusValueText.Text = outlineRadius.ToString();
             ThicknessValueText.Text = thickness.ToString();
-            OutlineThicknessValueText.Text = outlineThickness.ToString();
             ColorValueText.Text = strokeColor.ToString();
-            OutlineColorValueText.Text = outlineColor.ToString();
             CrosshairOpacity.Text = strokeOpacity.ToString();
+            // Параметры Ellips B
+            OutlineRadiusValueText.Text = outlineRadius.ToString();
+            OutlineThicknessValueText.Text = outlineThickness.ToString();
+            OutlineColorValueText.Text = outlineColor.ToString();
             OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
+            OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
+            OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
+            // Параметры Ellips C
+            UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
+            UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
+            UnrestrictedThicknessValueText.Text = unrestrictedTickness.ToString();
+            UnrestrictedColorValueText.Text = unrestrictedColor.ToString();
+            UnrestrictedOpacityValueText.Text = unrestrictedOpacity.ToString();
+            UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
+            UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
+            // Параметры CounterStrafe
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
             CounterStrafeDurationText.Text = csPressureDuration.ToString();
+
             setBackgroundCrosshairColorIndicatorButton(strokeColor);
             setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
+            //setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
             SaveConfig();
         }
 
@@ -272,7 +313,7 @@ namespace CrosshairOverlay
             }
         }
 
-        private void DecreaseOutlineHorizontal_Click(object sender, RoutedEventArgs e)
+        private void OutlineDecreaseHorizontal_Click(object sender, RoutedEventArgs e)
         {
 
         }

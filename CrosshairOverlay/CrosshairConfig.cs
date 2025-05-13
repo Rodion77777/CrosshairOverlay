@@ -14,7 +14,7 @@ public class CrosshairConfig
     public int UnrestrictedHeight { get; set; } = 0;
     public int UnrestrictedTickness { get; set; } = 0;
     public string UnrestrictedColor { get; set; } = "#00FF00";
-    public double UnrestrictedOpacity { get; set; } = 0.5;
+    public double UnrestrictedOpacity { get; set; } = 1;
     public int UnrestrictedOffsetX { get; set; } = 0;
     public int UnrestrictedOffsetY { get; set; } = 0;
     public bool IsCounterStrafeEnabled { get; set; } = false;

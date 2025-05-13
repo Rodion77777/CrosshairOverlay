@@ -158,15 +158,15 @@
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
                                     <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseOutlineHorizontal_Click"/>
-                                    <TextBlock x:Name="OutlineCrosshairHorizontal" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseOutlineHorizontal_Click"/>
+                                    <Button Content="-" Click="DecreaseOutlineOffsetX_Click"/>
+                                    <TextBlock x:Name="OutlineCrosshairOffsetX" Style="{StaticResource TextBlock_Output}"/>
+                                    <Button Content="+" Click="IncreaseOutlineOffsetX_Click"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
                                     <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseOutlineVertical_Click"/>
-                                    <TextBlock x:Name="OutlineCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseOutlineVertical_Click"/>
+                                    <Button Content="-" Click="DecreaseOutlineOffsetY_Click"/>
+                                    <TextBlock x:Name="OutlineCrosshairOffsetY" Style="{StaticResource TextBlock_Output}"/>
+                                    <Button Content="+" Click="IncreaseOutlineOffsetY_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -179,9 +179,9 @@
                                         <TextBlock Text="Unrestricted Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                        <TextBlock Text="Weight" Style="{StaticResource TextBlock_Inline}"/>
+                                        <TextBlock Text="Width" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedRadius_Click"/>
-                                        <TextBlock x:Name="RadiusValueText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedWidthValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedRadius_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
@@ -190,13 +190,13 @@
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Height" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedRadius2_Click"/>
-                                        <TextBlock x:Name="RadiusHeightValueText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedHeightValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedRadius2_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedThickness_Click"/>
-                                        <TextBlock x:Name="ThicknessValueText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedThickness_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
@@ -208,7 +208,7 @@
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedOpacity_Click"/>
-                                        <TextBlock x:Name="UnrestrictedCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedOpacityValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedOpacity_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
@@ -217,13 +217,13 @@
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedHorizontal_Click"/>
-                                        <TextBlock x:Name="UnrestrictedCrosshairHorizontal" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedOffsetXValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedHorizontal_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseUnrestrictedVertical_Click"/>
-                                        <TextBlock x:Name="UnrestrictedCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock x:Name="UnrestrictedOffsetYValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseUnrestrictedVertical_Click"/>
                                     </StackPanel>
                                     <StackPanel Height="20" Style="{StaticResource Control_Group_Inline}"/>
