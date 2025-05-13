@@ -62,10 +62,22 @@ namespace CrosshairOverlay
             Left = 0;
             Top = 0;
 
-            var outerRadius = config.OutlineRadius + config.OutlineThickness - 1;
             var innerRadius = config.Radius;
+            var outerRadius = config.OutlineRadius + config.OutlineThickness - 1;
+            var unrestrictedWidth = config.UnrestrictedWidth + config.UnrestrictedTickness;
+            var unrestrictedHeight = config.UnrestrictedHeight + config.UnrestrictedTickness;
 
             var grid = new Grid();
+
+            // Внутренний круг (прицел)
+            var circle = new Ellipse
+            {
+                Width = innerRadius * 2,
+                Height = innerRadius * 2,
+                Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.StrokeColor)),
+                StrokeThickness = config.Thickness,
+                Opacity = config.StrokeOpacity
+            };
 
             // Внешний круг (обводка)
             var outline = new Ellipse
@@ -78,24 +90,28 @@ namespace CrosshairOverlay
                 Margin = new Thickness(config.OutlineOffsetX, -config.OutlineOffsetY, 0, 0)
             };
 
-            // Внутренний круг (прицел)
-            var circle = new Ellipse
+            // Свободный элемент (неограниченная фигура)
+            var unrestricted = new Ellipse
             {
-                Width = innerRadius * 2,
-                Height = innerRadius * 2,
-                Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.StrokeColor)),
-                StrokeThickness = config.Thickness,
-                Opacity = config.StrokeOpacity
+                Width = unrestrictedWidth * 2,
+                Height = unrestrictedHeight * 2,
+                Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.UnrestrictedColor)),
+                StrokeThickness = config.UnrestrictedTickness,
+                Opacity = config.UnrestrictedOpacity,
+                Margin = new Thickness(config.UnrestrictedOffsetX, -config.UnrestrictedOffsetY, 0, 0)
             };
 
             // Центрируем
-            outline.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            outline.VerticalAlignment = VerticalAlignment.Center;
             circle.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             circle.VerticalAlignment = VerticalAlignment.Center;
+            outline.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            outline.VerticalAlignment = VerticalAlignment.Center;
+            unrestricted.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            unrestricted.VerticalAlignment = VerticalAlignment.Center;
 
-            grid.Children.Add(outline);
             grid.Children.Add(circle);
+            grid.Children.Add(outline);
+            grid.Children.Add(unrestricted);
             Content = grid;
         }
 
