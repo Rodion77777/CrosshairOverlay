@@ -259,6 +259,26 @@ namespace CrosshairOverlay
             }
         }
 
+        private void DecreaseOutlineHorizontal_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseOutlineHorizontal_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreaseOutlineVertical_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseOutlineVertical_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
         {
             if (CrosshairResetConfirmCheckbox.IsChecked == true)
