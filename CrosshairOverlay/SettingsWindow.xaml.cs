@@ -32,16 +32,16 @@ namespace CrosshairOverlay
         private int outlineThickness;
         private string outlineColor;
         private double outlineOpacity;
-        private double outlineOffsetX;
-        private double outlineOffsetY;
+        private int outlineOffsetX;
+        private int outlineOffsetY;
         // Параметры Ellips C
-        private double unrestrictedWidth;
-        private double unrestrictedHeight;
-        private double unrestrictedTickness;
+        private int unrestrictedWidth;
+        private int unrestrictedHeight;
+        private int unrestrictedTickness;
         private string unrestrictedColor;
         private double unrestrictedOpacity;
-        private double unrestrictedOffsetX;
-        private double unrestrictedOffsetY;
+        private int unrestrictedOffsetX;
+        private int unrestrictedOffsetY;
         // Параметры CounterStrafe
         private bool isCounterStrafeEnabled;
         private int csPressureDuration;
