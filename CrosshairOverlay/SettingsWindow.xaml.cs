@@ -244,7 +244,8 @@ namespace CrosshairOverlay
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateConfigDisplay();
+                    UpdateColorValueText();
+                    setBackgroundCrosshairColorIndicatorButton(strokeColor);
                 }
             }
         }
@@ -338,6 +339,7 @@ namespace CrosshairOverlay
                 {
                     outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateOutlineColorValueText();
+                    setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
                 }
             }
         }
@@ -500,6 +502,7 @@ namespace CrosshairOverlay
                 {
                     unrestrictedColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateUnrestrictedColorValueText();
+                    setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
                 }
             }
         }
