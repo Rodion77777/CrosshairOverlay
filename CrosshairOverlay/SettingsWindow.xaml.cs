@@ -45,6 +45,7 @@ namespace CrosshairOverlay
         // Параметры CounterStrafe
         private bool isCounterStrafeEnabled;
         private int csPressureDuration;
+        // Экземпляры
         private ConfigManager configManager;
 
         public SettingsWindow()
@@ -147,7 +148,7 @@ namespace CrosshairOverlay
 
             setBackgroundCrosshairColorIndicatorButton(strokeColor);
             setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
-            //setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
+            setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
             SaveConfig();
         }
 
@@ -159,14 +160,27 @@ namespace CrosshairOverlay
                 var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
                 //var config = JsonConvert.DeserializeObject<CrosshairConfig>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
 
+                // Параметры Ellips A
                 config.Radius = radius;
-                config.OutlineRadius = outlineRadius;
                 config.Thickness = thickness;
-                config.OutlineThickness = outlineThickness;
                 config.StrokeColor = strokeColor;
-                config.OutlineColor = outlineColor;
                 config.StrokeOpacity = strokeOpacity;
+                // Параметры Ellips B
+                config.OutlineRadius = outlineRadius;
+                config.OutlineThickness = outlineThickness;
+                config.OutlineColor = outlineColor;
                 config.OutlineOpacity = outlineOpacity;
+                config.OutlineOffsetX = outlineOffsetX;
+                config.OutlineOffsetY = outlineOffsetY;
+                // Параметры Ellips C
+                config.UnrestrictedWidth = unrestrictedWidth;
+                config.UnrestrictedHeight = unrestrictedHeight;
+                config.UnrestrictedTickness = unrestrictedTickness;
+                config.UnrestrictedColor = unrestrictedColor;
+                config.UnrestrictedOpacity = unrestrictedOpacity;
+                config.UnrestrictedOffsetX = unrestrictedOffsetX;
+                config.UnrestrictedOffsetY = unrestrictedOffsetY;
+                // Параметры CounterStrafe
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 config.csPressureDuration = csPressureDuration;
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
@@ -176,7 +190,8 @@ namespace CrosshairOverlay
                 System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
             }
         }
-        
+
+        // Параметры Ellips A
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
             radius += 1;
@@ -188,21 +203,6 @@ namespace CrosshairOverlay
             if (radius > 1)
             {
                 radius -= 1;
-                UpdateConfigDisplay();
-            }
-        }
-
-        private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
-        {
-            outlineRadius += 1;
-            UpdateConfigDisplay();
-        }
-
-        private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineRadius > 1)
-            {
-                outlineRadius -= 1;
                 UpdateConfigDisplay();
             }
         }
@@ -225,24 +225,6 @@ namespace CrosshairOverlay
             }
         }
 
-        private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineThickness < 5)
-            {
-                outlineThickness += 1;
-                UpdateConfigDisplay();
-            }
-        }
-
-        private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineThickness > 0)
-            {
-                outlineThickness -= 1;
-                UpdateConfigDisplay();
-            }
-        }
-
         private void ColorPicker_Click(object sender, RoutedEventArgs e)
         {
             using (var colorDialog = new System.Windows.Forms.ColorDialog())
@@ -258,23 +240,6 @@ namespace CrosshairOverlay
         private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
         {
             CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(strokeColor);
-        }
-
-        private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateConfigDisplay();
-                }
-            }
-        }
-
-        private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
-        {
-            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
         }
 
         private void IncreaseOpacity_Click(object sender, RoutedEventArgs e)
@@ -295,6 +260,57 @@ namespace CrosshairOverlay
             }
         }
 
+        // Параметры Ellips B
+        private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
+        {
+            outlineRadius += 1;
+            UpdateConfigDisplay();
+        }
+
+        private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineRadius > 1)
+            {
+                outlineRadius -= 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineThickness < 5)
+            {
+                outlineThickness += 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (outlineThickness > 0)
+            {
+                outlineThickness -= 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+            using (var colorDialog = new System.Windows.Forms.ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                    UpdateConfigDisplay();
+                }
+            }
+        }
+
+        private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
+        {
+            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
+        }
+
         private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
             if (outlineOpacity < 1.0)
@@ -313,26 +329,157 @@ namespace CrosshairOverlay
             }
         }
 
-        private void OutlineDecreaseHorizontal_Click(object sender, RoutedEventArgs e)
+        private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-
+            if (outlineOffsetX > -100)
+            {
+                outlineOffsetX -= 1;
+                UpdateConfigDisplay();
+            }
         }
 
-        private void IncreaseOutlineHorizontal_Click(object sender, RoutedEventArgs e)
+        private void IncreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-
+            if (outlineOffsetX < 100)
+            {
+                outlineOffsetX += 1;
+                UpdateConfigDisplay();
+            }
         }
 
-        private void DecreaseOutlineVertical_Click(object sender, RoutedEventArgs e)
+        private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-
+            if (outlineOffsetY > -100)
+            {
+                outlineOffsetY -= 1;
+                UpdateConfigDisplay();
+            }
         }
 
-        private void IncreaseOutlineVertical_Click(object sender, RoutedEventArgs e)
+        private void IncreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-
+            if (outlineOffsetY < 100)
+            {
+                outlineOffsetY += 1;
+                UpdateConfigDisplay();
+            }
         }
 
+        // Параметры Ellips C
+        private void DecreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedWidth -= 1;
+            UpdateConfigDisplay();
+        }
+
+        private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedWidth += 1;
+            UpdateConfigDisplay();
+        }
+
+        private void DecreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedHeight -= 1;
+            UpdateConfigDisplay();
+        }
+
+        private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedHeight += 1;
+            UpdateConfigDisplay();
+        }
+
+        private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedTickness > 0)
+            {
+                unrestrictedTickness -= 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedTickness < 5)
+            {
+                unrestrictedTickness += 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+            using (var colorDialog = new System.Windows.Forms.ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    unrestrictedColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                    UpdateConfigDisplay();
+                }
+            }
+        }
+
+        private void setBackgroundUnrestrictedColorIndicatorButton(string unrestrictedColor)
+        {
+            UnrestrictedCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(unrestrictedColor);
+        }
+
+        private void DecreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOpacity > 0.2)
+            {
+                unrestrictedOpacity -= 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOpacity < 1.0)
+            {
+                unrestrictedOpacity += 0.1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOffsetX > -100)
+            {
+                unrestrictedOffsetX -= 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOffsetX < 100)
+            {
+                unrestrictedOffsetX += 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOffsetY > -100)
+            {
+                unrestrictedOffsetY -= 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        private void IncreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
+        {
+            if (unrestrictedOffsetY < 100)
+            {
+                unrestrictedOffsetY += 1;
+                UpdateConfigDisplay();
+            }
+        }
+
+        // Параметры CounterStrafe
         private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
         {
             if (CrosshairResetConfirmCheckbox.IsChecked == true)
@@ -486,71 +633,6 @@ namespace CrosshairOverlay
         {
             // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
-        }
-
-        private void DecreaseUnrestrictedRadius_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedRadius_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DecreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DecreaseUnrestrictedHorizontal_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedHorizontal_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DecreaseUnrestrictedVertical_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedVertical_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DecreaseUnrestrictedRadius2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IncreaseUnrestrictedRadius2_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
