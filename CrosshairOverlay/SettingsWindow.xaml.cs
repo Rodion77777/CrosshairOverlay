@@ -488,5 +488,15 @@ namespace CrosshairOverlay
         {
 
         }
+
+        private void DecreaseUnrestrictedRadius2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedRadius2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
