@@ -563,6 +563,7 @@ namespace CrosshairOverlay
         private void UpdateUnrestrictedOffsetXValueText()
         {
             UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
+            SaveConfig();
         }
 
         private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
