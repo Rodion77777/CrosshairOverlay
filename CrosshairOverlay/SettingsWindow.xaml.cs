@@ -123,10 +123,10 @@ namespace CrosshairOverlay
         private void UpdateConfigDisplay()
         {
             // Параметры Ellips A
-            RadiusValueText.Text = radius.ToString();
-            ThicknessValueText.Text = thickness.ToString();
-            ColorValueText.Text = strokeColor.ToString();
-            CrosshairOpacity.Text = strokeOpacity.ToString();
+            UpdateRadiusValueText();
+            UpdateThicknessValueText();
+            UpdateColorValueText();
+            UpdateOpacityValueText();
             // Параметры Ellips B
             OutlineRadiusValueText.Text = outlineRadius.ToString();
             OutlineThicknessValueText.Text = outlineThickness.ToString();
@@ -195,7 +195,7 @@ namespace CrosshairOverlay
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
             radius += 1;
-            UpdateConfigDisplay();
+            UpdateRadiusValueText();
         }
 
         private void DecreaseRadius_Click(object sender, RoutedEventArgs e)
@@ -203,8 +203,14 @@ namespace CrosshairOverlay
             if (radius > 1)
             {
                 radius -= 1;
-                UpdateConfigDisplay();
+                UpdateRadiusValueText();
             }
+        }
+
+        private void UpdateRadiusValueText()
+        {
+            RadiusValueText.Text = radius.ToString();
+            SaveConfig();
         }
 
         private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
@@ -212,7 +218,7 @@ namespace CrosshairOverlay
             if (thickness < 5)
             {
                 thickness += 1;
-                UpdateConfigDisplay();
+                UpdateThicknessValueText();
             }
         }
 
@@ -221,8 +227,14 @@ namespace CrosshairOverlay
             if (thickness > 0)
             {
                 thickness -= 1;
-                UpdateConfigDisplay();
+                UpdateThicknessValueText();
             }
+        }
+
+        private void UpdateThicknessValueText()
+        {
+            ThicknessValueText.Text = thickness.ToString();
+            SaveConfig();
         }
 
         private void ColorPicker_Click(object sender, RoutedEventArgs e)
@@ -237,6 +249,12 @@ namespace CrosshairOverlay
             }
         }
 
+        private void UpdateColorValueText()
+        {
+            ColorValueText.Text = strokeColor.ToString();
+            SaveConfig();
+        }
+
         private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
         {
             CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(strokeColor);
@@ -247,7 +265,7 @@ namespace CrosshairOverlay
             if (strokeOpacity < 1.0)
             {
                 strokeOpacity += 0.1;
-                UpdateConfigDisplay();
+                UpdateOpacityValueText();
             }
         }
 
@@ -256,8 +274,14 @@ namespace CrosshairOverlay
             if (strokeOpacity > 0.2)
             {
                 strokeOpacity -= 0.1;
-                UpdateConfigDisplay();
+                UpdateOpacityValueText();
             }
+        }
+
+        private void UpdateOpacityValueText()
+        {
+            CrosshairOpacity.Text = strokeOpacity.ToString();
+            SaveConfig();
         }
 
         // Параметры Ellips B
