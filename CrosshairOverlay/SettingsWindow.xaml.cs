@@ -128,12 +128,12 @@ namespace CrosshairOverlay
             UpdateColorValueText();
             UpdateOpacityValueText();
             // Параметры Ellips B
-            OutlineRadiusValueText.Text = outlineRadius.ToString();
-            OutlineThicknessValueText.Text = outlineThickness.ToString();
-            OutlineColorValueText.Text = outlineColor.ToString();
-            OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
-            OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
-            OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
+            UpdateOutlineRadiusValueText();
+            UpdateOutlineThicknessValueText();
+            UpdateOutlineColorValueText();
+            UpdateOutlineOpacityValueText();
+            UpdateOutlineOffsetXValueText();
+            UpdateOutlineOffsetYValueText();
             // Параметры Ellips C
             UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
             UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
@@ -288,7 +288,7 @@ namespace CrosshairOverlay
         private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
             outlineRadius += 1;
-            UpdateConfigDisplay();
+            UpdateOutlineRadiusValueText();
         }
 
         private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
@@ -296,8 +296,14 @@ namespace CrosshairOverlay
             if (outlineRadius > 1)
             {
                 outlineRadius -= 1;
-                UpdateConfigDisplay();
+                UpdateOutlineRadiusValueText();
             }
+        }
+
+        private void UpdateOutlineRadiusValueText()
+        {
+            OutlineRadiusValueText.Text = outlineRadius.ToString();
+            SaveConfig();
         }
 
         private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
@@ -305,7 +311,7 @@ namespace CrosshairOverlay
             if (outlineThickness < 5)
             {
                 outlineThickness += 1;
-                UpdateConfigDisplay();
+                UpdateOutlineThicknessValueText();
             }
         }
 
@@ -314,8 +320,14 @@ namespace CrosshairOverlay
             if (outlineThickness > 0)
             {
                 outlineThickness -= 1;
-                UpdateConfigDisplay();
+                UpdateOutlineThicknessValueText();
             }
+        }
+
+        private void UpdateOutlineThicknessValueText()
+        {
+            OutlineThicknessValueText.Text = outlineThickness.ToString();
+            SaveConfig();
         }
 
         private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
@@ -325,7 +337,7 @@ namespace CrosshairOverlay
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateConfigDisplay();
+                    UpdateOutlineColorValueText();
                 }
             }
         }
@@ -335,12 +347,18 @@ namespace CrosshairOverlay
             OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
         }
 
+        private void UpdateOutlineColorValueText()
+        {
+            OutlineColorValueText.Text = outlineColor.ToString();
+            SaveConfig();
+        }
+
         private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
             if (outlineOpacity < 1.0)
             {
                 outlineOpacity += 0.1;
-                UpdateConfigDisplay();
+                UpdateOutlineOpacityValueText();
             }
         }
 
@@ -349,8 +367,14 @@ namespace CrosshairOverlay
             if (outlineOpacity > 0.2)
             {
                 outlineOpacity -= 0.1;
-                UpdateConfigDisplay();
+                UpdateOutlineOpacityValueText();
             }
+        }
+
+        private void UpdateOutlineOpacityValueText()
+        {
+            OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
+            SaveConfig();
         }
 
         private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
@@ -358,7 +382,7 @@ namespace CrosshairOverlay
             if (outlineOffsetX > -100)
             {
                 outlineOffsetX -= 1;
-                UpdateConfigDisplay();
+                UpdateOutlineOffsetXValueText();
             }
         }
 
@@ -367,8 +391,14 @@ namespace CrosshairOverlay
             if (outlineOffsetX < 100)
             {
                 outlineOffsetX += 1;
-                UpdateConfigDisplay();
+                UpdateOutlineOffsetXValueText();
             }
+        }
+
+        private void UpdateOutlineOffsetXValueText()
+        {
+            OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
+            SaveConfig();
         }
 
         private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
@@ -376,7 +406,7 @@ namespace CrosshairOverlay
             if (outlineOffsetY > -100)
             {
                 outlineOffsetY -= 1;
-                UpdateConfigDisplay();
+                UpdateOutlineOffsetYValueText();
             }
         }
 
@@ -385,27 +415,45 @@ namespace CrosshairOverlay
             if (outlineOffsetY < 100)
             {
                 outlineOffsetY += 1;
-                UpdateConfigDisplay();
+                UpdateOutlineOffsetYValueText();
             }
+        }
+
+        private void UpdateOutlineOffsetYValueText()
+        {
+            OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
+            SaveConfig();
         }
 
         // Параметры Ellips C
         private void DecreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedWidth -= 1;
-            UpdateConfigDisplay();
+            if (unrestrictedWidth > 0)
+            {
+                unrestrictedWidth -= 1;
+                UpdateUnrestrictedWidthValueText();
+            }
         }
 
         private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
         {
             unrestrictedWidth += 1;
-            UpdateConfigDisplay();
+            UpdateUnrestrictedWidthValueText();
+        }
+
+        private void UpdateUnrestrictedWidthValueText()
+        {
+            UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
+            SaveConfig();
         }
 
         private void DecreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedHeight -= 1;
-            UpdateConfigDisplay();
+            if (unrestrictedHeight > 0)
+            {
+                unrestrictedHeight -= 1;
+                UpdateUnrestrictedHeightValueText();
+            }
         }
 
         private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
@@ -414,12 +462,18 @@ namespace CrosshairOverlay
             UpdateConfigDisplay();
         }
 
+        private void UpdateUnrestrictedHeightValueText()
+        {
+            UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
+            SaveConfig();
+        }
+
         private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
         {
             if (unrestrictedTickness > 0)
             {
                 unrestrictedTickness -= 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedThicknessValueText();
             }
         }
 
@@ -428,8 +482,14 @@ namespace CrosshairOverlay
             if (unrestrictedTickness < 5)
             {
                 unrestrictedTickness += 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedThicknessValueText();
             }
+        }
+
+        private void UpdateUnrestrictedThicknessValueText()
+        {
+            UnrestrictedThicknessValueText.Text = unrestrictedTickness.ToString();
+            SaveConfig();
         }
 
         private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
@@ -439,9 +499,15 @@ namespace CrosshairOverlay
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     unrestrictedColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateConfigDisplay();
+                    UpdateUnrestrictedColorValueText();
                 }
             }
+        }
+
+        private void UpdateUnrestrictedColorValueText()
+        {
+            UnrestrictedColorValueText.Text = unrestrictedColor.ToString();
+            SaveConfig();
         }
 
         private void setBackgroundUnrestrictedColorIndicatorButton(string unrestrictedColor)
@@ -454,7 +520,7 @@ namespace CrosshairOverlay
             if (unrestrictedOpacity > 0.2)
             {
                 unrestrictedOpacity -= 0.1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOpacityValueText();
             }
         }
 
@@ -463,8 +529,14 @@ namespace CrosshairOverlay
             if (unrestrictedOpacity < 1.0)
             {
                 unrestrictedOpacity += 0.1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOpacityValueText();
             }
+        }
+
+        private void UpdateUnrestrictedOpacityValueText()
+        {
+            UnrestrictedOpacityValueText.Text = unrestrictedOpacity.ToString();
+            SaveConfig();
         }
 
         private void DecreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
@@ -472,7 +544,7 @@ namespace CrosshairOverlay
             if (unrestrictedOffsetX > -100)
             {
                 unrestrictedOffsetX -= 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOffsetXValueText();
             }
         }
 
@@ -481,8 +553,13 @@ namespace CrosshairOverlay
             if (unrestrictedOffsetX < 100)
             {
                 unrestrictedOffsetX += 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOffsetXValueText();
             }
+        }
+
+        private void UpdateUnrestrictedOffsetXValueText()
+        {
+            UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
         }
 
         private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
@@ -490,7 +567,7 @@ namespace CrosshairOverlay
             if (unrestrictedOffsetY > -100)
             {
                 unrestrictedOffsetY -= 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOffsetYValueText();
             }
         }
 
@@ -499,8 +576,14 @@ namespace CrosshairOverlay
             if (unrestrictedOffsetY < 100)
             {
                 unrestrictedOffsetY += 1;
-                UpdateConfigDisplay();
+                UpdateUnrestrictedOffsetYValueText();
             }
+        }
+
+        private void UpdateUnrestrictedOffsetYValueText()
+        {
+            UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
+            SaveConfig();
         }
 
         // Параметры CounterStrafe
