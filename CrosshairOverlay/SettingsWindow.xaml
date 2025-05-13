@@ -202,11 +202,7 @@
                 </TabControl>
             </TabItem>
             <TabItem Header="C.Strafe">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                         <StackPanel>
                             <TextBlock Text="C.Strafe press. duration" FontSize="13" Margin="0,0,0,10"/>
@@ -222,19 +218,17 @@
                         <TextBlock Text="C.Strafe keyboard test" FontSize="13" Margin="0,0,0,10"/>
                         <TextBox x:Name="CSTestBox" Width="130" Height="45" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click" Grid.Column="1"></Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Custom">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                         <TextBlock Text="In development..."/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Config" Height="20" VerticalAlignment="Top">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                         <TextBlock Text="In beta testing..."/>
                         <TextBlock Text="New config name:" Margin="0,20,0,0"/>
@@ -249,11 +243,10 @@
                             <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
                         </StackPanel>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click"></Button>
                 </Grid>    
             </TabItem>
             <TabItem Header="About">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                         <TextBlock Text="Crosshair Overlay by 'Метелик'" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
                         <TextBlock Text="Version 1.0" FontSize="13" Margin="0,0,0,10" HorizontalAlignment="Center"/>
@@ -262,7 +255,6 @@
                         <TextBlock Text="Gmail: saikorodion" FontSize="10" HorizontalAlignment="Center"/>
                         <TextBlock Text="YTube: @saiko_rodion" FontSize="10" HorizontalAlignment="Center"/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Exit" Width="50" Height="20" Margin="0,0,10,10" Click="ExitButton_Click" Grid.Column="1"></Button>
                 </Grid>
             </TabItem>
         </TabControl>
