@@ -146,6 +146,21 @@
                                     <TextBlock x:Name="OutlineCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
                                     <Button Content="+" Width="30" Click="IncreaseOutlineOpacity_Click"/>
                                 </StackPanel>
+                                <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                    <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                    <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
+                                    <Button Content="-" Click="DecreaseOutlineHorizontal_Click"/>
+                                    <TextBlock x:Name="OutlineCrosshairHorizontal" Style="{StaticResource TextBlock_Output}"/>
+                                    <Button Content="+" Click="IncreaseOutlineHorizontal_Click"/>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                    <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
+                                    <Button Content="-" Click="DecreaseOutlineVertical_Click"/>
+                                    <TextBlock x:Name="OutlineCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
+                                    <Button Content="+" Click="IncreaseOutlineVertical_Click"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </TabItem>
