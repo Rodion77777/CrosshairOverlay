@@ -413,5 +413,60 @@ namespace CrosshairOverlay
             // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
         }
+
+        private void DecreaseUnrestrictedRadius_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedRadius_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreaseUnrestrictedHorizontal_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedHorizontal_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreaseUnrestrictedVertical_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IncreaseUnrestrictedVertical_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

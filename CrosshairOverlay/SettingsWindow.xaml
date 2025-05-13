@@ -31,7 +31,7 @@
             </Style>
             <Style x:Key="TextBlock_Inline" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="13"/>
-                <Setter Property="Width" Value="130"/>
+                <Setter Property="Width" Value="100"/>
                 <Setter Property="TextAlignment" Value="Center"/>
             </Style>
             <Style x:Key="TextBlock_TabItem_Name" TargetType="TextBlock">
@@ -87,6 +87,9 @@
                         <Grid>
                             <StackPanel Style="{StaticResource Control_List}">
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                    <TextBlock Text="Internal Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Control_Group_Inline}">
                                     <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
                                     <Button Content="-" Click="DecreaseRadius_Click"/>
                                     <TextBlock x:Name="RadiusValueText" Style="{StaticResource TextBlock_Output}"/>
@@ -117,6 +120,9 @@
                         <Grid>
                             <StackPanel Style="{StaticResource Control_List}">
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                    <TextBlock Text="External Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Control_Group_Inline}">
                                     <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
                                     <Button Content="-" Click="DecreaseOutlineRadius_Click"/>
                                     <TextBlock x:Name="OutlineRadiusValueText" Style="{StaticResource TextBlock_Output}"/>
@@ -145,50 +151,52 @@
                     </TabItem>
                     <TabItem Header="Ellips C">
                         <Grid>
-                            <StackPanel Style="{StaticResource Control_List}">
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Unrestricted Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel Style="{StaticResource Control_List}">
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Unrestricted Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Button Content="-" Click="DecreaseUnrestrictedRadius_Click"/>
+                                        <TextBlock x:Name="RadiusValueText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="+" Click="IncreaseUnrestrictedRadius_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Button Content="-" Click="DecreaseUnrestrictedThickness_Click"/>
+                                        <TextBlock x:Name="ThicknessValueText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="+" Click="IncreaseUnrestrictedThickness_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Border Name="UnrestrictedCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
+                                        <TextBlock x:Name="UnrestrictedColorValueText" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="RGB" Click="UnrestrictedColorPicker_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Button Content="-" Click="DecreaseUnrestrictedOpacity_Click"/>
+                                        <TextBlock x:Name="UnrestrictedCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="+" Click="IncreaseUnrestrictedOpacity_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Button Content="-" Click="DecreaseUnrestrictedHorizontal_Click"/>
+                                        <TextBlock x:Name="UnrestrictedCrosshairHorizontal" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="+" Click="IncreaseUnrestrictedHorizontal_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                        <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
+                                        <Button Content="-" Click="DecreaseUnrestrictedVertical_Click"/>
+                                        <TextBlock x:Name="UnrestrictedCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
+                                        <Button Content="+" Click="IncreaseUnrestrictedVertical_Click"/>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseUnrestrictedRadius_Click"/>
-                                    <TextBlock x:Name="RadiusValueText2" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseUnrestrictedRadius_Click"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseUnrestrictedThickness_Click"/>
-                                    <TextBlock x:Name="ThicknessValueText2" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseUnrestrictedThickness_Click"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Border Name="UnrestrictedCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
-                                    <TextBlock x:Name="UnrestrictedColorValueText" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="RGB" Click="UnrestrictedColorPicker_Click"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseUnrestrictedOpacity_Click"/>
-                                    <TextBlock x:Name="UnrestrictedCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseUnrestrictedOpacity_Click"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseUnrestrictedHorizontal_Click"/>
-                                    <TextBlock x:Name="UnrestrictedCrosshairHorizontal" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseUnrestrictedHorizontal_Click"/>
-                                </StackPanel>
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Button Content="-" Click="DecreaseUnrestrictedVertical_Click"/>
-                                    <TextBlock x:Name="UnrestrictedCrosshairVertical" Style="{StaticResource TextBlock_Output}"/>
-                                    <Button Content="+" Click="IncreaseUnrestrictedVertical_Click"/>
-                                </StackPanel>
-                            </StackPanel>
+                            </ScrollViewer>
                         </Grid>
                     </TabItem>
                 </TabControl>
