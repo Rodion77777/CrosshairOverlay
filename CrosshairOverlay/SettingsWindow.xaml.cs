@@ -444,9 +444,36 @@ namespace CrosshairOverlay
                 UpdateUnrestrictedWidthValueText();
                 SaveConfig();
             }
+
+            if (WH_Merge.IsChecked == true)
+            {
+                DecreaseUnrestrictedHeight_Click();
+            }
+        }
+
+        private void DecreaseUnrestrictedWidth_Click()
+        {
+            if (unrestrictedWidth > 0)
+            {
+                unrestrictedWidth -= 1;
+                UpdateUnrestrictedWidthValueText();
+                SaveConfig();
+            }
         }
 
         private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedWidth += 1;
+            UpdateUnrestrictedWidthValueText();
+            SaveConfig();
+
+            if (WH_Merge.IsChecked == true)
+            {
+                IncreaseUnrestrictedHeight_Click();
+            }
+        }
+
+        private void IncreaseUnrestrictedWidth_Click()
         {
             unrestrictedWidth += 1;
             UpdateUnrestrictedWidthValueText();
@@ -466,9 +493,36 @@ namespace CrosshairOverlay
                 UpdateUnrestrictedHeightValueText();
                 SaveConfig();
             }
+
+            if (WH_Merge.IsChecked == true)
+            {
+                DecreaseUnrestrictedWidth_Click();
+            }
+        }
+
+        private void DecreaseUnrestrictedHeight_Click()
+        {
+            if (unrestrictedHeight > 0)
+            {
+                unrestrictedHeight -= 1;
+                UpdateUnrestrictedHeightValueText();
+                SaveConfig();
+            }
         }
 
         private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
+        {
+            unrestrictedHeight += 1;
+            UpdateConfigDisplay();
+            SaveConfig();
+
+            if (WH_Merge.IsChecked == true)
+            {
+                IncreaseUnrestrictedWidth_Click();
+            }
+        }
+
+        private void IncreaseUnrestrictedHeight_Click()
         {
             unrestrictedHeight += 1;
             UpdateConfigDisplay();

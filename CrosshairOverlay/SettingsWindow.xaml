@@ -273,7 +273,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Config" Height="20" VerticalAlignment="Top">
+            <TabItem Header="Config">
                 <Grid>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                         <TextBlock Text="New config name:" Margin="0,20,0,0"/>
