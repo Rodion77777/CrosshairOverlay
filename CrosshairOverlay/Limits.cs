@@ -14,21 +14,21 @@ namespace CrosshairOverlay
         // Common
         public static int minRadius = 1;
         public static int radius = Math.Min((int)screenWidth, (int)screenHeight) / 2;
-        public static int minTickness = 0;
+        public static int minThickness = 0;
         public static double minOpacity = 0.1;
         public static double maxOpacity = 1;
         // Ellips A
         public static int tickness = 5;
         // Ellips B
-        public static int outlineTickness = 10;
+        public static int outlineThickness = 10;
         public static int offsetX = (int)screenWidth / 2;
         public static int offsetY = (int)screenHeight / 2;
         // Ellips C
-        public static int unrestrictedWidth = (int)screenWidth / 2 - unrestrictedTickness;
-        public static int unrestrictedHeight = (int)screenHeight / 2 - unrestrictedTickness;
-        public static int unrestrictedTickness = 100;
-        public static int unrestrictedOffsetX = (int)screenWidth / 2 - unrestrictedTickness;
-        public static int unrestrictedOffsetY = (int)screenHeight / 2 - unrestrictedTickness;
+        public static int unrestrictedWidth = (int)screenWidth / 2 - unrestrictedThickness;
+        public static int unrestrictedHeight = (int)screenHeight / 2 - unrestrictedThickness;
+        public static int unrestrictedThickness = 100;
+        public static int unrestrictedOffsetX = (int)screenWidth / 2 - unrestrictedThickness;
+        public static int unrestrictedOffsetY = (int)screenHeight / 2 - unrestrictedThickness;
         // Counter strafe
         public static int minCSPressDuration = 0;
         public static int maxCSPressDuration = 300;
