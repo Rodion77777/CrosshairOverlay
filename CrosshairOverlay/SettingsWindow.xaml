@@ -22,8 +22,14 @@
             <Style x:Key="Control_Group_Inline" TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Horizontal"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="0,1"/>
+                <Setter Property="Margin" Value="0,1,5,1"/>
             </Style>
+            <!--<Style x:Key="Multiplier_Group" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="-100,60,0,0"/>
+            </Style>-->
             <Style x:Key="Control_Group_DockBottom" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -49,7 +55,7 @@
             </Style>
             <Style x:Key="TextBlock_Inline" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="13"/>
-                <Setter Property="Width" Value="100"/>
+                <Setter Property="Width" Value="90"/>
                 <Setter Property="TextAlignment" Value="Center"/>
             </Style>
             <Style x:Key="TextBlock_TabItem_Name" TargetType="TextBlock">
@@ -138,8 +144,8 @@
                             <ScrollViewer>
                                 <StackPanel Style="{StaticResource Control_List}">
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="External Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
-                                </StackPanel>
+                                        <TextBlock Text="External Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                    </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
                                         <Button Content="-" Click="DecreaseOutlineRadius_Click"/>
@@ -198,7 +204,7 @@
                                         <Button Content="+" Click="IncreaseUnrestrictedWidth_Click"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                        <CheckBox x:Name="WH_Merge" Content="Merge" Margin="100,0,0,0"/>
+                                        <CheckBox x:Name="WH_Merge" Content="Merge" Margin="90,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Height" Style="{StaticResource TextBlock_Inline}"/>
@@ -302,11 +308,21 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <!--<StackPanel Style="{StaticResource Multiplier_Group}">
+            <StackPanel.RenderTransform>
+                <RotateTransform Angle="90"/>
+            </StackPanel.RenderTransform>
+            <TextBlock Text="Common Multiplier" FontSize="11" TextAlignment="Right" Width="100" Style="{StaticResource TextBlock_Inline}"/>
+            <CheckBox x:Name="CommonMultiplier_C2" Content="x10" Margin="5,0,0,0"/>
+        </StackPanel>-->
         <Border Style="{StaticResource Control_Group_Border}">
             <DockPanel Style="{StaticResource Control_Group_DockBottom}">
                 <Button DockPanel.Dock="Left" Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
                 <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
-                <Button DockPanel.Dock="Right" Style="{StaticResource Exit}" Click="ExitButton_Click"/>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <CheckBox x:Name="CommonMultiplier_C2" Content="x10" Margin="0,2,20,0"/>
+                    <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
+                </StackPanel>
             </DockPanel>
         </Border>
     </Grid>
