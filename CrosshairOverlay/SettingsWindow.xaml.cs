@@ -194,7 +194,7 @@ namespace CrosshairOverlay
         // Параметры Ellips A
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
-            radius += 1;
+            radius += MultiplierIsChecked();
             UpdateRadiusValueText();
             SaveConfig();
         }
@@ -203,7 +203,8 @@ namespace CrosshairOverlay
         {
             if (radius > 1)
             {
-                radius -= 1;
+                radius -= MultiplierIsChecked();
+                if (radius < 1) radius = 1;
                 UpdateRadiusValueText();
                 SaveConfig();
             }
