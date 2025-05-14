@@ -440,7 +440,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedWidth > 0)
             {
-                unrestrictedWidth -= 1;
+                unrestrictedWidth -= MultiplierIsChecked();
+                if (unrestrictedWidth < 0) unrestrictedWidth = 0;
                 UpdateUnrestrictedWidthValueText();
                 SaveConfig();
             }
@@ -455,7 +456,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedWidth > 0)
             {
-                unrestrictedWidth -= 1;
+                unrestrictedWidth -= MultiplierIsChecked();
+                if (unrestrictedWidth < 0) unrestrictedWidth = 0;
                 UpdateUnrestrictedWidthValueText();
                 SaveConfig();
             }
@@ -463,7 +465,7 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedWidth += 1;
+            unrestrictedWidth += MultiplierIsChecked();
             UpdateUnrestrictedWidthValueText();
             SaveConfig();
 
@@ -475,7 +477,7 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedWidth_Click()
         {
-            unrestrictedWidth += 1;
+            unrestrictedWidth += MultiplierIsChecked();
             UpdateUnrestrictedWidthValueText();
             SaveConfig();
         }
@@ -489,7 +491,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedHeight > 0)
             {
-                unrestrictedHeight -= 1;
+                unrestrictedHeight -= MultiplierIsChecked();
+                if (unrestrictedHeight < 0) unrestrictedHeight = 0;
                 UpdateUnrestrictedHeightValueText();
                 SaveConfig();
             }
@@ -504,7 +507,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedHeight > 0)
             {
-                unrestrictedHeight -= 1;
+                unrestrictedHeight -= MultiplierIsChecked();
+                if (unrestrictedHeight < 0) unrestrictedHeight = 0;
                 UpdateUnrestrictedHeightValueText();
                 SaveConfig();
             }
@@ -512,7 +516,7 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedHeight += 1;
+            unrestrictedHeight += MultiplierIsChecked();
             UpdateConfigDisplay();
             SaveConfig();
 
@@ -524,7 +528,7 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedHeight_Click()
         {
-            unrestrictedHeight += 1;
+            unrestrictedHeight += MultiplierIsChecked();
             UpdateConfigDisplay();
             SaveConfig();
         }
