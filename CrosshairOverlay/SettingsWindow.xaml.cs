@@ -389,7 +389,8 @@ namespace CrosshairOverlay
         {
             if (outlineOffsetX > -100)
             {
-                outlineOffsetX -= 1;
+                outlineOffsetX -= MultiplierIsChecked();
+                if (outlineOffsetX < -100) outlineOffsetX = -100;
                 UpdateOutlineOffsetXValueText();
                 SaveConfig();
             }
@@ -399,7 +400,8 @@ namespace CrosshairOverlay
         {
             if (outlineOffsetX < 100)
             {
-                outlineOffsetX += 1;
+                outlineOffsetX += MultiplierIsChecked();
+                if (outlineOffsetX > 100) outlineOffsetX = 100;
                 UpdateOutlineOffsetXValueText();
                 SaveConfig();
             }
@@ -414,7 +416,8 @@ namespace CrosshairOverlay
         {
             if (outlineOffsetY > -100)
             {
-                outlineOffsetY -= 1;
+                outlineOffsetY -= MultiplierIsChecked();
+                if (outlineOffsetY < -100) outlineOffsetY = -100;
                 UpdateOutlineOffsetYValueText();
                 SaveConfig();
             }
@@ -424,7 +427,8 @@ namespace CrosshairOverlay
         {
             if (outlineOffsetY < 100)
             {
-                outlineOffsetY += 1;
+                outlineOffsetY += MultiplierIsChecked();
+                if (outlineOffsetY > 100) outlineOffsetY = 100;
                 UpdateOutlineOffsetYValueText();
                 SaveConfig();
             }
