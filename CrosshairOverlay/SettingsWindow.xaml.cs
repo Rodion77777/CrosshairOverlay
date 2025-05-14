@@ -548,7 +548,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedTickness > 0)
             {
-                unrestrictedTickness -= 1;
+                unrestrictedTickness -= MultiplierIsChecked();
+                if (unrestrictedTickness < 0) unrestrictedTickness = 0;
                 UpdateUnrestrictedThicknessValueText();
                 SaveConfig();
             }
@@ -556,9 +557,10 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedTickness < 5)
+            if (unrestrictedTickness < 100)
             {
-                unrestrictedTickness += 1;
+                unrestrictedTickness += MultiplierIsChecked();
+                if (unrestrictedTickness > 100) unrestrictedTickness = 100;
                 UpdateUnrestrictedThicknessValueText();
                 SaveConfig();
             }
