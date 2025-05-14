@@ -637,7 +637,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedOffsetY > -100)
             {
-                unrestrictedOffsetY -= 1;
+                unrestrictedOffsetY -= MultiplierIsChecked();
+                if (unrestrictedOffsetY < -100) unrestrictedOffsetY = -100;
                 UpdateUnrestrictedOffsetYValueText();
                 SaveConfig();
             }
@@ -647,10 +648,16 @@ namespace CrosshairOverlay
         {
             if (unrestrictedOffsetY < 100)
             {
-                unrestrictedOffsetY += 1;
+                unrestrictedOffsetY += MultiplierIsChecked();
+                if (unrestrictedOffsetY > 100) unrestrictedOffsetY = 100;
                 UpdateUnrestrictedOffsetYValueText();
                 SaveConfig();
             }
+        }
+
+        private int MultiplierIsChecked()
+        {
+            return CommonMultiplier.IsChecked == true ? 10 : 1;
         }
 
         private void UpdateUnrestrictedOffsetYValueText()
