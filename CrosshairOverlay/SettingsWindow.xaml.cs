@@ -221,7 +221,7 @@ namespace CrosshairOverlay
 
         private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (thickness < 5)
+            if (thickness < Limits.tickness)
             {
                 thickness += 1;
                 UpdateThicknessValueText();
@@ -231,7 +231,7 @@ namespace CrosshairOverlay
 
         private void DecreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (thickness > 0)
+            if (thickness > Limits.minThickness)
             {
                 thickness -= 1;
                 UpdateThicknessValueText();
