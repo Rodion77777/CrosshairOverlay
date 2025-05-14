@@ -28,12 +28,12 @@
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="LastChildFill" Value="False"/>
-                <Setter Property="Background" Value="#C0C0C0"/>
+                <Setter Property="Background" Value="#FFE5E5E5"/>
             </Style>
             <Style x:Key="Control_Group_Border" TargetType="Border">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="BorderBrush" Value="#C0C0C0"/>
-                <Setter Property="Background" Value="#FFE5E5E5"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Margin" Value="0,0"/>
                 <Setter Property="Padding" Value="3,3"/>
@@ -86,6 +86,7 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Content" Value="Confirm reset!"/>
                 <Setter Property="Background" Value="LightYellow"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
             <Style x:Key="Exit" TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -275,12 +276,10 @@
             <TabItem Header="Config" Height="20" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                        <TextBlock Text="In beta testing..."/>
                         <TextBlock Text="New config name:" Margin="0,20,0,0"/>
                         <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
                         <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
                         <ComboBox x:Name="СonfigSelector" Margin="0,30,0,0" Width="150" Height="20">
-
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
                             <Button x:Name="LoadConfigButton" HorizontalAlignment="Left" Content="Load" Width="50" Height="20" Click="LoadConfigButton_Click"/>
@@ -294,7 +293,7 @@
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                         <TextBlock Text="Crosshair Overlay by 'Метелик'" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                        <TextBlock Text="Version 1.0" FontSize="13" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Version 2.0" FontSize="13" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                         <TextBlock Text="Contacts: " FontSize="13" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                         <TextBlock Text="TG: @RodikRodik" FontSize="10" HorizontalAlignment="Center"/>
                         <TextBlock Text="Gmail: saikorodion" FontSize="10" HorizontalAlignment="Center"/>
