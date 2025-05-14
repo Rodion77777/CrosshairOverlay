@@ -12,6 +12,7 @@ namespace CrosshairOverlay
         public static double screenWidth = SystemParameters.PrimaryScreenWidth;
         public static double screenHeight = SystemParameters.PrimaryScreenHeight;
         // Common
+        public static int minRadius = 1;
         public static int radius = Math.Min((int)screenWidth, (int)screenHeight) / 2;
         public static int minTickness = 0;
         public static double minOpacity = 0.1;
