@@ -52,6 +52,7 @@
                 <Setter Property="Width" Value="30"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#FFE5E5E5"/>
             </Style>
             <Style x:Key="TextBlock_Inline" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="13"/>
@@ -126,7 +127,7 @@
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
                                     <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
-                                    <Border Width="30" Height="20" BorderThickness="1" Name="CrosshairColorIndicatorButton"/>
+                                    <Border Name="CrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
                                     <TextBlock x:Name="ColorValueText" Style="{StaticResource TextBlock_Output}"/>
                                     <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
                                 </StackPanel>
@@ -160,7 +161,7 @@
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
-                                        <Border Width="30" Height="20" BorderThickness="1" Name="OutlineCrosshairColorIndicatorButton"/>
+                                        <Border Name="OutlineCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
                                         <TextBlock x:Name="OutlineColorValueText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
                                     </StackPanel>
