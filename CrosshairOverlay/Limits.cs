@@ -28,5 +28,8 @@ namespace CrosshairOverlay
         public static int unrestrictedTickness = 100;
         public static int unrestrictedOffsetX = (int)screenWidth / 2 - unrestrictedTickness;
         public static int unrestrictedOffsetY = (int)screenHeight / 2 - unrestrictedTickness;
+        // Counter strafe
+        public static int minCSPressDuration = 0;
+        public static int maxCSPressDuration = 300;
     }
 }
