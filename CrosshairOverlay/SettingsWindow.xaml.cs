@@ -196,6 +196,7 @@ namespace CrosshairOverlay
         {
             radius += 1;
             UpdateRadiusValueText();
+            SaveConfig();
         }
 
         private void DecreaseRadius_Click(object sender, RoutedEventArgs e)
@@ -204,13 +205,13 @@ namespace CrosshairOverlay
             {
                 radius -= 1;
                 UpdateRadiusValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateRadiusValueText()
         {
             RadiusValueText.Text = radius.ToString();
-            SaveConfig();
         }
 
         private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
@@ -219,6 +220,7 @@ namespace CrosshairOverlay
             {
                 thickness += 1;
                 UpdateThicknessValueText();
+                SaveConfig();
             }
         }
 
@@ -228,13 +230,13 @@ namespace CrosshairOverlay
             {
                 thickness -= 1;
                 UpdateThicknessValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateThicknessValueText()
         {
             ThicknessValueText.Text = thickness.ToString();
-            SaveConfig();
         }
 
         private void ColorPicker_Click(object sender, RoutedEventArgs e)
@@ -246,6 +248,7 @@ namespace CrosshairOverlay
                     strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateColorValueText();
                     setBackgroundCrosshairColorIndicatorButton(strokeColor);
+                    SaveConfig();
                 }
             }
         }
@@ -253,7 +256,6 @@ namespace CrosshairOverlay
         private void UpdateColorValueText()
         {
             ColorValueText.Text = strokeColor.ToString();
-            SaveConfig();
         }
 
         private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
@@ -267,6 +269,7 @@ namespace CrosshairOverlay
             {
                 strokeOpacity += 0.1;
                 UpdateOpacityValueText();
+                SaveConfig();
             }
         }
 
@@ -276,13 +279,13 @@ namespace CrosshairOverlay
             {
                 strokeOpacity -= 0.1;
                 UpdateOpacityValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOpacityValueText()
         {
             CrosshairOpacity.Text = strokeOpacity.ToString();
-            SaveConfig();
         }
 
         // Параметры Ellips B
@@ -290,6 +293,7 @@ namespace CrosshairOverlay
         {
             outlineRadius += 1;
             UpdateOutlineRadiusValueText();
+            SaveConfig();
         }
 
         private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
@@ -298,13 +302,13 @@ namespace CrosshairOverlay
             {
                 outlineRadius -= 1;
                 UpdateOutlineRadiusValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOutlineRadiusValueText()
         {
             OutlineRadiusValueText.Text = outlineRadius.ToString();
-            SaveConfig();
         }
 
         private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
@@ -313,6 +317,7 @@ namespace CrosshairOverlay
             {
                 outlineThickness += 1;
                 UpdateOutlineThicknessValueText();
+                SaveConfig();
             }
         }
 
@@ -322,13 +327,13 @@ namespace CrosshairOverlay
             {
                 outlineThickness -= 1;
                 UpdateOutlineThicknessValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOutlineThicknessValueText()
         {
             OutlineThicknessValueText.Text = outlineThickness.ToString();
-            SaveConfig();
         }
 
         private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
@@ -340,6 +345,7 @@ namespace CrosshairOverlay
                     outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateOutlineColorValueText();
                     setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
+                    SaveConfig();
                 }
             }
         }
@@ -352,7 +358,6 @@ namespace CrosshairOverlay
         private void UpdateOutlineColorValueText()
         {
             OutlineColorValueText.Text = outlineColor.ToString();
-            SaveConfig();
         }
 
         private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
@@ -361,6 +366,7 @@ namespace CrosshairOverlay
             {
                 outlineOpacity += 0.1;
                 UpdateOutlineOpacityValueText();
+                SaveConfig();
             }
         }
 
@@ -370,13 +376,13 @@ namespace CrosshairOverlay
             {
                 outlineOpacity -= 0.1;
                 UpdateOutlineOpacityValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOutlineOpacityValueText()
         {
             OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
-            SaveConfig();
         }
 
         private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
@@ -385,6 +391,7 @@ namespace CrosshairOverlay
             {
                 outlineOffsetX -= 1;
                 UpdateOutlineOffsetXValueText();
+                SaveConfig();
             }
         }
 
@@ -394,13 +401,13 @@ namespace CrosshairOverlay
             {
                 outlineOffsetX += 1;
                 UpdateOutlineOffsetXValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOutlineOffsetXValueText()
         {
             OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
-            SaveConfig();
         }
 
         private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
@@ -409,6 +416,7 @@ namespace CrosshairOverlay
             {
                 outlineOffsetY -= 1;
                 UpdateOutlineOffsetYValueText();
+                SaveConfig();
             }
         }
 
@@ -418,13 +426,13 @@ namespace CrosshairOverlay
             {
                 outlineOffsetY += 1;
                 UpdateOutlineOffsetYValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateOutlineOffsetYValueText()
         {
             OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
-            SaveConfig();
         }
 
         // Параметры Ellips C
@@ -434,6 +442,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedWidth -= 1;
                 UpdateUnrestrictedWidthValueText();
+                SaveConfig();
             }
         }
 
@@ -441,12 +450,12 @@ namespace CrosshairOverlay
         {
             unrestrictedWidth += 1;
             UpdateUnrestrictedWidthValueText();
+            SaveConfig();
         }
 
         private void UpdateUnrestrictedWidthValueText()
         {
             UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
-            SaveConfig();
         }
 
         private void DecreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
@@ -455,6 +464,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedHeight -= 1;
                 UpdateUnrestrictedHeightValueText();
+                SaveConfig();
             }
         }
 
@@ -462,12 +472,12 @@ namespace CrosshairOverlay
         {
             unrestrictedHeight += 1;
             UpdateConfigDisplay();
+            SaveConfig();
         }
 
         private void UpdateUnrestrictedHeightValueText()
         {
             UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
-            SaveConfig();
         }
 
         private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
@@ -476,6 +486,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedTickness -= 1;
                 UpdateUnrestrictedThicknessValueText();
+                SaveConfig();
             }
         }
 
@@ -485,13 +496,13 @@ namespace CrosshairOverlay
             {
                 unrestrictedTickness += 1;
                 UpdateUnrestrictedThicknessValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateUnrestrictedThicknessValueText()
         {
             UnrestrictedThicknessValueText.Text = unrestrictedTickness.ToString();
-            SaveConfig();
         }
 
         private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
@@ -503,6 +514,7 @@ namespace CrosshairOverlay
                     unrestrictedColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     UpdateUnrestrictedColorValueText();
                     setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
+                    SaveConfig();
                 }
             }
         }
@@ -510,7 +522,6 @@ namespace CrosshairOverlay
         private void UpdateUnrestrictedColorValueText()
         {
             UnrestrictedColorValueText.Text = unrestrictedColor.ToString();
-            SaveConfig();
         }
 
         private void setBackgroundUnrestrictedColorIndicatorButton(string unrestrictedColor)
@@ -524,6 +535,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedOpacity -= 0.1;
                 UpdateUnrestrictedOpacityValueText();
+                SaveConfig();
             }
         }
 
@@ -533,13 +545,13 @@ namespace CrosshairOverlay
             {
                 unrestrictedOpacity += 0.1;
                 UpdateUnrestrictedOpacityValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateUnrestrictedOpacityValueText()
         {
             UnrestrictedOpacityValueText.Text = unrestrictedOpacity.ToString();
-            SaveConfig();
         }
 
         private void DecreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
@@ -548,6 +560,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedOffsetX -= 1;
                 UpdateUnrestrictedOffsetXValueText();
+                SaveConfig();
             }
         }
 
@@ -557,13 +570,13 @@ namespace CrosshairOverlay
             {
                 unrestrictedOffsetX += 1;
                 UpdateUnrestrictedOffsetXValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateUnrestrictedOffsetXValueText()
         {
             UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
-            SaveConfig();
         }
 
         private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
@@ -572,6 +585,7 @@ namespace CrosshairOverlay
             {
                 unrestrictedOffsetY -= 1;
                 UpdateUnrestrictedOffsetYValueText();
+                SaveConfig();
             }
         }
 
@@ -581,13 +595,13 @@ namespace CrosshairOverlay
             {
                 unrestrictedOffsetY += 1;
                 UpdateUnrestrictedOffsetYValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateUnrestrictedOffsetYValueText()
         {
             UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
-            SaveConfig();
         }
 
         // Параметры CounterStrafe
@@ -595,18 +609,19 @@ namespace CrosshairOverlay
         {
             isCounterStrafeEnabled = true;
             UpdateCSCheckbox();
+            SaveConfig();
         }
 
         private void CounterStrafeCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             isCounterStrafeEnabled = false;
             UpdateCSCheckbox();
+            SaveConfig();
         }
 
         private void UpdateCSCheckbox()
         {
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
-            SaveConfig();
         }
 
         private void IncreaseCSDuration_Click(object sender, RoutedEventArgs e)
@@ -615,6 +630,7 @@ namespace CrosshairOverlay
             {
                 csPressureDuration += 10;
                 UpdateCSDurationValueText();
+                SaveConfig();
             }
         }
 
@@ -624,13 +640,13 @@ namespace CrosshairOverlay
             {
                 csPressureDuration -= 10;
                 UpdateCSDurationValueText();
+                SaveConfig();
             }
         }
 
         private void UpdateCSDurationValueText()
         {
             CounterStrafeDurationText.Text = csPressureDuration.ToString();
-            SaveConfig();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -655,14 +671,27 @@ namespace CrosshairOverlay
             try
             {
                 var config = new CrosshairConfig(); // Создаем объект конфигурации
+                // Параметры Ellips A
                 config.Radius = radius;
-                config.OutlineRadius = outlineRadius;
                 config.Thickness = thickness;
-                config.OutlineThickness = outlineThickness;
                 config.StrokeColor = strokeColor;
-                config.OutlineColor = outlineColor;
                 config.StrokeOpacity = strokeOpacity;
+                // Параметры Ellips B
+                config.OutlineRadius = outlineRadius;
+                config.OutlineThickness = outlineThickness;
+                config.OutlineColor = outlineColor;
                 config.OutlineOpacity = outlineOpacity;
+                config.OutlineOffsetX = outlineOffsetX;
+                config.OutlineOffsetY = outlineOffsetY;
+                // Параметры Ellips C
+                config.UnrestrictedWidth = unrestrictedWidth;
+                config.UnrestrictedHeight = unrestrictedHeight;
+                config.UnrestrictedTickness = unrestrictedTickness;
+                config.UnrestrictedColor = unrestrictedColor;
+                config.UnrestrictedOpacity = unrestrictedOpacity;
+                config.UnrestrictedOffsetX = unrestrictedOffsetX;
+                config.UnrestrictedOffsetY = unrestrictedOffsetY;
+                // Параметры CounterStrafe
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 config.csPressureDuration = csPressureDuration;
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
@@ -703,14 +732,27 @@ namespace CrosshairOverlay
             try
             {
                 var config = configManager.LoadConfig(fileName); // Загружаем конфиг
-                radius = (int)(config?.Radius ?? 24);
-                outlineRadius = (int)(config?.OutlineRadius ?? 25);
-                thickness = (int)(config?.Thickness ?? 1);
-                outlineThickness = (int)(config?.OutlineThickness ?? 1);
+                // Параметры Ellips A
+                radius = config?.Radius ?? 24;
+                thickness = config?.Thickness ?? 1;
                 strokeColor = config?.StrokeColor ?? "#FF0000";
-                outlineColor = config?.OutlineColor ?? "#0000FF";
                 strokeOpacity = config?.StrokeOpacity ?? 1.0;
+                // Параметры Ellips B
+                outlineRadius = config?.OutlineRadius ?? 25;
+                outlineThickness = config?.OutlineThickness ?? 1;
+                outlineColor = config?.OutlineColor ?? "#0000FF";
                 outlineOpacity = config?.OutlineOpacity ?? 1.0;
+                outlineOffsetX = config?.OutlineOffsetX ?? 0;
+                outlineOffsetY = config?.OutlineOffsetY ?? 0;
+                // Параметры Ellips C
+                unrestrictedWidth = config?.UnrestrictedWidth ?? 0;
+                unrestrictedHeight = config?.UnrestrictedHeight ?? 0;
+                unrestrictedTickness = config?.UnrestrictedTickness ?? 0;
+                unrestrictedColor = config?.UnrestrictedColor ?? "#00FF00";
+                unrestrictedOpacity = config?.UnrestrictedOpacity ?? 1;
+                unrestrictedOffsetX = config?.UnrestrictedOffsetX ?? 0;
+                unrestrictedOffsetY = config?.UnrestrictedOffsetY ?? 0;
+                // Параметры СounterStrafe
                 isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
                 csPressureDuration = config?.csPressureDuration ?? 100;
                 UpdateConfigDisplay(); // Обновляем отображение

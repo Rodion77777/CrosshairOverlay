@@ -14,9 +14,7 @@ namespace CrosshairOverlay
 
         public ConfigManager()
         {
-            configDirectory = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "CrosshairOverlay", "Configs");
+            configDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CrosshairOverlay", "Configs");
 
             if (!Directory.Exists(configDirectory))
             {
