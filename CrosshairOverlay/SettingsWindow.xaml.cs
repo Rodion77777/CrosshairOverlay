@@ -296,17 +296,21 @@ namespace CrosshairOverlay
         // Параметры Ellips B
         private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
-            outlineRadius += MultiplierIsChecked();
-            UpdateOutlineRadiusValueText();
-            SaveConfig();
+            if (outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
+            {
+                outlineRadius += MultiplierIsChecked();
+                if (outlineRadius > Limits.GetOutlineMaxRadius(outlineThickness)) outlineRadius = Limits.GetOutlineMaxRadius(outlineThickness);
+                UpdateOutlineRadiusValueText();
+                SaveConfig();
+            }
         }
 
         private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineRadius > 1)
+            if (outlineRadius > Limits.minRadius)
             {
                 outlineRadius -= MultiplierIsChecked();
-                if (outlineRadius < 1) outlineRadius = 1;
+                if (outlineRadius < Limits.minRadius) outlineRadius = Limits.minRadius;
                 UpdateOutlineRadiusValueText();
                 SaveConfig();
             }
