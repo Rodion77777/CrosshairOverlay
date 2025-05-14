@@ -20,12 +20,12 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="0,1"/>
             </Style>
-            <Style x:Key="Control_Group_Bottom" TargetType="StackPanel">
-                <Setter Property="Orientation" Value="Horizontal"/>
+            <Style x:Key="Control_Group_DockBottom" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="Margin" Value="7,0,7,6"/>
-                <Setter Property="Background" Value="#FFE5E5E5"/>
+                <Setter Property="LastChildFill" Value="False"/>
+                <Setter Property="Margin" Value="6,0,6,6"/>
+                <Setter Property="Background" Value="#C0C0C0"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="30"/>
@@ -69,12 +69,11 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="LightYellow"/>
-                <Setter Property="Margin" Value="7,0,0,7"/>
             </Style>
             <Style x:Key="ConfirmReset" TargetType="CheckBox">
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Content" Value="Confirm reset!"/>
-                <Setter Property="Margin" Value="60,0,0,9"/>
                 <Setter Property="Background" Value="LightYellow"/>
             </Style>
             <Style x:Key="Exit" TargetType="Button">
@@ -84,10 +83,9 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="LightCoral"/>
-                <Setter Property="Margin" Value="0,0,7,7"/>
             </Style>
         </Grid.Resources>
-        <TabControl>
+        <TabControl Grid.Row="0">
             <TabItem Header="Crosshair">
                 <TabControl>
                     <TabItem Header="Ellips A">
@@ -245,6 +243,7 @@
                             </StackPanel>
                         </StackPanel>
                         <CheckBox x:Name="CounterStrafeCheckbox" Content="CounterStrafe (wasd)" Margin="0,10,0,0" Checked="CounterStrafeCheckbox_Checked" Unchecked="CounterStrafeCheckbox_Unchecked" Width="130"/>
+                        <CheckBox x:Name="BannyhopCheckbox" Content="Bannyhop (space)" Margin="0,10,0,0" Checked="BannyhopCheckbox_Checked" Unchecked="BannyhopCheckbox_Unchecked" Width="130"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Grid.Column="1">
                         <TextBlock Text="C.Strafe keyboard test" FontSize="13" Margin="0,0,0,10"/>
@@ -290,10 +289,10 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <!--<StackPanel Style="{StaticResource Control_Group_Bottom}">-->
-        <Button Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
-        <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
-        <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
-        <!--</StackPanel>-->
+        <DockPanel Grid.Row="1" Style="{StaticResource Control_Group_DockBottom}">
+            <Button Grid.Column="0" DockPanel.Dock="Left" Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
+            <CheckBox Grid.Column="1" Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
+            <Button Grid.Column="2" DockPanel.Dock="Right" Style="{StaticResource Exit}" Click="ExitButton_Click"/>
+        </DockPanel>
     </Grid>
 </Window>

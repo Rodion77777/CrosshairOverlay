@@ -619,6 +619,17 @@ namespace CrosshairOverlay
             SaveConfig();
         }
 
+
+        private void BannyhopCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BannyhopCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void UpdateCSCheckbox()
         {
             CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
@@ -799,5 +810,6 @@ namespace CrosshairOverlay
             // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
         }
+
     }
 }
