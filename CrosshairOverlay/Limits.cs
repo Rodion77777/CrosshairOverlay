@@ -15,7 +15,7 @@ namespace CrosshairOverlay
         public static int minRadius = 1;
         public static int radius = Math.Min((int)screenWidth, (int)screenHeight) / 2;
         public static int minThickness = 0;
-        public static double minOpacity = 0.1;
+        public static double minOpacity = 0.2;
         public static double maxOpacity = 1;
         // Ellips A
         public static int tickness = 5;

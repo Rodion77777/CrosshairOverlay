@@ -270,7 +270,7 @@ namespace CrosshairOverlay
 
         private void IncreaseOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (strokeOpacity < 1.0)
+            if (strokeOpacity < Limits.maxOpacity)
             {
                 strokeOpacity += 0.1;
                 UpdateOpacityValueText();
@@ -280,7 +280,7 @@ namespace CrosshairOverlay
 
         private void DecreaseOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (strokeOpacity > 0.2)
+            if (strokeOpacity > Limits.minOpacity)
             {
                 strokeOpacity -= 0.1;
                 UpdateOpacityValueText();
