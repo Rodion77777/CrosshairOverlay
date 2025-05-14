@@ -612,7 +612,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedOffsetX > -100)
             {
-                unrestrictedOffsetX -= 1;
+                unrestrictedOffsetX -= MultiplierIsChecked();
+                if (unrestrictedOffsetX < -100) unrestrictedOffsetX = -100;
                 UpdateUnrestrictedOffsetXValueText();
                 SaveConfig();
             }
@@ -622,7 +623,8 @@ namespace CrosshairOverlay
         {
             if (unrestrictedOffsetX < 100)
             {
-                unrestrictedOffsetX += 1;
+                unrestrictedOffsetX += MultiplierIsChecked();
+                if (unrestrictedOffsetX > 100) unrestrictedOffsetX = 100;
                 UpdateUnrestrictedOffsetXValueText();
                 SaveConfig();
             }
