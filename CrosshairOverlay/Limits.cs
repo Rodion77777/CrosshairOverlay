@@ -20,6 +20,7 @@ namespace CrosshairOverlay
         // Ellips A
         public static int tickness = 5;
         // Ellips B
+        private static int outlineMaxRadius;
         public static int outlineThickness = 10;
         public static int offsetX = (int)screenWidth / 2;
         public static int offsetY = (int)screenHeight / 2;
@@ -32,5 +33,11 @@ namespace CrosshairOverlay
         // Counter strafe
         public static int minCSPressDuration = 0;
         public static int maxCSPressDuration = 300;
+
+        public static int GetOutlineMaxRadius(int currentThickness)
+        {
+            outlineMaxRadius = radius - currentThickness;
+            return outlineMaxRadius;
+        }
     }
 }
