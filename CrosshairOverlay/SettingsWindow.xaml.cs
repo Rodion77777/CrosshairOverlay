@@ -323,7 +323,7 @@ namespace CrosshairOverlay
 
         private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineThickness < 5)
+            if (outlineThickness < Limits.outlineThickness && outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
             {
                 outlineThickness += 1;
                 UpdateOutlineThicknessValueText();
@@ -333,7 +333,7 @@ namespace CrosshairOverlay
 
         private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineThickness > 0)
+            if (outlineThickness > Limits.minThickness)
             {
                 outlineThickness -= 1;
                 UpdateOutlineThicknessValueText();
