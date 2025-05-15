@@ -22,8 +22,8 @@ namespace CrosshairOverlay
         // Ellips B
         private static int outlineMaxRadius;
         public static int outlineThickness = 10;
-        public static int offsetX = (int)screenWidth / 2;
-        public static int offsetY = (int)screenHeight / 2;
+        public static int offsetX = (int)screenWidth;
+        public static int offsetY = (int)screenHeight;
         // Ellips C
         public static int unrestrictedWidth = (int)screenWidth / 2 - unrestrictedThickness;
         public static int unrestrictedHeight = (int)screenHeight / 2 - unrestrictedThickness;

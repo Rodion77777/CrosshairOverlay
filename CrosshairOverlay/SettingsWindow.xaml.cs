@@ -372,7 +372,7 @@ namespace CrosshairOverlay
 
         private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOpacity < 1.0)
+            if (outlineOpacity < Limits.maxOpacity)
             {
                 outlineOpacity += 0.1;
                 UpdateOutlineOpacityValueText();
@@ -382,7 +382,7 @@ namespace CrosshairOverlay
 
         private void DecreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOpacity > 0.2)
+            if (outlineOpacity > Limits.minOpacity)
             {
                 outlineOpacity -= 0.1;
                 UpdateOutlineOpacityValueText();
@@ -397,10 +397,10 @@ namespace CrosshairOverlay
 
         private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetX > -100)
+            if (outlineOffsetX > -Limits.offsetX)
             {
                 outlineOffsetX -= MultiplierIsChecked();
-                if (outlineOffsetX < -100) outlineOffsetX = -100;
+                if (outlineOffsetX < -Limits.offsetX) outlineOffsetX = -Limits.offsetX;
                 UpdateOutlineOffsetXValueText();
                 SaveConfig();
             }
@@ -408,10 +408,10 @@ namespace CrosshairOverlay
 
         private void IncreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetX < 100)
+            if (outlineOffsetX < Limits.offsetX)
             {
                 outlineOffsetX += MultiplierIsChecked();
-                if (outlineOffsetX > 100) outlineOffsetX = 100;
+                if (outlineOffsetX > Limits.offsetX) outlineOffsetX = Limits.offsetX;
                 UpdateOutlineOffsetXValueText();
                 SaveConfig();
             }
@@ -424,10 +424,10 @@ namespace CrosshairOverlay
 
         private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetY > -100)
+            if (outlineOffsetY > -Limits.offsetY)
             {
                 outlineOffsetY -= MultiplierIsChecked();
-                if (outlineOffsetY < -100) outlineOffsetY = -100;
+                if (outlineOffsetY < -Limits.offsetY) outlineOffsetY = -Limits.offsetY;
                 UpdateOutlineOffsetYValueText();
                 SaveConfig();
             }
@@ -435,10 +435,10 @@ namespace CrosshairOverlay
 
         private void IncreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetY < 100)
+            if (outlineOffsetY < Limits.offsetY)
             {
                 outlineOffsetY += MultiplierIsChecked();
-                if (outlineOffsetY > 100) outlineOffsetY = 100;
+                if (outlineOffsetY > Limits.offsetY) outlineOffsetY = Limits.offsetY;
                 UpdateOutlineOffsetYValueText();
                 SaveConfig();
             }
