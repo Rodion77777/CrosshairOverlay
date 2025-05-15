@@ -25,11 +25,11 @@ namespace CrosshairOverlay
         public static int offsetX = (int)screenWidth;
         public static int offsetY = (int)screenHeight;
         // Ellips C
-        public static int unrestrictedWidth = (int)screenWidth / 2 - unrestrictedThickness;
-        public static int unrestrictedHeight = (int)screenHeight / 2 - unrestrictedThickness;
+        private static int unrestrictedWidth;
+        private static int unrestrictedHeight;
         public static int unrestrictedThickness = 100;
-        public static int unrestrictedOffsetX = (int)screenWidth / 2 - unrestrictedThickness;
-        public static int unrestrictedOffsetY = (int)screenHeight / 2 - unrestrictedThickness;
+        private static int unrestrictedOffsetX;
+        private static int unrestrictedOffsetY;
         // Counter strafe
         public static int minCSPressDuration = 0;
         public static int maxCSPressDuration = 300;
@@ -38,6 +38,30 @@ namespace CrosshairOverlay
         {
             outlineMaxRadius = radius - currentThickness;
             return outlineMaxRadius;
+        }
+
+        public static int GetUnrestrictedWidth(int currentThickness)
+        {
+            unrestrictedWidth = (int)screenWidth / 2 - currentThickness;
+            return unrestrictedWidth;
+        }
+
+        public static int GetUnrestrictedHeight(int currentThickness)
+        {
+            unrestrictedHeight = (int)screenHeight / 2 - currentThickness;
+            return unrestrictedHeight;
+        }
+
+        public static int GetUnrestrictedOffsetX(int currentHeight, int currentThickness)
+        {
+            unrestrictedOffsetX = (int)screenWidth / 2 - currentHeight - currentThickness;
+            return unrestrictedOffsetX;
+        }
+
+        public static int GetUnrestrictedOffsetY(int currentWidth, int currentThickness)
+        {
+            unrestrictedOffsetY = (int)screenHeight / 2 - currentWidth - currentThickness;
+            return unrestrictedOffsetY;
         }
     }
 }

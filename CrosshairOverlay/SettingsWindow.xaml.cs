@@ -479,9 +479,12 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedWidth += MultiplierIsChecked();
-            UpdateUnrestrictedWidthValueText();
-            SaveConfig();
+            if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
+            {
+                unrestrictedWidth += MultiplierIsChecked();
+                UpdateUnrestrictedWidthValueText();
+                SaveConfig();
+            }
 
             if (WH_Merge.IsChecked == true)
             {
@@ -491,9 +494,12 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedWidth_Click()
         {
-            unrestrictedWidth += MultiplierIsChecked();
-            UpdateUnrestrictedWidthValueText();
-            SaveConfig();
+            if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
+            {
+                unrestrictedWidth += MultiplierIsChecked();
+                UpdateUnrestrictedWidthValueText();
+                SaveConfig();
+            }
         }
 
         private void UpdateUnrestrictedWidthValueText()
@@ -530,9 +536,12 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
         {
-            unrestrictedHeight += MultiplierIsChecked();
-            UpdateConfigDisplay();
-            SaveConfig();
+            if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
+            {
+                unrestrictedHeight += MultiplierIsChecked();
+                UpdateUnrestrictedHeightValueText();
+                SaveConfig();
+            }
 
             if (WH_Merge.IsChecked == true)
             {
@@ -542,9 +551,12 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedHeight_Click()
         {
-            unrestrictedHeight += MultiplierIsChecked();
-            UpdateConfigDisplay();
-            SaveConfig();
+            if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
+            {
+                unrestrictedHeight += MultiplierIsChecked();
+                UpdateUnrestrictedHeightValueText();
+                SaveConfig();
+            }
         }
 
         private void UpdateUnrestrictedHeightValueText()
@@ -565,10 +577,10 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedTickness < 100)
+            if (unrestrictedTickness < Limits.unrestrictedThickness)
             {
                 unrestrictedTickness += MultiplierIsChecked();
-                if (unrestrictedTickness > 100) unrestrictedTickness = 100;
+                if (unrestrictedTickness > Limits.unrestrictedThickness) unrestrictedTickness = Limits.unrestrictedThickness;
                 UpdateUnrestrictedThicknessValueText();
                 SaveConfig();
             }
@@ -605,7 +617,7 @@ namespace CrosshairOverlay
 
         private void DecreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOpacity > 0.2)
+            if (unrestrictedOpacity > Limits.minOpacity)
             {
                 unrestrictedOpacity -= 0.1;
                 UpdateUnrestrictedOpacityValueText();
@@ -615,7 +627,7 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOpacity < 1.0)
+            if (unrestrictedOpacity < Limits.maxOpacity)
             {
                 unrestrictedOpacity += 0.1;
                 UpdateUnrestrictedOpacityValueText();
@@ -630,10 +642,11 @@ namespace CrosshairOverlay
 
         private void DecreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOffsetX > -100)
+            int limitX = -Limits.GetUnrestrictedOffsetX(unrestrictedWidth, unrestrictedTickness);
+            if (unrestrictedOffsetX > limitX)
             {
                 unrestrictedOffsetX -= MultiplierIsChecked();
-                if (unrestrictedOffsetX < -100) unrestrictedOffsetX = -100;
+                if (unrestrictedOffsetX < limitX) unrestrictedOffsetX = limitX;
                 UpdateUnrestrictedOffsetXValueText();
                 SaveConfig();
             }
@@ -641,10 +654,11 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOffsetX < 100)
+            int limitX = Limits.GetUnrestrictedOffsetX(unrestrictedWidth, unrestrictedTickness);
+            if (unrestrictedOffsetX < limitX)
             {
                 unrestrictedOffsetX += MultiplierIsChecked();
-                if (unrestrictedOffsetX > 100) unrestrictedOffsetX = 100;
+                if (unrestrictedOffsetX > limitX) unrestrictedOffsetX = limitX;
                 UpdateUnrestrictedOffsetXValueText();
                 SaveConfig();
             }
@@ -657,10 +671,11 @@ namespace CrosshairOverlay
 
         private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOffsetY > -100)
+            int limitY = -Limits.GetUnrestrictedOffsetY(unrestrictedHeight, unrestrictedTickness);
+            if (unrestrictedOffsetY > limitY)
             {
                 unrestrictedOffsetY -= MultiplierIsChecked();
-                if (unrestrictedOffsetY < -100) unrestrictedOffsetY = -100;
+                if (unrestrictedOffsetY < limitY) unrestrictedOffsetY = limitY;
                 UpdateUnrestrictedOffsetYValueText();
                 SaveConfig();
             }
@@ -668,10 +683,11 @@ namespace CrosshairOverlay
 
         private void IncreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (unrestrictedOffsetY < 100)
+            int limitY = Limits.GetUnrestrictedOffsetY(unrestrictedHeight, unrestrictedTickness);
+            if (unrestrictedOffsetY < limitY)
             {
                 unrestrictedOffsetY += MultiplierIsChecked();
-                if (unrestrictedOffsetY > 100) unrestrictedOffsetY = 100;
+                if (unrestrictedOffsetY > limitY) unrestrictedOffsetY = limitY;
                 UpdateUnrestrictedOffsetYValueText();
                 SaveConfig();
             }
