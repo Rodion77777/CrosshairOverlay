@@ -32,6 +32,14 @@
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Margin" Value="-100,60,0,0"/>
             </Style>-->
+            <Style x:Key="CustomCheckbox" TargetType="Border">
+                <Setter Property="Width" Value="15"/>
+                <Setter Property="Height" Value="14"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Margin" Value="5,0"/>
+            </Style>
             <Style x:Key="Control_Group_DockBottom" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
