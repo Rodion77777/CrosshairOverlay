@@ -382,10 +382,7 @@
             <DockPanel Style="{StaticResource Control_Group_DockBottom}">
                 <Button DockPanel.Dock="Left" Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
                 <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                    <CheckBox x:Name="CommonMultiplier" Content="x10" Margin="0,2,20,0"/>
-                    <Button Style="{StaticResource Exit}" Click="ExitButton_Click"/>
-                </StackPanel>
+                        <Button DockPanel.Dock="Right" Style="{StaticResource Exit}" Click="ExitButton_Click"/>
             </DockPanel>
         </Border>
     </Grid>
