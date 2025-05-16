@@ -190,7 +190,7 @@
                             <SolidColorBrush Color="#8000FF"/>
                         </Image.OpacityMask>
                     </Image>
-                    <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                    <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,2"/>
                 </DockPanel>
                 <TabControl Grid.Row="1">
                     <TabItem Header="Crosshair">
@@ -205,7 +205,7 @@
                                 </StackPanel.RenderTransform>
                                 <TextBlock Text="Common Multiplier" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" Width="100" Style="{StaticResource TextBlock_Inline}"/>
                                 <CheckBox Name="CommonMultiplier_x10" Content="x10" Margin="10,0,0,0"/>
-                                <CheckBox Name="CustomCheckbox" Content="x100" Margin="10,0,0,0"/>
+                                <CheckBox Name="CommonMultiplier_x100" Content="x100" Margin="10,0,0,0"/>
                             </StackPanel>
                             <TabControl Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch">
                                 <TabItem Header="Ellips A">
