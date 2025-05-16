@@ -153,7 +153,18 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-        <TabControl Margin="0,0,0,27">
+
+        <Border BorderBrush="#2E2E2E" BorderThickness="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="29"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Style="{StaticResource WindowCustomHeaderPanel}" MouseLeftButtonDown="TitleBar_MouseDown" MouseRightButtonDown="ShowWindowMenu">
+                    <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                </DockPanel>
+                <TabControl Grid.Row="1" Margin="0,0,0,0">
             <TabItem Header="Crosshair">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -256,6 +267,7 @@
                     <TabItem Header="Ellips C">
                         <Grid>
                             <ScrollViewer>
+                                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
                                 <StackPanel Style="{StaticResource Control_List}">
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <TextBlock Text="Unrestricted Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
@@ -310,10 +322,12 @@
                                     </StackPanel>
                                     <!--<StackPanel Height="20" Style="{StaticResource Control_Group_Inline}"/>-->
                                 </StackPanel>
+                                            </Grid>
                             </ScrollViewer>
                         </Grid>
                     </TabItem>
                 </TabControl>
+                        </Grid>
             </TabItem>
             <TabItem Header="C.Strafe">
                 <Grid>
@@ -371,7 +385,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <!--<StackPanel Style="{StaticResource Multiplier_Group}">
+                <Border Grid.Row="2" Style="{StaticResource Control_Group_Border}">
             <StackPanel.RenderTransform>
                 <RotateTransform Angle="90"/>
             </StackPanel.RenderTransform>
@@ -384,6 +398,8 @@
                 <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
                         <Button DockPanel.Dock="Right" Style="{StaticResource Exit}" Click="ExitButton_Click"/>
             </DockPanel>
+        </Border>
+    </Grid>
         </Border>
     </Grid>
 </Window>
