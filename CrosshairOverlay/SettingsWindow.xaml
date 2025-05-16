@@ -35,6 +35,13 @@
             <Style TargetType="Grid">
                 <Setter Property="Background" Value="#FFE5E5E5"/>
             </Style>
+            <Style x:Key="WindowCustomHeaderPanel" TargetType="DockPanel">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Background" Value="#2C2C2C"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
             <Style TargetType="ScrollViewer">
                 <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
                 <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
