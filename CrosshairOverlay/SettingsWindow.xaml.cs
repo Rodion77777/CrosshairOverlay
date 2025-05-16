@@ -768,6 +768,24 @@ namespace CrosshairOverlay
             }
         }
 
+        // Функционал custom window header
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void ShowWindowMenu(object sender, MouseButtonEventArgs e)
+        {
+            var window = Window.GetWindow(this); // Получаем текущее окно
+            if (window != null)
+            {
+                SystemCommands.ShowSystemMenu(window, e.GetPosition(window));
+            }
+        }
+
         private void SaveConfigButton_Click(object sender, RoutedEventArgs e)
         {
             string fileName = ConfigNameTextBox.Text.Trim(); // Получаем имя из TextBox
