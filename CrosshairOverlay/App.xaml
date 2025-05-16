@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:CrosshairOverlay"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="ChromeWindow" TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="20"
+                              GlassFrameThickness="3"
+                              NonClientFrameEdges="None"
+                              ResizeBorderThickness="3"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="WindowStyle" Value="None"/>
+        </Style>
     </Application.Resources>
 </Application>
