@@ -18,14 +18,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
                         <StackPanel Orientation="Horizontal">
-                            <Border Width="14" Height="14" BorderBrush="Gray" BorderThickness="1" Background="{TemplateBinding Background}">
-                                <Border BorderThickness="1" BorderBrush="White"/>
+                            <Border Name="Border" Width="14" Height="14" BorderBrush="Gray" BorderThickness="1" Background="{TemplateBinding Background}">
+                                <Border Name="Checker" BorderThickness="1" BorderBrush="White"/>
                             </Border>
                             <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" Value="#4297FF"/>
+                                <Setter TargetName="Checker" Property="Background" Value="#8000FF"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#8000FF"/>
+                                <Setter TargetName="Border" Property="Background" Value="#EFDFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -64,14 +68,6 @@
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Margin" Value="17,5,0,0"/>
-            </Style>
-            <Style x:Key="CustomCheckbox" TargetType="Border">
-                <Setter Property="Width" Value="15"/>
-                <Setter Property="Height" Value="14"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="Gray"/>
-                <Setter Property="Background" Value="White"/>
-                <Setter Property="Margin" Value="5,0"/>
             </Style>
             <Style x:Key="Control_Group_DockBottom" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
@@ -155,7 +151,7 @@
                 <Setter Property="Background" Value="LightYellow"/>
                 <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
-            <Style x:Key="Exit" TargetType="Button">
+            <Style  x:Key="Exit" TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Content" Value="Exit"/>
@@ -204,7 +200,7 @@
                                 </StackPanel.RenderTransform>
                                 <TextBlock Text="Common Multiplier" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" Width="100" Style="{StaticResource TextBlock_Inline}"/>
                                 <CheckBox Name="CommonMultiplier_x10" Content="x10" Margin="10,0,0,0"/>
-                                <CheckBox Name="CommonMultiplier_x100" Content="x100" Margin="10,0,0,0"/>
+                                <CheckBox Name="CustomCheckbox" Content="x100" Margin="10,0,0,0"/>
                             </StackPanel>
                             <TabControl Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch">
                                 <TabItem Header="Ellips A">
