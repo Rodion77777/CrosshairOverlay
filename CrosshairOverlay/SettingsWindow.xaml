@@ -129,6 +129,23 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="LightYellow"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#FFFF80"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <Style x:Key="ConfirmReset" TargetType="CheckBox">
                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -143,7 +160,7 @@
                 <Setter Property="Content" Value="Exit"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Background" Value="IndianRed"/>
+                <Setter Property="Background" Value="#FFAAAA"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -155,7 +172,7 @@
                                     <Setter Property="Background" Value="LightCoral"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="IndianRed"/>
+                                    <Setter Property="Background" Value="#FF8080"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -173,7 +190,7 @@
                 <DockPanel Grid.Row="0" Style="{StaticResource WindowCustomHeaderPanel}" MouseLeftButtonDown="TitleBar_MouseDown" MouseRightButtonDown="ShowWindowMenu">
                     <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
                 </DockPanel>
-                <TabControl Grid.Row="1" Margin="0,0,0,0">
+                <TabControl Grid.Row="1">
                     <TabItem Header="Crosshair">
                         <Grid>
                             <Grid.ColumnDefinitions>
