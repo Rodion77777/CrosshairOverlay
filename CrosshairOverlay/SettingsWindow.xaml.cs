@@ -695,7 +695,7 @@ namespace CrosshairOverlay
 
         private int MultiplierIsChecked()
         {
-            return CommonMultiplier.IsChecked == true ? 10 : 1;
+            return CommonMultiplier_x10.IsChecked == true ? 10 : 1;
         }
 
         private void UpdateUnrestrictedOffsetYValueText()
