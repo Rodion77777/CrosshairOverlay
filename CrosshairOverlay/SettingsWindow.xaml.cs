@@ -51,6 +51,7 @@ namespace CrosshairOverlay
         public SettingsWindow()
         {
             InitializeComponent();
+            //DoIconMonoColor();
             LoadConfig();
             UpdateConfigDisplay();
             configManager = new ConfigManager();
@@ -784,6 +785,16 @@ namespace CrosshairOverlay
             {
                 SystemCommands.ShowSystemMenu(window, e.GetPosition(window));
             }
+        }
+
+        private void DoIconMonoColor()
+        {
+            Image img = (Image)FindName("EyeIconImage");
+            img.Source = new BitmapImage(new Uri("resources/images/EyeIcon.png", UriKind.Relative));
+
+            BitmapImage original = new BitmapImage(new Uri("resources/images/EyeIcon.png", UriKind.Relative));
+            FormatConvertedBitmap converted = new FormatConvertedBitmap(original, PixelFormats.Gray8, null, 0);
+            img.Source = converted;
         }
 
         private void SaveConfigButton_Click(object sender, RoutedEventArgs e)
