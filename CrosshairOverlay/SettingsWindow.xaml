@@ -8,6 +8,28 @@
         BorderThickness="0"
         BorderBrush="#2E2E2E"
         WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="14" Height="14" BorderBrush="Gray" BorderThickness="1" Background="{TemplateBinding Background}">
+                                <Border BorderThickness="1" BorderBrush="White"/>
+                            </Border>
+                            <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#4297FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <Style TargetType="Grid">
