@@ -371,6 +371,7 @@
                                         <Button Content="+" Width="30" Click="IncreaseCSDuration_Click"/>
                                     </StackPanel>
                                 </StackPanel>
+                                <CheckBox Name="AdaptiveDurationCheckbox" Content="Adaptive duration" Margin="0,10,0,0" Checked="AdaptiveDurationCheckbox_Checked" Unchecked="AdaptiveDurationCheckbox_Unchecked" Width="130"/>
                                 <CheckBox x:Name="CounterStrafeCheckbox" Content="CounterStrafe (wasd)" Margin="0,10,0,0" Checked="CounterStrafeCheckbox_Checked" Unchecked="CounterStrafeCheckbox_Unchecked" Width="130"/>
                                 <CheckBox x:Name="BannyhopCheckbox" Content="Bannyhop (space)" Margin="0,10,0,0" Checked="BannyhopCheckbox_Checked" Unchecked="BannyhopCheckbox_Unchecked" Width="130"/>
                             </StackPanel>
