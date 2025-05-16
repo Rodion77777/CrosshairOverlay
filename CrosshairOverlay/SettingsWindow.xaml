@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Crosshair Overlay by 'Метелик' (settings)"
         MinHeight="300" MinWidth="300"
-        MaxHeight="350" MaxWidth="340"
+        MaxHeight="355" MaxWidth="340"
         FontWeight="Light"
         BorderThickness="1"
-        BorderBrush="Purple"
+        BorderBrush="#8000FF"
         
         Style="{StaticResource ChromeWindow}"
         Background="White"
@@ -40,7 +40,7 @@
             </Style>
             <Style x:Key="WindowCustomHeaderPanel" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="Height" Value="20"/>
+                <Setter Property="Height" Value="25"/>
                 <Setter Property="Background" Value="#2C2C2C"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="Cursor" Value="Hand"/>
@@ -51,7 +51,7 @@
             </Style>
             <Style x:Key="Control_List" TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Vertical"/>
-                <Setter Property="Margin" Value="7,5"/>
+                <Setter Property="Margin" Value="7,5,18,5"/>
             </Style>
             <Style x:Key="Control_Group_Inline" TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Horizontal"/>
@@ -143,7 +143,7 @@
                 <Setter Property="Content" Value="Exit"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Background" Value="LightCoral"/>
+                <Setter Property="Background" Value="IndianRed"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -152,10 +152,10 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Background" Value="LightCoral"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="DarkRed"/>
+                                    <Setter Property="Background" Value="IndianRed"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -163,13 +163,12 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-
         <Border BorderBrush="#2E2E2E" BorderThickness="1" Background="White">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="29"/>
+                    <RowDefinition Height="28"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0" Style="{StaticResource WindowCustomHeaderPanel}" MouseLeftButtonDown="TitleBar_MouseDown" MouseRightButtonDown="ShowWindowMenu">
                     <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
