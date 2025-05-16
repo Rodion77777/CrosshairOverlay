@@ -84,7 +84,7 @@
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Margin" Value="0,0"/>
-                <Setter Property="Padding" Value="3,3"/>
+                <Setter Property="Padding" Value="2,2"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="30"/>
@@ -185,7 +185,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="27"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0" Style="{StaticResource WindowCustomHeaderPanel}" MouseLeftButtonDown="TitleBar_MouseDown" MouseRightButtonDown="ShowWindowMenu">
                     <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
@@ -242,51 +242,53 @@
                                 <TabItem Header="Ellips B">
                                     <Grid>
                                         <ScrollViewer>
-                                            <StackPanel Style="{StaticResource Control_List}">
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="External Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
+                                                <StackPanel Style="{StaticResource Control_List}">
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="External Ellips Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Button Content="-" Click="DecreaseOutlineRadius_Click"/>
+                                                        <TextBlock x:Name="OutlineRadiusValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="+" Click="IncreaseOutlineRadius_Click"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Button Content="-" Width="30" Click="DecreaseOutlineThickness_Click"/>
+                                                        <TextBlock x:Name="OutlineThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Border Name="OutlineCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
+                                                        <TextBlock x:Name="OutlineColorValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Button Content="-" Width="30" Click="DecreaseOutlineOpacity_Click"/>
+                                                        <TextBlock x:Name="OutlineCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="+" Width="30" Click="IncreaseOutlineOpacity_Click"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Button Content="-" Click="DecreaseOutlineOffsetX_Click"/>
+                                                        <TextBlock x:Name="OutlineCrosshairOffsetX" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="+" Click="IncreaseOutlineOffsetX_Click"/>
+                                                    </StackPanel>
+                                                    <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                        <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
+                                                        <Button Content="-" Click="DecreaseOutlineOffsetY_Click"/>
+                                                        <TextBlock x:Name="OutlineCrosshairOffsetY" Style="{StaticResource TextBlock_Output}"/>
+                                                        <Button Content="+" Click="IncreaseOutlineOffsetY_Click"/>
+                                                    </StackPanel>
+                                                    <!--<StackPanel Height="20" Style="{StaticResource Control_Group_Inline}"/>-->
                                                 </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Radius" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Button Content="-" Click="DecreaseOutlineRadius_Click"/>
-                                                    <TextBlock x:Name="OutlineRadiusValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="+" Click="IncreaseOutlineRadius_Click"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Button Content="-" Width="30" Click="DecreaseOutlineThickness_Click"/>
-                                                    <TextBlock x:Name="OutlineThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Border Name="OutlineCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
-                                                    <TextBlock x:Name="OutlineColorValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Button Content="-" Width="30" Click="DecreaseOutlineOpacity_Click"/>
-                                                    <TextBlock x:Name="OutlineCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="+" Width="30" Click="IncreaseOutlineOpacity_Click"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Horizontal" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Button Content="-" Click="DecreaseOutlineOffsetX_Click"/>
-                                                    <TextBlock x:Name="OutlineCrosshairOffsetX" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="+" Click="IncreaseOutlineOffsetX_Click"/>
-                                                </StackPanel>
-                                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                                    <TextBlock Text="Vertical" Style="{StaticResource TextBlock_Inline}"/>
-                                                    <Button Content="-" Click="DecreaseOutlineOffsetY_Click"/>
-                                                    <TextBlock x:Name="OutlineCrosshairOffsetY" Style="{StaticResource TextBlock_Output}"/>
-                                                    <Button Content="+" Click="IncreaseOutlineOffsetY_Click"/>
-                                                </StackPanel>
-                                                <!--<StackPanel Height="20" Style="{StaticResource Control_Group_Inline}"/>-->
-                                            </StackPanel>
+                                            </Grid>
                                         </ScrollViewer>
                                     </Grid>
                                 </TabItem>
