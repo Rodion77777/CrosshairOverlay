@@ -36,6 +36,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.Resources>
@@ -151,7 +152,7 @@
                 <Setter Property="Background" Value="LightYellow"/>
                 <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
-            <Style  x:Key="Exit" TargetType="Button">
+            <Style x:Key="Exit" TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Content" Value="Exit"/>
@@ -206,6 +207,7 @@
                                 <TextBlock Text="Common Multiplier" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" Width="100" Style="{StaticResource TextBlock_Inline}"/>
                                 <CheckBox Name="CommonMultiplier_x10" Content="x10" Margin="10,0,0,0"/>
                                 <CheckBox Name="CommonMultiplier_x100" Content="x100" Margin="10,0,0,0"/>
+                                <TextBlock Text="/ x1000" Margin="10,0,0,0"/>
                             </StackPanel>
                             <TabControl Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch">
                                 <TabItem Header="Ellips A">

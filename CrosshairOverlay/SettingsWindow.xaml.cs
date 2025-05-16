@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -696,10 +697,24 @@ namespace CrosshairOverlay
 
         private int MultiplierIsChecked()
         {
-            if (CommonMultiplier_x10.IsChecked == true) return 10;
-            if (CommonMultiplier_x100.IsChecked == true) return 100;
-            return 1;
+            int multiplier = 1;
+            if (CommonMultiplier_x10.IsChecked == true) multiplier *= 10;
+            if (CommonMultiplier_x100.IsChecked == true) multiplier *= 100;
+            return multiplier;
         }
+
+        //private void CheckBoxMultiplier_CheckedChanged(object sender, RoutedEventArgs e)
+        //{
+        //    bool isMultiplierActive = (sender as CheckBox)?.IsChecked ?? false;
+
+        //    foreach (Button btn in Control_Group_Inline.Children.OfType<Button>())
+        //    {
+        //        if (btn.Content.ToString().Contains("+"))
+        //            btn.Content = isMultiplierActive ? "X+" : "+";
+        //        else if (btn.Content.ToString().Contains("-"))
+        //            btn.Content = isMultiplierActive ? "-X" : "-";
+        //    }
+        //}
 
         private void UpdateUnrestrictedOffsetYValueText()
         {
