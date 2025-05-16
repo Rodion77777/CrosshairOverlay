@@ -44,6 +44,7 @@
                 <Setter Property="Background" Value="#2C2C2C"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="IsHitTestVisible" Value="True"/>
             </Style>
             <Style TargetType="ScrollViewer">
                 <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
