@@ -412,7 +412,7 @@
                                     </StackPanel>
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                         <Button Content="-" Click="DecreaseCSDuration_Click"/>
-                                        <TextBlock Name="CounterStrafeDurationText2" Style="{StaticResource TextBlock_Output}"/>
+                                        <TextBlock Name="CounterStrafeDurationText" Style="{StaticResource TextBlock_Output}"/>
                                         <Button Content="+" Click="IncreaseCSDuration_Click"/>
                                     </StackPanel>
                                 </UniformGrid>
