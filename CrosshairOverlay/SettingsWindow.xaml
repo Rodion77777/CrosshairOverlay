@@ -224,21 +224,21 @@
                                             </StackPanel>
                                             <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
-                                                <Button Content="-" Width="30" Click="DecreaseThickness_Click"/>
+                                                <Button Content="-" Click="DecreaseThickness_Click"/>
                                                 <TextBlock x:Name="ThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                <Button Content="+" Width="30" Click="IncreaseThickness_Click"/>
+                                                <Button Content="+" Click="IncreaseThickness_Click"/>
                                             </StackPanel>
                                             <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
                                                 <Border Name="CrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
                                                 <TextBlock x:Name="ColorValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                <Button Content="RGB" Width="30" Click="ColorPicker_Click" Height="20"/>
+                                                <Button Content="RGB" Click="ColorPicker_Click"/>
                                             </StackPanel>
                                             <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
-                                                <Button Content="-" Width="30" Click="DecreaseOpacity_Click"/>
+                                                <Button Content="-" Click="DecreaseOpacity_Click"/>
                                                 <TextBlock x:Name="CrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
-                                                <Button Content="+" Width="30" Click="IncreaseOpacity_Click"/>
+                                                <Button Content="+" Click="IncreaseOpacity_Click"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Grid>
@@ -259,21 +259,21 @@
                                                     </StackPanel>
                                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                         <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
-                                                        <Button Content="-" Width="30" Click="DecreaseOutlineThickness_Click"/>
+                                                        <Button Content="-" Click="DecreaseOutlineThickness_Click"/>
                                                         <TextBlock x:Name="OutlineThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                        <Button Content="+" Width="30" Click="IncreaseOutlineThickness_Click"/>
+                                                        <Button Content="+" Click="IncreaseOutlineThickness_Click"/>
                                                     </StackPanel>
                                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                         <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
                                                         <Border Name="OutlineCrosshairColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
                                                         <TextBlock x:Name="OutlineColorValueText" Style="{StaticResource TextBlock_Output}"/>
-                                                        <Button Content="RGB" Width="30" Click="OutlineColorPicker_Click" Height="20"/>
+                                                        <Button Content="RGB" Click="OutlineColorPicker_Click" Height="20"/>
                                                     </StackPanel>
                                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                         <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
-                                                        <Button Content="-" Width="30" Click="DecreaseOutlineOpacity_Click"/>
+                                                        <Button Content="-" Click="DecreaseOutlineOpacity_Click"/>
                                                         <TextBlock x:Name="OutlineCrosshairOpacity" Style="{StaticResource TextBlock_Output}"/>
-                                                        <Button Content="+" Width="30" Click="IncreaseOutlineOpacity_Click"/>
+                                                        <Button Content="+" Click="IncreaseOutlineOpacity_Click"/>
                                                     </StackPanel>
                                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                         <TextBlock Text="Ellips position" Style="{StaticResource TextBlock_PartitionName}"/>
