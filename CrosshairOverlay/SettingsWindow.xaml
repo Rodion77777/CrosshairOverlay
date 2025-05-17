@@ -74,12 +74,12 @@
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="LastChildFill" Value="False"/>
-                <Setter Property="Background" Value="#FFE5E5E5"/>
+                <Setter Property="Background" Value="#2E2E2E"/>
             </Style>
             <Style x:Key="Control_Group_Border" TargetType="Border">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="BorderBrush" Value="#C0C0C0"/>
-                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#2E2E2E"/>
+                <Setter Property="Background" Value="#2E2E2E"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Margin" Value="0,0"/>
                 <Setter Property="Padding" Value="2,2"/>
@@ -126,31 +126,26 @@
                 <Setter Property="Content" Value="Reset"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Background" Value="LightYellow"/>
+                <Setter Property="Background" Value="#2C2C2C"/>
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                            <Border Name="CustomResetButton" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Gray">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                                    <Setter Property="Background" Value="#313000"/>
+                                    <Setter TargetName="CustomResetButton" Property="BorderBrush" Value="#C4C400"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="#FFFF80"/>
+                                    <Setter Property="Background" Value="#252300"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Style>
-            <Style x:Key="ConfirmReset" TargetType="CheckBox">
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Content" Value="Confirm reset!"/>
-                <Setter Property="Background" Value="LightYellow"/>
-                <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
             <Style x:Key="Exit" TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -158,19 +153,21 @@
                 <Setter Property="Content" Value="Exit"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Height" Value="20"/>
-                <Setter Property="Background" Value="#FFAAAA"/>
+                <Setter Property="Background" Value="#2C2C2C"/>
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                            <Border Name="CustomExitButton" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Gray">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="LightCoral"/>
+                                    <Setter Property="Background" Value="#480000"/>
+                                    <Setter TargetName="CustomExitButton" Property="BorderBrush" Value="Red"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="#FF8080"/>
+                                    <Setter Property="Background" Value="#360000"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -440,7 +437,7 @@
                 <Border Grid.Row="2" Style="{StaticResource Control_Group_Border}">
                     <DockPanel Style="{StaticResource Control_Group_DockBottom}">
                         <Button DockPanel.Dock="Left" Style="{StaticResource Reset}" Click="CrosshairResetButton_Click"/>
-                        <CheckBox Name="CrosshairResetConfirmCheckbox" Style="{StaticResource ConfirmReset}"/>
+                        <CheckBox Name="CrosshairResetConfirmCheckbox" Content="Confirm reset!" Foreground="White" Margin="5,0,0,0"/>
                         <Button DockPanel.Dock="Right" Style="{StaticResource Exit}" Click="ExitButton_Click"/>
                     </DockPanel>
                 </Border>
