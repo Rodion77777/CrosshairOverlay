@@ -87,6 +87,25 @@
             <Style TargetType="Button">
                 <Setter Property="Width" Value="30"/>
                 <Setter Property="Height" Value="20"/>
+                <Setter Property="Background" Value="#FFE5E5E5"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="CustomButtonController" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#707070">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#F3F3F3"/>
+                                    <Setter TargetName="CustomButtonController" Property="BorderBrush" Value="#8000FF"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#E1E1E1"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <Style x:Key="Border_RGB_Indocator" TargetType="Border">
                 <Setter Property="Width" Value="30"/>
@@ -409,15 +428,15 @@
                         <Grid>
                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
                                 <TextBlock Text="New config name:" Margin="0,20,0,0"/>
-                                <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
-                                <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
+                                        <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
+                                        <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
                                 <ComboBox x:Name="СonfigSelector" Margin="0,30,0,0" Width="150" Height="20">
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
                                     <Button x:Name="LoadConfigButton" HorizontalAlignment="Left" Content="Load" Width="50" Height="20" Click="LoadConfigButton_Click"/>
                                     <CheckBox x:Name="ConfirmDeleteConfig" Margin="30,2,4,0"/>
                                     <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
-                                </StackPanel>
+                                    </StackPanel>
                             </StackPanel>
                         </Grid>
                     </TabItem>
