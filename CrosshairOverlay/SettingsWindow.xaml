@@ -30,6 +30,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Border" Property="BorderBrush" Value="#8000FF"/>
                                 <Setter TargetName="Border" Property="Background" Value="#EFDFFF"/>
+                                <Setter TargetName="Checker" Property="BorderBrush" Value="#EFDFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
