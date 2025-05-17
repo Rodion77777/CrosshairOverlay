@@ -360,7 +360,7 @@
                             </TabControl>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="C.Strafe">
+                    <TabItem Header="Misc">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
