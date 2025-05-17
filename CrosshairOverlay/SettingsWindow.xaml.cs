@@ -703,25 +703,22 @@ namespace CrosshairOverlay
             return multiplier;
         }
 
-        //private void CheckBoxMultiplier_CheckedChanged(object sender, RoutedEventArgs e)
-        //{
-        //    bool isMultiplierActive = (sender as CheckBox)?.IsChecked ?? false;
-
-        //    foreach (Button btn in Control_Group_Inline.Children.OfType<Button>())
-        //    {
-        //        if (btn.Content.ToString().Contains("+"))
-        //            btn.Content = isMultiplierActive ? "X+" : "+";
-        //        else if (btn.Content.ToString().Contains("-"))
-        //            btn.Content = isMultiplierActive ? "-X" : "-";
-        //    }
-        //}
-
         private void UpdateUnrestrictedOffsetYValueText()
         {
             UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
         }
 
         // Параметры CounterStrafe
+        private void AdaptiveDurationCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AdaptiveDurationCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             isCounterStrafeEnabled = true;
@@ -955,6 +952,5 @@ namespace CrosshairOverlay
             // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
         }
-
     }
 }
