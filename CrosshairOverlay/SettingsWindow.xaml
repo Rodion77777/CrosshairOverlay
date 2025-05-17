@@ -360,43 +360,6 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Misc">
-                        <!--<Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Style="{StaticResource Control_List}">
-                                <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Margin="0" Text="Misc configuration" Style="{StaticResource TextBlock_TabItem_Name}"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,5,5,5" Width="Auto">
-                                    <StackPanel>
-                                        <TextBlock Text="C.Strafe press. duration" Width="Auto" Margin="0,0,0,10" Style="{StaticResource TextBlock_Inline}"/>
-                                        <StackPanel Margin="0" Style="{StaticResource Control_Group_Inline}">
-                                            <Button Content="-" Click="DecreaseCSDuration_Click"/>
-                                            <TextBlock x:Name="CounterStrafeDurationText" Style="{StaticResource TextBlock_Output}"/>
-                                            <Button Content="+" Click="IncreaseCSDuration_Click"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center">
-                                        <CheckBox Name="AdaptiveDurationCheckbox" Content="Adaptive duration" Margin="0,10,0,0" Checked="AdaptiveDurationCheckbox_Checked" Unchecked="AdaptiveDurationCheckbox_Unchecked"/>
-                                        <CheckBox x:Name="CounterStrafeCheckbox" Content="CounterStrafe (wasd)" Margin="0,10,0,0" Checked="CounterStrafeCheckbox_Checked" Unchecked="CounterStrafeCheckbox_Unchecked"/>
-                                        <CheckBox x:Name="BannyhopCheckbox" Content="Bannyhop (space)" Margin="0,10,0,0" Checked="BannyhopCheckbox_Checked" Unchecked="BannyhopCheckbox_Unchecked"/>
-                                        <CheckBox Name="ShortSpray" Content="Short Spray" Margin="0,10,0,0"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="5,5,10,5">
-                                    <TextBlock Text="Misc input key test" Margin="0,0,0,10" Width="Auto" Style="{StaticResource TextBlock_Inline}"/>
-                                    <TextBox x:Name="CSTestBox" Width="130" Height="45" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBox_TextChanged"/>
-                                </StackPanel>
-                            </Grid>
-                        </Grid>-->
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
