@@ -119,7 +119,8 @@
                 <Setter Property="TextAlignment" Value="Center"/>
             </Style>
             <Style x:Key="TextBlock_TabItem_Name" TargetType="TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontWeight" Value="Medium"/>
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="TextAlignment" Value="Center"/>
@@ -443,6 +444,60 @@
                                     <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
                                 </StackPanel>
                             </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Settings">
+                        <Grid>
+                            <TabControl>
+                                <TabItem Header="Hotkey">
+                                    <Grid ShowGridLines="False">
+                                        <Grid.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Hotkey summary" Margin="0" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="6*"/>
+                                                        <ColumnDefinition Width="4*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                                                        <TextBlock Text="Assignment" Style="{StaticResource TextBlock_PartitionName}"/>
+                                                        <TextBlock Text="Hide / Show overlay window:"/>
+                                                        <TextBlock Text="Highlight an element:"/>
+                                                        <TextBlock Text="Change direction:"/>
+                                                        <TextBlock Text="Activate button:"/>
+                                                        <TextBlock Text="Activate checkbox:"/>
+                                                        <TextBlock Text="Next group of elements:"/>
+                                                        <TextBlock Text="Previous group of elements:"/>
+                                                        <TextBlock Text="Next window:"/>
+                                                        <TextBlock Text="Previous window:"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                                        <TextBlock Text="Key" Style="{StaticResource TextBlock_PartitionName}"/>
+                                                        <TextBlock Text="Home"/>
+                                                        <TextBlock Text="Alt"/>
+                                                        <TextBlock Text="Arrows"/>
+                                                        <TextBlock Text="Enter"/>
+                                                        <TextBlock Text="Space"/>
+                                                        <TextBlock Text="Tab"/>
+                                                        <TextBlock Text="Shift + Tab"/>
+                                                        <TextBlock Text="Alt + Tab"/>
+                                                        <TextBlock Text="Alt + Shift + Tab"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
                         </Grid>
                     </TabItem>
                     <TabItem Header="About">
