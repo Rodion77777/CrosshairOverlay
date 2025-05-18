@@ -426,17 +426,19 @@
                     </TabItem>
                     <TabItem Header="Config">
                         <Grid>
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                                <TextBlock Text="New config name:" Margin="0,20,0,0"/>
-                                        <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
-                                        <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
-                                <ComboBox x:Name="СonfigSelector" Margin="0,30,0,0" Width="150" Height="20">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="New config name:"/>
+                                <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
+                                <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
+
+                                <TextBlock Text="Choose your config:" Margin="0,30,0,6"/>
+                                <ComboBox x:Name="СonfigSelector" Width="150" Height="20">
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
                                     <Button x:Name="LoadConfigButton" HorizontalAlignment="Left" Content="Load" Width="50" Height="20" Click="LoadConfigButton_Click"/>
-                                    <CheckBox x:Name="ConfirmDeleteConfig" Margin="30,2,4,0"/>
+                                    <CheckBox x:Name="ConfirmDeleteConfig" Margin="31,0,0,0"/>
                                     <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
-                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </TabItem>
