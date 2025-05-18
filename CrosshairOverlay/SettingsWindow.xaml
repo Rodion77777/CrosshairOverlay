@@ -202,10 +202,13 @@
                     <RowDefinition Height="27"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0" Style="{StaticResource WindowCustomHeaderPanel}" MouseLeftButtonDown="TitleBar_MouseDown" MouseRightButtonDown="ShowWindowMenu">
-                    <Image x:Name="EyeIconImage" Source="/resources/images/EyeIcon.png" Width="20" Height="20" Margin="5,0,0,0">
+                    <Image x:Name="EyeIconImage" Source="/resources/images/EyeIcon.png" Width="24" Margin="5,0,0,0">
                         <Image.OpacityMask>
                             <SolidColorBrush Color="#8000FF"/>
                         </Image.OpacityMask>
+                        <Image.Effect>
+                            <DropShadowEffect Color="#808080" ShadowDepth="0"/>
+                        </Image.Effect>
                     </Image>
                     <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,2"/>
                 </DockPanel>
