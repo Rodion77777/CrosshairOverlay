@@ -423,9 +423,22 @@
                     </TabItem>
                     <TabItem Header="Custom">
                         <Grid>
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                                <TextBlock Text="In development..."/>
-                            </StackPanel>
+                            <TabControl>
+                                <TabItem Header="Filter">
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+                                            <TextBlock Text="On-screen color filter in development..."/>
+                                        </StackPanel>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Image">
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+                                            <TextBlock Text="Custom crosshair image in development..."/>
+                                        </StackPanel>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Config">
