@@ -16,6 +16,9 @@
   "unrestrictedOpacity": 1,
   "unrestrictedOffsetX": 0,
   "unrestrictedOffsetY": 0,
+  "filterSize": 0,
+  "filterColor": "#FFFFFF",
+  "filterOpacity": 0.1,
   "isCounterStrafeEnabled": false,
   "csPressureDuration": 100
 }
