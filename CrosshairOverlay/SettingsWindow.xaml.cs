@@ -789,11 +789,13 @@ namespace CrosshairOverlay
         private void DecreaseFilterSize_Click(object sender, RoutedEventArgs e)
         {
             FilterSizeValueText.Text = colorFilter.DecreaseFilterSize(MultiplierIsChecked()).ToString();
+            SaveConfig();
         }
 
         private void IncreaseFilterSize_Click(object sender, RoutedEventArgs e)
         {
             FilterSizeValueText.Text = colorFilter.IncreaseFilterSize(MultiplierIsChecked()).ToString();
+            SaveConfig();
         }
 
         private void FilterColorPicker_Click(object sender, RoutedEventArgs e)
@@ -801,6 +803,7 @@ namespace CrosshairOverlay
             string filterColor = colorFilter.FilterColorPicker();
             FilterColorValueText.Text = filterColor;
             setBackgroundFilterColorIndicatorButton(filterColor);
+            SaveConfig();
         }
 
         private void setBackgroundFilterColorIndicatorButton(string filterColor)
@@ -811,11 +814,13 @@ namespace CrosshairOverlay
         private void DecreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
         {
             FilterOpacity.Text = colorFilter.DecreaseFilterOpacity().ToString();
+            SaveConfig();
         }
 
         private void IncreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
         {
             FilterOpacity.Text = colorFilter.IncreaseFilterOpacity().ToString();
+            SaveConfig();
         }
 
         // Функционал custom window header
