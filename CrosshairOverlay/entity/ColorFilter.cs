@@ -19,7 +19,7 @@ namespace CrosshairOverlay.entity
         {
             this.config = config;
             this.filterSize = 0;
-            this.filterColor = "#000000";
+            this.filterColor = "#FFFFFF";
             this.filterOpacity = 0.1;
         }
 
@@ -29,7 +29,7 @@ namespace CrosshairOverlay.entity
             {
                 filterSize += increaseValue;
                 if (filterSize > Limits.maxFilterSize) filterSize = Limits.maxFilterSize;
-                // Set the filter size in the config
+                config.FilterSize = filterSize;
             }
             return filterSize;
         }
@@ -40,7 +40,7 @@ namespace CrosshairOverlay.entity
             {
                 filterSize -= decreaseValue;
                 if (filterSize < Limits.minRadius) filterSize = Limits.minRadius;
-                // Set the filter size in the config
+                config.FilterSize = filterSize;
             }
             return filterSize;
         }
@@ -52,7 +52,7 @@ namespace CrosshairOverlay.entity
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     filterColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    // Set the filter size in the config
+                    config.FilterColor = filterColor;
                 }
             }
             return filterColor;
@@ -63,7 +63,7 @@ namespace CrosshairOverlay.entity
             if (filterOpacity < Limits.maxOpacity)
             {
                 filterOpacity += 0.1;
-                // Set the filter size in the config
+                config.FilterOpacity = filterOpacity;
             }
             return filterOpacity;
         }
@@ -73,7 +73,7 @@ namespace CrosshairOverlay.entity
             if (filterOpacity > Limits.minOpacity)
             {
                 filterOpacity -= 0.1;
-                // Set the filter size in the config
+                config.FilterOpacity = filterOpacity;
             }
             return filterOpacity;
         }
