@@ -17,6 +17,9 @@ public class CrosshairConfig
     public double UnrestrictedOpacity { get; set; } = 1;
     public int UnrestrictedOffsetX { get; set; } = 0;
     public int UnrestrictedOffsetY { get; set; } = 0;
+    public int FilterSize { get; set; } = 0;
+    public string FilterColor { get; set; } = "#FFFFFF";
+    public double FilterOpacity { get; set; } = 0.1;
     public bool IsCounterStrafeEnabled { get; set; } = false;
     public int csPressureDuration { get; set; } = 100;
 }
