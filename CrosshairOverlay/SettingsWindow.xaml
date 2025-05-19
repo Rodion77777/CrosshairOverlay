@@ -426,8 +426,38 @@
                             <TabControl>
                                 <TabItem Header="Filter">
                                     <Grid>
-                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
-                                            <TextBlock Text="On-screen color filter in development..."/>
+                                        <StackPanel Style="{StaticResource Control_List}">
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Margin="10,0"/>
+                                                <TextBlock Text="Screen Color Filter Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                            </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Size" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Button Content="-" Click="DecreaseFilterSize_Click"/>
+                                                <TextBlock x:Name="FilterSizeValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="+" Click="IncreaseFilterSize_Click"/>
+                                            </StackPanel>
+                                            <!--<StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Thickness" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Button Content="-" Click="DecreaseThickness_Click"/>
+                                                <TextBlock x:Name="FilterThicknessValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="+" Click="IncreaseThickness_Click"/>
+                                            </StackPanel>-->
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Color" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Border Name="FilterColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
+                                                <TextBlock x:Name="FilterColorValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="RGB" Click="FilterColorPicker_Click"/>
+                                            </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Opacity" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Button Content="-" Click="DecreaseFilterOpacity_Click"/>
+                                                <TextBlock x:Name="FilterOpacity" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="+" Click="IncreaseFilterOpacity_Click"/>
+                                            </StackPanel>
+                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,5,0,0">
+                                                <TextBlock Text="On-screen color filter in development!"/>
+                                            </StackPanel>
                                         </StackPanel>
                                     </Grid>
                                 </TabItem>

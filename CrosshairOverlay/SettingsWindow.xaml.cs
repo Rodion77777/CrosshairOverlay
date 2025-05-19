@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CrosshairOverlay.entity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -48,23 +49,26 @@ namespace CrosshairOverlay
         private int csPressureDuration;
         // Экземпляры
         private ConfigManager configManager;
+        private CrosshairConfig config;
+        private ColorFilter colorFilter;
 
         public SettingsWindow()
         {
             InitializeComponent();
+            configManager = new ConfigManager();
             //DoIconMonoColor();
             LoadConfig();
             UpdateConfigDisplay();
-            configManager = new ConfigManager();
             LoadConfigList();
+            // Экземпляр создаем после загрузки передаваемого параметра config
+            colorFilter = new ColorFilter(config);
         }
 
         private void LoadConfig()
         {
             try
             {
-                string json = File.ReadAllText("config.json");
-                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json);
+                config = configManager.LoadConfig(); // Загружаем конфиг из файла
                 // Параметры Ellips A
                 radius = config?.Radius ?? 10;
                 thickness = config?.Thickness ?? 1;
@@ -158,9 +162,7 @@ namespace CrosshairOverlay
         {
             try
             {
-                string json = File.ReadAllText("config.json");
-                var config = JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
-                //var config = JsonConvert.DeserializeObject<CrosshairConfig>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
+                var config = configManager.LoadConfig(); // Загружаем конфиг из файла
 
                 // Параметры Ellips A
                 config.Radius = radius;
@@ -185,7 +187,8 @@ namespace CrosshairOverlay
                 // Параметры CounterStrafe
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 config.csPressureDuration = csPressureDuration;
-                File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
+
+                configManager.SaveConfig(config); // Сохраняем конфиг в файл
             }
             catch (Exception ex)
             {
@@ -733,7 +736,6 @@ namespace CrosshairOverlay
             SaveConfig();
         }
 
-
         private void BannyhopCheckbox_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -783,6 +785,39 @@ namespace CrosshairOverlay
             }
         }
 
+        // Параметры Color Filter
+        private void DecreaseFilterSize_Click(object sender, RoutedEventArgs e)
+        {
+            FilterSizeValueText.Text = colorFilter.DecreaseFilterSize(MultiplierIsChecked()).ToString();
+        }
+
+        private void IncreaseFilterSize_Click(object sender, RoutedEventArgs e)
+        {
+            FilterSizeValueText.Text = colorFilter.IncreaseFilterSize(MultiplierIsChecked()).ToString();
+        }
+
+        private void FilterColorPicker_Click(object sender, RoutedEventArgs e)
+        {
+            string filterColor = colorFilter.FilterColorPicker();
+            FilterColorValueText.Text = filterColor;
+            setBackgroundFilterColorIndicatorButton(filterColor);
+        }
+
+        private void setBackgroundFilterColorIndicatorButton(string filterColor)
+        {
+            FilterColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(filterColor);
+        }
+
+        private void DecreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            FilterOpacity.Text = colorFilter.DecreaseFilterOpacity().ToString();
+        }
+
+        private void IncreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
+        {
+            FilterOpacity.Text = colorFilter.IncreaseFilterOpacity().ToString();
+        }
+
         // Функционал custom window header
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -811,6 +846,7 @@ namespace CrosshairOverlay
             img.Source = converted;
         }
 
+        // Функционал вкладки config
         private void SaveConfigButton_Click(object sender, RoutedEventArgs e)
         {
             string fileName = ConfigNameTextBox.Text.Trim(); // Получаем имя из TextBox
@@ -937,6 +973,7 @@ namespace CrosshairOverlay
             }
         }
 
+        // Функционал нижней панели окна
         private void CrosshairResetButton_Click(object sender, RoutedEventArgs e)
         {
             if (CrosshairResetConfirmCheckbox.IsChecked == true)
@@ -952,5 +989,6 @@ namespace CrosshairOverlay
             // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
         }
+
     }
 }
