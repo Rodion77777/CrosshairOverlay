@@ -30,6 +30,8 @@ namespace CrosshairOverlay
         public static int unrestrictedThickness = 100;
         private static int unrestrictedOffsetX;
         private static int unrestrictedOffsetY;
+        // Color Filter
+        public static int maxFilterSize = radius;
         // Counter strafe
         public static int minCSPressDuration = 0;
         public static int maxCSPressDuration = 300;
