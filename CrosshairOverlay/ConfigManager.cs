@@ -11,6 +11,7 @@ namespace CrosshairOverlay
     internal class ConfigManager
     {
         private readonly string configDirectory;
+        private const string localConfig = "config.json";
 
         public ConfigManager()
         {
@@ -24,11 +25,37 @@ namespace CrosshairOverlay
 
         public string GetConfigDirectory() => configDirectory;
 
+        public void SaveConfig(CrosshairConfig config)
+        {
+            try
+            {
+                File.WriteAllText(localConfig, JsonConvert.SerializeObject(config, Formatting.Indented));
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Error when saving the configuration", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+        }
+
         public void SaveConfig(CrosshairConfig config, string fileName)
         {
             string fullPath = Path.Combine(configDirectory, fileName + ".json");
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(fullPath, json);
+        }
+
+        public CrosshairConfig LoadConfig()
+        {
+            try
+            {
+                string json = File.ReadAllText(localConfig);
+                return JsonConvert.DeserializeObject<CrosshairConfig>(json) ?? new CrosshairConfig();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error when loading the configuration: " + ex.Message, "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            return new CrosshairConfig();
         }
 
         public CrosshairConfig LoadConfig(string fileName)
