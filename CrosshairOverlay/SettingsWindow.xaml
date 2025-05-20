@@ -455,6 +455,7 @@
                                                 <TextBlock x:Name="FilterOpacity" Style="{StaticResource TextBlock_Output}"/>
                                                 <Button Content="+" Click="IncreaseFilterOpacity_Click"/>
                                             </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Text="Test output" Style="{StaticResource TextBlock_Inline}"/>
                                                 <Button Content="" Visibility="Hidden"/>
                                                 <TextBlock x:Name="FilterTest" Style="{StaticResource TextBlock_Output}"/>
