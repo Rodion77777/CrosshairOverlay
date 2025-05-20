@@ -67,6 +67,8 @@
     <Compile Include="ConfigManager.cs" />
     <Compile Include="entity\ColorFilter.cs" />
     <Compile Include="entity\EllipsA.cs" />
+    <Compile Include="entity\EllipsB.cs" />
+    <Compile Include="entity\EllipsC.cs" />
     <Compile Include="Limits.cs" />
     <Compile Include="partial\colorFilter\SettingsWindow.cs" />
     <Compile Include="partial\ellipsA\SettingsWindow.cs" />

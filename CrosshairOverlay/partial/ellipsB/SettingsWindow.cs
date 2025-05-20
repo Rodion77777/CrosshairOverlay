@@ -174,7 +174,5 @@ namespace CrosshairOverlay
         {
             OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
         }
-
-
     }
 }

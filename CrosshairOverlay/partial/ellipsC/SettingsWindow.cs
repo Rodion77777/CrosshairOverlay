@@ -53,6 +53,8 @@ namespace CrosshairOverlay
             if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
             {
                 unrestrictedWidth += MultiplierIsChecked();
+                if (unrestrictedWidth > Limits.GetUnrestrictedWidth(unrestrictedTickness))
+                    unrestrictedWidth = Limits.GetUnrestrictedWidth(unrestrictedTickness);
                 UpdateUnrestrictedWidthValueText();
                 SaveConfig();
             }
@@ -68,6 +70,8 @@ namespace CrosshairOverlay
             if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
             {
                 unrestrictedWidth += MultiplierIsChecked();
+                if (unrestrictedWidth > Limits.GetUnrestrictedWidth(unrestrictedTickness))
+                    unrestrictedWidth = Limits.GetUnrestrictedWidth(unrestrictedTickness);
                 UpdateUnrestrictedWidthValueText();
                 SaveConfig();
             }
@@ -110,6 +114,8 @@ namespace CrosshairOverlay
             if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
             {
                 unrestrictedHeight += MultiplierIsChecked();
+                if (unrestrictedHeight > Limits.GetUnrestrictedHeight(unrestrictedTickness))
+                    unrestrictedHeight = Limits.GetUnrestrictedHeight(unrestrictedTickness);
                 UpdateUnrestrictedHeightValueText();
                 SaveConfig();
             }
@@ -125,6 +131,8 @@ namespace CrosshairOverlay
             if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
             {
                 unrestrictedHeight += MultiplierIsChecked();
+                if (unrestrictedHeight > Limits.GetUnrestrictedHeight(unrestrictedTickness))
+                    unrestrictedHeight = Limits.GetUnrestrictedHeight(unrestrictedTickness);
                 UpdateUnrestrictedHeightValueText();
                 SaveConfig();
             }
@@ -151,7 +159,8 @@ namespace CrosshairOverlay
             if (unrestrictedTickness < Limits.unrestrictedThickness)
             {
                 unrestrictedTickness += MultiplierIsChecked();
-                if (unrestrictedTickness > Limits.unrestrictedThickness) unrestrictedTickness = Limits.unrestrictedThickness;
+                if (unrestrictedTickness > Limits.unrestrictedThickness)
+                    unrestrictedTickness = Limits.unrestrictedThickness;
                 UpdateUnrestrictedThicknessValueText();
                 SaveConfig();
             }
@@ -276,7 +285,5 @@ namespace CrosshairOverlay
         {
             UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
         }
-
-
     }
 }
