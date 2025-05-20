@@ -27,6 +27,7 @@ namespace CrosshairOverlay
         // Экземпляры
         private ConfigManager configManager;
         private CrosshairConfig config;
+        private EllipsA ellipsA;
         private ColorFilter colorFilter;
 
         public SettingsWindow()
@@ -38,6 +39,7 @@ namespace CrosshairOverlay
             UpdateConfigDisplay();
             LoadConfigList();
             // Экземпляр создаем после загрузки передаваемого параметра config
+            ellipsA = new EllipsA(config);
             colorFilter = new ColorFilter(config);
         }
 
@@ -46,11 +48,6 @@ namespace CrosshairOverlay
             try
             {
                 config = configManager.LoadConfig(); // Загружаем конфиг из файла
-                // Параметры Ellips A
-                radius = config?.Radius ?? 10;
-                thickness = config?.Thickness ?? 1;
-                strokeColor = config?.StrokeColor ?? "#FF0000";
-                strokeOpacity = config?.StrokeOpacity ?? 1.0;
                 // Параметры Ellips B
                 outlineRadius = config?.OutlineRadius ?? 10;
                 outlineThickness = config?.OutlineThickness ?? 1;
@@ -78,11 +75,6 @@ namespace CrosshairOverlay
 
         private void LoadConfigDefault()
         {
-            // Параметры Ellips A
-            radius = 24;
-            thickness = 1;
-            strokeColor = "#FF0000";
-            strokeOpacity = 1.0;
             // Параметры Ellips B
             outlineRadius = 25;
             outlineThickness = 1;
@@ -101,6 +93,8 @@ namespace CrosshairOverlay
             // Параметры CounterStrafe
             isCounterStrafeEnabled = false;
             csPressureDuration = 100;
+
+
         }
 
         private void UpdateConfigDisplay()
@@ -109,7 +103,9 @@ namespace CrosshairOverlay
             UpdateRadiusValueText();
             UpdateThicknessValueText();
             UpdateColorValueText();
+            setBackgroundCrosshairColorIndicatorButton();
             UpdateOpacityValueText();
+            ellipsA = new EllipsA(config);
             // Параметры Ellips B
             UpdateOutlineRadiusValueText();
             UpdateOutlineThicknessValueText();
@@ -135,7 +131,6 @@ namespace CrosshairOverlay
             UpdateCSCheckbox();
             UpdateCSDurationValueText();
 
-            setBackgroundCrosshairColorIndicatorButton(strokeColor);
             setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
             setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
             SaveConfig();
@@ -147,11 +142,6 @@ namespace CrosshairOverlay
             {
                 //var config = configManager.LoadConfig(); // Загружаем конфиг из файла
 
-                // Параметры Ellips A
-                config.Radius = radius;
-                config.Thickness = thickness;
-                config.StrokeColor = strokeColor;
-                config.StrokeOpacity = strokeOpacity;
                 // Параметры Ellips B
                 config.OutlineRadius = outlineRadius;
                 config.OutlineThickness = outlineThickness;
@@ -222,10 +212,10 @@ namespace CrosshairOverlay
             {
                 var configTemp = new CrosshairConfig(); // Создаем объект конфигурации
                 // Параметры Ellips A
-                configTemp.Radius = radius;
-                configTemp.Thickness = thickness;
-                configTemp.StrokeColor = strokeColor;
-                configTemp.StrokeOpacity = strokeOpacity;
+                configTemp.Radius = config.Radius;
+                configTemp.Thickness = config.Thickness;
+                configTemp.StrokeColor = config.StrokeColor;
+                configTemp.StrokeOpacity = config.StrokeOpacity;
                 // Параметры Ellips B
                 configTemp.OutlineRadius = outlineRadius;
                 configTemp.OutlineThickness = outlineThickness;
@@ -248,6 +238,7 @@ namespace CrosshairOverlay
                 // Параметры CounterStrafe
                 configTemp.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 configTemp.csPressureDuration = csPressureDuration;
+
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
                 MessageBox.Show($"Конфиг '{fileName}' успешно сохранен!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -286,11 +277,6 @@ namespace CrosshairOverlay
             try
             {
                 var configTemp = configManager.LoadConfig(fileName); // Загружаем конфиг
-                // Параметры Ellips A
-                radius = configTemp?.Radius ?? 24;
-                thickness = configTemp?.Thickness ?? 1;
-                strokeColor = configTemp?.StrokeColor ?? "#FF0000";
-                strokeOpacity = configTemp?.StrokeOpacity ?? 1.0;
                 // Параметры Ellips B
                 outlineRadius = configTemp?.OutlineRadius ?? 25;
                 outlineThickness = configTemp?.OutlineThickness ?? 1;
@@ -311,6 +297,7 @@ namespace CrosshairOverlay
                 csPressureDuration = configTemp?.csPressureDuration ?? 100;
                 // Параметры Color Filter
                 config = configTemp; // Обновляем текущий конфиг
+                ellipsA = new EllipsA(config);
                 colorFilter = new ColorFilter(config);
                 SaveConfig(); // Сохраняем конфиг в файл
                 UpdateConfigDisplay(); // Обновляем отображение

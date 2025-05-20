@@ -5,118 +5,86 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using CrosshairOverlay.entity;
 
 namespace CrosshairOverlay
 {
     // Event handlers: EllipsA
     public partial class SettingsWindow
     {
-        // Параметры Ellips A
-        private int radius;
-        private int thickness;
-        private string strokeColor;
-        private double strokeOpacity;
-
-        // Параметры Ellips A
         private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
         {
-            if (radius < Limits.radius)
-            {
-                radius += MultiplierIsChecked();
-                if (radius > Limits.radius) radius = Limits.radius;
-                UpdateRadiusValueText();
-                SaveConfig();
-            }
+            ellipsA.IncreaseRadius(MultiplierIsChecked());
+            UpdateRadiusValueText();
+            SaveConfig();
         }
 
         private void DecreaseRadius_Click(object sender, RoutedEventArgs e)
         {
-            if (radius > Limits.minRadius)
-            {
-                radius -= MultiplierIsChecked();
-                if (radius < Limits.minRadius) radius = Limits.minRadius;
-                UpdateRadiusValueText();
-                SaveConfig();
-            }
+            ellipsA.DecreaseRadius(MultiplierIsChecked());
+            UpdateRadiusValueText();
+            SaveConfig();
         }
 
         private void UpdateRadiusValueText()
         {
-            RadiusValueText.Text = radius.ToString();
+            RadiusValueText.Text = config.Radius.ToString();
         }
 
         private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (thickness < Limits.tickness)
-            {
-                thickness += 1;
-                UpdateThicknessValueText();
-                SaveConfig();
-            }
+            ellipsA.IncreaseThickness();
+            UpdateThicknessValueText();
+            SaveConfig();
         }
 
         private void DecreaseThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (thickness > Limits.minThickness)
-            {
-                thickness -= 1;
-                UpdateThicknessValueText();
-                SaveConfig();
-            }
+            ellipsA.DecreaseThickness();
+            UpdateThicknessValueText();
+            SaveConfig();
         }
 
         private void UpdateThicknessValueText()
         {
-            ThicknessValueText.Text = thickness.ToString();
+            ThicknessValueText.Text = config.Thickness.ToString();
         }
 
         private void ColorPicker_Click(object sender, RoutedEventArgs e)
         {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateColorValueText();
-                    setBackgroundCrosshairColorIndicatorButton(strokeColor);
-                    SaveConfig();
-                }
-            }
+            ellipsA.ColorPicker();
+            UpdateColorValueText();
+            setBackgroundCrosshairColorIndicatorButton();
+            SaveConfig();
         }
 
         private void UpdateColorValueText()
         {
-            ColorValueText.Text = strokeColor.ToString();
+            ColorValueText.Text = config.StrokeColor.ToString();
         }
 
-        private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
+        private void setBackgroundCrosshairColorIndicatorButton()
         {
-            CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(strokeColor);
+            CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(config.StrokeColor);
         }
 
         private void IncreaseOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (strokeOpacity < Limits.maxOpacity)
-            {
-                strokeOpacity += 0.1;
-                UpdateOpacityValueText();
-                SaveConfig();
-            }
+            ellipsA.IncreaseOpacity();
+            UpdateOpacityValueText();
+            SaveConfig();
         }
 
         private void DecreaseOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (strokeOpacity > Limits.minOpacity)
-            {
-                strokeOpacity -= 0.1;
-                UpdateOpacityValueText();
-                SaveConfig();
-            }
+            ellipsA.DecreaseOpacity();
+            UpdateOpacityValueText();
+            SaveConfig();
         }
 
         private void UpdateOpacityValueText()
         {
-            CrosshairOpacity.Text = strokeOpacity.ToString();
+            CrosshairOpacity.Text = config.StrokeOpacity.ToString();
         }
     }
 }

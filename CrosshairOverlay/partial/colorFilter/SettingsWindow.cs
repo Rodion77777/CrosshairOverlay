@@ -16,7 +16,6 @@ namespace CrosshairOverlay
         {
             colorFilter.DecreaseFilterSize(MultiplierIsChecked());
             UpdateFilterSizeValueText();
-            FilterTest.Text = config.FilterSize.ToString();
             SaveConfig();
         }
 
@@ -24,7 +23,6 @@ namespace CrosshairOverlay
         {
             colorFilter.IncreaseFilterSize(MultiplierIsChecked());
             UpdateFilterSizeValueText();
-            FilterTest.Text = config.FilterSize.ToString();
             SaveConfig();
         }
 

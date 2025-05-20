@@ -69,7 +69,7 @@ namespace CrosshairOverlay.entity
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    config.FilterColor = strokeColor;
+                    config.StrokeColor = strokeColor;
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace CrosshairOverlay.entity
             }
         }
 
-        public void DecreaseOpacity_Click()
+        public void DecreaseOpacity()
         {
             if (strokeOpacity > Limits.minOpacity)
             {
