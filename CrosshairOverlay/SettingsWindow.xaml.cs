@@ -24,29 +24,6 @@ namespace CrosshairOverlay
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        // Параметры Ellips A
-        private int radius;
-        private int thickness;
-        private string strokeColor;
-        private double strokeOpacity;
-        // Параметры Ellips B
-        private int outlineRadius;
-        private int outlineThickness;
-        private string outlineColor;
-        private double outlineOpacity;
-        private int outlineOffsetX;
-        private int outlineOffsetY;
-        // Параметры Ellips C
-        private int unrestrictedWidth;
-        private int unrestrictedHeight;
-        private int unrestrictedTickness;
-        private string unrestrictedColor;
-        private double unrestrictedOpacity;
-        private int unrestrictedOffsetX;
-        private int unrestrictedOffsetY;
-        // Параметры CounterStrafe
-        private bool isCounterStrafeEnabled;
-        private int csPressureDuration;
         // Экземпляры
         private ConfigManager configManager;
         private CrosshairConfig config;
@@ -148,6 +125,12 @@ namespace CrosshairOverlay
             UpdateUnrestrictedOpacityValueText();
             UpdateUnrestrictedOffsetXValueText();
             UpdateUnrestrictedOffsetYValueText();
+            // Параметры Color Filter
+            UpdateFilterSizeValueText();
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            UpdateFilterOpacityValueText();
+            colorFilter = new ColorFilter(config);
             // Параметры CounterStrafe
             UpdateCSCheckbox();
             UpdateCSDurationValueText();
@@ -162,7 +145,7 @@ namespace CrosshairOverlay
         {
             try
             {
-                var config = configManager.LoadConfig(); // Загружаем конфиг из файла
+                //var config = configManager.LoadConfig(); // Загружаем конфиг из файла
 
                 // Параметры Ellips A
                 config.Radius = radius;
@@ -180,7 +163,7 @@ namespace CrosshairOverlay
                 config.UnrestrictedWidth = unrestrictedWidth;
                 config.UnrestrictedHeight = unrestrictedHeight;
                 config.UnrestrictedTickness = unrestrictedTickness;
-                config.UnrestrictedColor = unrestrictedColor;
+                config.UnrestrictedColor = unrestrictedColor; 
                 config.UnrestrictedOpacity = unrestrictedOpacity;
                 config.UnrestrictedOffsetX = unrestrictedOffsetX;
                 config.UnrestrictedOffsetY = unrestrictedOffsetY;
@@ -194,633 +177,6 @@ namespace CrosshairOverlay
             {
                 System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
             }
-        }
-
-        // Параметры Ellips A
-        private void IncreaseRadius_Click(object sender, RoutedEventArgs e)
-        {
-            if (radius < Limits.radius)
-            {
-                radius += MultiplierIsChecked();
-                if (radius > Limits.radius) radius = Limits.radius;
-                UpdateRadiusValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseRadius_Click(object sender, RoutedEventArgs e)
-        {
-            if (radius > Limits.minRadius)
-            {
-                radius -= MultiplierIsChecked();
-                if (radius < Limits.minRadius) radius = Limits.minRadius;
-                UpdateRadiusValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateRadiusValueText()
-        {
-            RadiusValueText.Text = radius.ToString();
-        }
-
-        private void IncreaseThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (thickness < Limits.tickness)
-            {
-                thickness += 1;
-                UpdateThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (thickness > Limits.minThickness)
-            {
-                thickness -= 1;
-                UpdateThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateThicknessValueText()
-        {
-            ThicknessValueText.Text = thickness.ToString();
-        }
-
-        private void ColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    strokeColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateColorValueText();
-                    setBackgroundCrosshairColorIndicatorButton(strokeColor);
-                    SaveConfig();
-                }
-            }
-        }
-
-        private void UpdateColorValueText()
-        {
-            ColorValueText.Text = strokeColor.ToString();
-        }
-
-        private void setBackgroundCrosshairColorIndicatorButton(string strokeColor)
-        {
-            CrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(strokeColor);
-        }
-
-        private void IncreaseOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (strokeOpacity < Limits.maxOpacity)
-            {
-                strokeOpacity += 0.1;
-                UpdateOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (strokeOpacity > Limits.minOpacity)
-            {
-                strokeOpacity -= 0.1;
-                UpdateOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOpacityValueText()
-        {
-            CrosshairOpacity.Text = strokeOpacity.ToString();
-        }
-
-        // Параметры Ellips B
-        private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
-            {
-                outlineRadius += MultiplierIsChecked();
-                if (outlineRadius > Limits.GetOutlineMaxRadius(outlineThickness)) outlineRadius = Limits.GetOutlineMaxRadius(outlineThickness);
-                UpdateOutlineRadiusValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineRadius > Limits.minRadius)
-            {
-                outlineRadius -= MultiplierIsChecked();
-                if (outlineRadius < Limits.minRadius) outlineRadius = Limits.minRadius;
-                UpdateOutlineRadiusValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOutlineRadiusValueText()
-        {
-            OutlineRadiusValueText.Text = outlineRadius.ToString();
-        }
-
-        private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineThickness < Limits.outlineThickness && outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
-            {
-                outlineThickness += 1;
-                UpdateOutlineThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineThickness > Limits.minThickness)
-            {
-                outlineThickness -= 1;
-                UpdateOutlineThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOutlineThicknessValueText()
-        {
-            OutlineThicknessValueText.Text = outlineThickness.ToString();
-        }
-
-        private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateOutlineColorValueText();
-                    setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
-                    SaveConfig();
-                }
-            }
-        }
-
-        private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
-        {
-            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
-        }
-
-        private void UpdateOutlineColorValueText()
-        {
-            OutlineColorValueText.Text = outlineColor.ToString();
-        }
-
-        private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOpacity < Limits.maxOpacity)
-            {
-                outlineOpacity += 0.1;
-                UpdateOutlineOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOpacity > Limits.minOpacity)
-            {
-                outlineOpacity -= 0.1;
-                UpdateOutlineOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOutlineOpacityValueText()
-        {
-            OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
-        }
-
-        private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOffsetX > -Limits.offsetX)
-            {
-                outlineOffsetX -= MultiplierIsChecked();
-                if (outlineOffsetX < -Limits.offsetX) outlineOffsetX = -Limits.offsetX;
-                UpdateOutlineOffsetXValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOffsetX < Limits.offsetX)
-            {
-                outlineOffsetX += MultiplierIsChecked();
-                if (outlineOffsetX > Limits.offsetX) outlineOffsetX = Limits.offsetX;
-                UpdateOutlineOffsetXValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOutlineOffsetXValueText()
-        {
-            OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
-        }
-
-        private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOffsetY > -Limits.offsetY)
-            {
-                outlineOffsetY -= MultiplierIsChecked();
-                if (outlineOffsetY < -Limits.offsetY) outlineOffsetY = -Limits.offsetY;
-                UpdateOutlineOffsetYValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
-        {
-            if (outlineOffsetY < Limits.offsetY)
-            {
-                outlineOffsetY += MultiplierIsChecked();
-                if (outlineOffsetY > Limits.offsetY) outlineOffsetY = Limits.offsetY;
-                UpdateOutlineOffsetYValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateOutlineOffsetYValueText()
-        {
-            OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
-        }
-
-        // Параметры Ellips C
-        private void DecreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedWidth > 0)
-            {
-                unrestrictedWidth -= MultiplierIsChecked();
-                if (unrestrictedWidth < 0) unrestrictedWidth = 0;
-                UpdateUnrestrictedWidthValueText();
-                SaveConfig();
-            }
-
-            if (WH_Merge.IsChecked == true)
-            {
-                DecreaseUnrestrictedHeight_Click();
-            }
-        }
-
-        private void DecreaseUnrestrictedWidth_Click()
-        {
-            if (unrestrictedWidth > 0)
-            {
-                unrestrictedWidth -= MultiplierIsChecked();
-                if (unrestrictedWidth < 0) unrestrictedWidth = 0;
-                UpdateUnrestrictedWidthValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedWidth_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
-            {
-                unrestrictedWidth += MultiplierIsChecked();
-                UpdateUnrestrictedWidthValueText();
-                SaveConfig();
-            }
-
-            if (WH_Merge.IsChecked == true)
-            {
-                IncreaseUnrestrictedHeight_Click();
-            }
-        }
-
-        private void IncreaseUnrestrictedWidth_Click()
-        {
-            if (unrestrictedWidth < Limits.GetUnrestrictedWidth(unrestrictedTickness))
-            {
-                unrestrictedWidth += MultiplierIsChecked();
-                UpdateUnrestrictedWidthValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateUnrestrictedWidthValueText()
-        {
-            UnrestrictedWidthValueText.Text = unrestrictedWidth.ToString();
-        }
-
-        private void DecreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedHeight > 0)
-            {
-                unrestrictedHeight -= MultiplierIsChecked();
-                if (unrestrictedHeight < 0) unrestrictedHeight = 0;
-                UpdateUnrestrictedHeightValueText();
-                SaveConfig();
-            }
-
-            if (WH_Merge.IsChecked == true)
-            {
-                DecreaseUnrestrictedWidth_Click();
-            }
-        }
-
-        private void DecreaseUnrestrictedHeight_Click()
-        {
-            if (unrestrictedHeight > 0)
-            {
-                unrestrictedHeight -= MultiplierIsChecked();
-                if (unrestrictedHeight < 0) unrestrictedHeight = 0;
-                UpdateUnrestrictedHeightValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedHeight_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
-            {
-                unrestrictedHeight += MultiplierIsChecked();
-                UpdateUnrestrictedHeightValueText();
-                SaveConfig();
-            }
-
-            if (WH_Merge.IsChecked == true)
-            {
-                IncreaseUnrestrictedWidth_Click();
-            }
-        }
-
-        private void IncreaseUnrestrictedHeight_Click()
-        {
-            if (unrestrictedHeight < Limits.GetUnrestrictedHeight(unrestrictedTickness))
-            {
-                unrestrictedHeight += MultiplierIsChecked();
-                UpdateUnrestrictedHeightValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateUnrestrictedHeightValueText()
-        {
-            UnrestrictedHeightValueText.Text = unrestrictedHeight.ToString();
-        }
-
-        private void DecreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedTickness > 0)
-            {
-                unrestrictedTickness -= MultiplierIsChecked();
-                if (unrestrictedTickness < 0) unrestrictedTickness = 0;
-                UpdateUnrestrictedThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedThickness_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedTickness < Limits.unrestrictedThickness)
-            {
-                unrestrictedTickness += MultiplierIsChecked();
-                if (unrestrictedTickness > Limits.unrestrictedThickness) unrestrictedTickness = Limits.unrestrictedThickness;
-                UpdateUnrestrictedThicknessValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateUnrestrictedThicknessValueText()
-        {
-            UnrestrictedThicknessValueText.Text = unrestrictedTickness.ToString();
-        }
-
-        private void UnrestrictedColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    unrestrictedColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateUnrestrictedColorValueText();
-                    setBackgroundUnrestrictedColorIndicatorButton(unrestrictedColor);
-                    SaveConfig();
-                }
-            }
-        }
-
-        private void UpdateUnrestrictedColorValueText()
-        {
-            UnrestrictedColorValueText.Text = unrestrictedColor.ToString();
-        }
-
-        private void setBackgroundUnrestrictedColorIndicatorButton(string unrestrictedColor)
-        {
-            UnrestrictedCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(unrestrictedColor);
-        }
-
-        private void DecreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedOpacity > Limits.minOpacity)
-            {
-                unrestrictedOpacity -= 0.1;
-                UpdateUnrestrictedOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            if (unrestrictedOpacity < Limits.maxOpacity)
-            {
-                unrestrictedOpacity += 0.1;
-                UpdateUnrestrictedOpacityValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateUnrestrictedOpacityValueText()
-        {
-            UnrestrictedOpacityValueText.Text = unrestrictedOpacity.ToString();
-        }
-
-        private void DecreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
-        {
-            int limitX = -Limits.GetUnrestrictedOffsetX(unrestrictedWidth, unrestrictedTickness);
-            if (unrestrictedOffsetX > limitX)
-            {
-                unrestrictedOffsetX -= MultiplierIsChecked();
-                if (unrestrictedOffsetX < limitX) unrestrictedOffsetX = limitX;
-                UpdateUnrestrictedOffsetXValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedOffsetX_Click(object sender, RoutedEventArgs e)
-        {
-            int limitX = Limits.GetUnrestrictedOffsetX(unrestrictedWidth, unrestrictedTickness);
-            if (unrestrictedOffsetX < limitX)
-            {
-                unrestrictedOffsetX += MultiplierIsChecked();
-                if (unrestrictedOffsetX > limitX) unrestrictedOffsetX = limitX;
-                UpdateUnrestrictedOffsetXValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateUnrestrictedOffsetXValueText()
-        {
-            UnrestrictedOffsetXValueText.Text = unrestrictedOffsetX.ToString();
-        }
-
-        private void DecreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
-        {
-            int limitY = -Limits.GetUnrestrictedOffsetY(unrestrictedHeight, unrestrictedTickness);
-            if (unrestrictedOffsetY > limitY)
-            {
-                unrestrictedOffsetY -= MultiplierIsChecked();
-                if (unrestrictedOffsetY < limitY) unrestrictedOffsetY = limitY;
-                UpdateUnrestrictedOffsetYValueText();
-                SaveConfig();
-            }
-        }
-
-        private void IncreaseUnrestrictedOffsetY_Click(object sender, RoutedEventArgs e)
-        {
-            int limitY = Limits.GetUnrestrictedOffsetY(unrestrictedHeight, unrestrictedTickness);
-            if (unrestrictedOffsetY < limitY)
-            {
-                unrestrictedOffsetY += MultiplierIsChecked();
-                if (unrestrictedOffsetY > limitY) unrestrictedOffsetY = limitY;
-                UpdateUnrestrictedOffsetYValueText();
-                SaveConfig();
-            }
-        }
-
-        private int MultiplierIsChecked()
-        {
-            int multiplier = 1;
-            if (CommonMultiplier_x10.IsChecked == true) multiplier *= 10;
-            if (CommonMultiplier_x100.IsChecked == true) multiplier *= 100;
-            return multiplier;
-        }
-
-        private void UpdateUnrestrictedOffsetYValueText()
-        {
-            UnrestrictedOffsetYValueText.Text = unrestrictedOffsetY.ToString();
-        }
-
-        // Параметры CounterStrafe
-        private void AdaptiveDurationCheckbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AdaptiveDurationCheckbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CounterStrafeCheckbox_Checked(object sender, RoutedEventArgs e)
-        {
-            isCounterStrafeEnabled = true;
-            UpdateCSCheckbox();
-            SaveConfig();
-        }
-
-        private void CounterStrafeCheckbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            isCounterStrafeEnabled = false;
-            UpdateCSCheckbox();
-            SaveConfig();
-        }
-
-        private void BannyhopCheckbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BannyhopCheckbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UpdateCSCheckbox()
-        {
-            CounterStrafeCheckbox.IsChecked = isCounterStrafeEnabled;
-        }
-
-        private void IncreaseCSDuration_Click(object sender, RoutedEventArgs e)
-        {
-            if (csPressureDuration < 500)
-            {
-                csPressureDuration += 10;
-                UpdateCSDurationValueText();
-                SaveConfig();
-            }
-        }
-
-        private void DecreaseCSDuration_Click(object sender, RoutedEventArgs e)
-        {
-            if (csPressureDuration > 0)
-            {
-                csPressureDuration -= 10;
-                UpdateCSDurationValueText();
-                SaveConfig();
-            }
-        }
-
-        private void UpdateCSDurationValueText()
-        {
-            CounterStrafeDurationText.Text = csPressureDuration.ToString();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int maxLength = 60; // Устанавливаем лимит символов
-            if (CSTestBox.Text.Length > maxLength)
-            {
-                CSTestBox.Text = ""; // Очистка, если превышен лимит
-            }
-        }
-
-        // Параметры Color Filter
-        private void DecreaseFilterSize_Click(object sender, RoutedEventArgs e)
-        {
-            FilterSizeValueText.Text = colorFilter.DecreaseFilterSize(MultiplierIsChecked()).ToString();
-            SaveConfig();
-        }
-
-        private void IncreaseFilterSize_Click(object sender, RoutedEventArgs e)
-        {
-            FilterSizeValueText.Text = colorFilter.IncreaseFilterSize(MultiplierIsChecked()).ToString();
-            SaveConfig();
-        }
-
-        private void FilterColorPicker_Click(object sender, RoutedEventArgs e)
-        {
-            string filterColor = colorFilter.FilterColorPicker();
-            FilterColorValueText.Text = filterColor;
-            setBackgroundFilterColorIndicatorButton(filterColor);
-            SaveConfig();
-        }
-
-        private void setBackgroundFilterColorIndicatorButton(string filterColor)
-        {
-            FilterColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(filterColor);
-        }
-
-        private void DecreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            FilterOpacity.Text = colorFilter.DecreaseFilterOpacity().ToString();
-            SaveConfig();
-        }
-
-        private void IncreaseFilterOpacity_Click(object sender, RoutedEventArgs e)
-        {
-            FilterOpacity.Text = colorFilter.IncreaseFilterOpacity().ToString();
-            SaveConfig();
         }
 
         // Функционал custom window header
@@ -864,30 +220,34 @@ namespace CrosshairOverlay
 
             try
             {
-                var config = new CrosshairConfig(); // Создаем объект конфигурации
+                var configTemp = new CrosshairConfig(); // Создаем объект конфигурации
                 // Параметры Ellips A
-                config.Radius = radius;
-                config.Thickness = thickness;
-                config.StrokeColor = strokeColor;
-                config.StrokeOpacity = strokeOpacity;
+                configTemp.Radius = radius;
+                configTemp.Thickness = thickness;
+                configTemp.StrokeColor = strokeColor;
+                configTemp.StrokeOpacity = strokeOpacity;
                 // Параметры Ellips B
-                config.OutlineRadius = outlineRadius;
-                config.OutlineThickness = outlineThickness;
-                config.OutlineColor = outlineColor;
-                config.OutlineOpacity = outlineOpacity;
-                config.OutlineOffsetX = outlineOffsetX;
-                config.OutlineOffsetY = outlineOffsetY;
+                configTemp.OutlineRadius = outlineRadius;
+                configTemp.OutlineThickness = outlineThickness;
+                configTemp.OutlineColor = outlineColor;
+                configTemp.OutlineOpacity = outlineOpacity;
+                configTemp.OutlineOffsetX = outlineOffsetX;
+                configTemp.OutlineOffsetY = outlineOffsetY;
                 // Параметры Ellips C
-                config.UnrestrictedWidth = unrestrictedWidth;
-                config.UnrestrictedHeight = unrestrictedHeight;
-                config.UnrestrictedTickness = unrestrictedTickness;
-                config.UnrestrictedColor = unrestrictedColor;
-                config.UnrestrictedOpacity = unrestrictedOpacity;
-                config.UnrestrictedOffsetX = unrestrictedOffsetX;
-                config.UnrestrictedOffsetY = unrestrictedOffsetY;
+                configTemp.UnrestrictedWidth = unrestrictedWidth;
+                configTemp.UnrestrictedHeight = unrestrictedHeight;
+                configTemp.UnrestrictedTickness = unrestrictedTickness;
+                configTemp.UnrestrictedColor = unrestrictedColor;
+                configTemp.UnrestrictedOpacity = unrestrictedOpacity;
+                configTemp.UnrestrictedOffsetX = unrestrictedOffsetX;
+                configTemp.UnrestrictedOffsetY = unrestrictedOffsetY;
+                // Filter
+                configTemp.FilterSize = config.FilterSize;
+                configTemp.FilterColor = config.FilterColor;
+                configTemp.FilterOpacity = config.FilterOpacity;
                 // Параметры CounterStrafe
-                config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
-                config.csPressureDuration = csPressureDuration;
+                configTemp.IsCounterStrafeEnabled = isCounterStrafeEnabled;
+                configTemp.csPressureDuration = csPressureDuration;
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
                 MessageBox.Show($"Конфиг '{fileName}' успешно сохранен!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -925,30 +285,34 @@ namespace CrosshairOverlay
             }
             try
             {
-                var config = configManager.LoadConfig(fileName); // Загружаем конфиг
+                var configTemp = configManager.LoadConfig(fileName); // Загружаем конфиг
                 // Параметры Ellips A
-                radius = config?.Radius ?? 24;
-                thickness = config?.Thickness ?? 1;
-                strokeColor = config?.StrokeColor ?? "#FF0000";
-                strokeOpacity = config?.StrokeOpacity ?? 1.0;
+                radius = configTemp?.Radius ?? 24;
+                thickness = configTemp?.Thickness ?? 1;
+                strokeColor = configTemp?.StrokeColor ?? "#FF0000";
+                strokeOpacity = configTemp?.StrokeOpacity ?? 1.0;
                 // Параметры Ellips B
-                outlineRadius = config?.OutlineRadius ?? 25;
-                outlineThickness = config?.OutlineThickness ?? 1;
-                outlineColor = config?.OutlineColor ?? "#0000FF";
-                outlineOpacity = config?.OutlineOpacity ?? 1.0;
-                outlineOffsetX = config?.OutlineOffsetX ?? 0;
-                outlineOffsetY = config?.OutlineOffsetY ?? 0;
+                outlineRadius = configTemp?.OutlineRadius ?? 25;
+                outlineThickness = configTemp?.OutlineThickness ?? 1;
+                outlineColor = configTemp?.OutlineColor ?? "#0000FF";
+                outlineOpacity = configTemp?.OutlineOpacity ?? 1.0;
+                outlineOffsetX = configTemp?.OutlineOffsetX ?? 0;
+                outlineOffsetY = configTemp?.OutlineOffsetY ?? 0;
                 // Параметры Ellips C
-                unrestrictedWidth = config?.UnrestrictedWidth ?? 0;
-                unrestrictedHeight = config?.UnrestrictedHeight ?? 0;
-                unrestrictedTickness = config?.UnrestrictedTickness ?? 0;
-                unrestrictedColor = config?.UnrestrictedColor ?? "#00FF00";
-                unrestrictedOpacity = config?.UnrestrictedOpacity ?? 1;
-                unrestrictedOffsetX = config?.UnrestrictedOffsetX ?? 0;
-                unrestrictedOffsetY = config?.UnrestrictedOffsetY ?? 0;
+                unrestrictedWidth = configTemp?.UnrestrictedWidth ?? 0;
+                unrestrictedHeight = configTemp?.UnrestrictedHeight ?? 0;
+                unrestrictedTickness = configTemp?.UnrestrictedTickness ?? 0;
+                unrestrictedColor = configTemp?.UnrestrictedColor ?? "#00FF00";
+                unrestrictedOpacity = configTemp?.UnrestrictedOpacity ?? 1;
+                unrestrictedOffsetX = configTemp?.UnrestrictedOffsetX ?? 0;
+                unrestrictedOffsetY = configTemp?.UnrestrictedOffsetY ?? 0;
                 // Параметры СounterStrafe
-                isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
-                csPressureDuration = config?.csPressureDuration ?? 100;
+                isCounterStrafeEnabled = configTemp?.IsCounterStrafeEnabled ?? false;
+                csPressureDuration = configTemp?.csPressureDuration ?? 100;
+                // Параметры Color Filter
+                config = configTemp; // Обновляем текущий конфиг
+                colorFilter = new ColorFilter(config);
+                SaveConfig(); // Сохраняем конфиг в файл
                 UpdateConfigDisplay(); // Обновляем отображение
             }
             catch (FileNotFoundException)

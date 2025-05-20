@@ -66,6 +66,7 @@ namespace CrosshairOverlay
             var outerRadius = config.OutlineRadius + config.OutlineThickness - 1;
             var unrestrictedWidth = config.UnrestrictedWidth + config.UnrestrictedTickness;
             var unrestrictedHeight = config.UnrestrictedHeight + config.UnrestrictedTickness;
+            var filterSize = config.FilterSize;
 
             var grid = new Grid();
 
@@ -101,6 +102,15 @@ namespace CrosshairOverlay
                 Margin = new Thickness(config.UnrestrictedOffsetX, -config.UnrestrictedOffsetY, 0, 0)
             };
 
+            // Filter
+            var rectangle = new Rectangle
+            {
+                Width = filterSize * 2,
+                Height = filterSize * 2,
+                Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.FilterColor)),
+                Opacity = config.FilterOpacity
+            };
+
             // Центрируем
             circle.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             circle.VerticalAlignment = VerticalAlignment.Center;
@@ -108,10 +118,13 @@ namespace CrosshairOverlay
             outline.VerticalAlignment = VerticalAlignment.Center;
             unrestricted.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             unrestricted.VerticalAlignment = VerticalAlignment.Center;
+            rectangle.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            rectangle.VerticalAlignment = VerticalAlignment.Center;
 
             grid.Children.Add(circle);
             grid.Children.Add(outline);
             grid.Children.Add(unrestricted);
+            grid.Children.Add(rectangle);
             Content = grid;
         }
 

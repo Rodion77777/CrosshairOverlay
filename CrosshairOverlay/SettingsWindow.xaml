@@ -455,6 +455,11 @@
                                                 <TextBlock x:Name="FilterOpacity" Style="{StaticResource TextBlock_Output}"/>
                                                 <Button Content="+" Click="IncreaseFilterOpacity_Click"/>
                                             </StackPanel>
+                                                <TextBlock Text="Test output" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Button Content="" Visibility="Hidden"/>
+                                                <TextBlock x:Name="FilterTest" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="" Visibility="Hidden"/>
+                                            </StackPanel>
                                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,5,0,0">
                                                 <TextBlock Text="On-screen color filter in development!"/>
                                             </StackPanel>

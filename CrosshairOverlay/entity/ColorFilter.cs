@@ -18,12 +18,12 @@ namespace CrosshairOverlay.entity
         public ColorFilter(CrosshairConfig config)
         {
             this.config = config;
-            this.filterSize = 0;
-            this.filterColor = "#FFFFFF";
-            this.filterOpacity = 0.1;
+            this.filterSize = config.FilterSize;
+            this.filterColor = config.FilterColor;
+            this.filterOpacity = config.FilterOpacity;
         }
 
-        public int IncreaseFilterSize(int increaseValue)
+        public void IncreaseFilterSize(int increaseValue)
         {
             if (filterSize < Limits.maxFilterSize)
             {
@@ -31,10 +31,9 @@ namespace CrosshairOverlay.entity
                 if (filterSize > Limits.maxFilterSize) filterSize = Limits.maxFilterSize;
                 config.FilterSize = filterSize;
             }
-            return filterSize;
         }
 
-        public int DecreaseFilterSize(int decreaseValue)
+        public void DecreaseFilterSize(int decreaseValue)
         {
             if (filterSize > Limits.minRadius)
             {
@@ -42,10 +41,9 @@ namespace CrosshairOverlay.entity
                 if (filterSize < Limits.minRadius) filterSize = Limits.minRadius;
                 config.FilterSize = filterSize;
             }
-            return filterSize;
         }
 
-        public string FilterColorPicker()
+        public void FilterColorPicker()
         {
             using (var colorDialog = new System.Windows.Forms.ColorDialog())
             {
@@ -55,27 +53,24 @@ namespace CrosshairOverlay.entity
                     config.FilterColor = filterColor;
                 }
             }
-            return filterColor;
         }
 
-        public double IncreaseFilterOpacity()
+        public void IncreaseFilterOpacity()
         {
             if (filterOpacity < Limits.maxOpacity)
             {
                 filterOpacity += 0.1;
                 config.FilterOpacity = filterOpacity;
             }
-            return filterOpacity;
         }
 
-        public double DecreaseFilterOpacity()
+        public void DecreaseFilterOpacity()
         {
             if (filterOpacity > Limits.minOpacity)
             {
                 filterOpacity -= 0.1;
                 config.FilterOpacity = filterOpacity;
             }
-            return filterOpacity;
         }
     }
 }

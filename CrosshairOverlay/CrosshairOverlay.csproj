@@ -68,6 +68,11 @@
     <Compile Include="entity\ColorFilter.cs" />
     <Compile Include="entity\EllipsA.cs" />
     <Compile Include="Limits.cs" />
+    <Compile Include="partial\colorFilter\SettingsWindow.cs" />
+    <Compile Include="partial\ellipsA\SettingsWindow.cs" />
+    <Compile Include="partial\ellipsB\SettingsWindow.cs" />
+    <Compile Include="partial\ellipsC\SettingsWindow.cs" />
+    <Compile Include="partial\misc\SettingsWindow.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
