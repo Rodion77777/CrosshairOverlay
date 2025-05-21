@@ -11,168 +11,117 @@ namespace CrosshairOverlay
     // Event handlers: EllipsB
     public partial class SettingsWindow
     {
-        // Параметры Ellips B
-        private int outlineRadius;
-        private int outlineThickness;
-        private string outlineColor;
-        private double outlineOpacity;
-        private int outlineOffsetX;
-        private int outlineOffsetY;
-
-        // Параметры Ellips B
         private void IncreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
-            {
-                outlineRadius += MultiplierIsChecked();
-                if (outlineRadius > Limits.GetOutlineMaxRadius(outlineThickness)) outlineRadius = Limits.GetOutlineMaxRadius(outlineThickness);
-                UpdateOutlineRadiusValueText();
-                SaveConfig();
-            }
+            ellipsB.IncreaseOutlineRadius(MultiplierIsChecked());
+            UpdateOutlineRadiusValueText();
+            SaveConfig();
         }
 
         private void DecreaseOutlineRadius_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineRadius > Limits.minRadius)
-            {
-                outlineRadius -= MultiplierIsChecked();
-                if (outlineRadius < Limits.minRadius) outlineRadius = Limits.minRadius;
-                UpdateOutlineRadiusValueText();
-                SaveConfig();
-            }
+            ellipsB.DecreaseOutlineRadius(MultiplierIsChecked());
+            UpdateOutlineRadiusValueText();
+            SaveConfig();
         }
 
         private void UpdateOutlineRadiusValueText()
         {
-            OutlineRadiusValueText.Text = outlineRadius.ToString();
+            OutlineRadiusValueText.Text = config.OutlineRadius.ToString();
         }
 
         private void IncreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineThickness < Limits.outlineThickness && outlineRadius < Limits.GetOutlineMaxRadius(outlineThickness))
-            {
-                outlineThickness += 1;
-                UpdateOutlineThicknessValueText();
-                SaveConfig();
-            }
+            ellipsB.IncreaseOutlineThickness();
+            UpdateOutlineThicknessValueText();
+            SaveConfig();
         }
 
         private void DecreaseOutlineThickness_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineThickness > Limits.minThickness)
-            {
-                outlineThickness -= 1;
-                UpdateOutlineThicknessValueText();
-                SaveConfig();
-            }
+            ellipsB.DecreaseOutlineThickness();
+            UpdateOutlineThicknessValueText();
+            SaveConfig();
         }
 
         private void UpdateOutlineThicknessValueText()
         {
-            OutlineThicknessValueText.Text = outlineThickness.ToString();
+            OutlineThicknessValueText.Text = config.OutlineThickness.ToString();
         }
 
         private void OutlineColorPicker_Click(object sender, RoutedEventArgs e)
         {
-            using (var colorDialog = new System.Windows.Forms.ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    outlineColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
-                    UpdateOutlineColorValueText();
-                    setBackgroundOutlineCrosshairColorIndicatorButton(outlineColor);
-                    SaveConfig();
-                }
-            }
+            ellipsB.OutlineColorPicker();
+            UpdateOutlineColorValueText();
+            setBackgroundOutlineCrosshairColorIndicatorButton();
+            SaveConfig();
         }
 
-        private void setBackgroundOutlineCrosshairColorIndicatorButton(string outlineColor)
+        private void setBackgroundOutlineCrosshairColorIndicatorButton()
         {
-            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(outlineColor);
+            OutlineCrosshairColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(config.OutlineColor);
         }
 
         private void UpdateOutlineColorValueText()
         {
-            OutlineColorValueText.Text = outlineColor.ToString();
+            OutlineColorValueText.Text = config.OutlineColor.ToString();
         }
 
         private void IncreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOpacity < Limits.maxOpacity)
-            {
-                outlineOpacity += 0.1;
-                UpdateOutlineOpacityValueText();
-                SaveConfig();
-            }
+            ellipsB.IncreaseOutlineOpacity();
+            UpdateOutlineOpacityValueText();
+            SaveConfig();
         }
 
         private void DecreaseOutlineOpacity_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOpacity > Limits.minOpacity)
-            {
-                outlineOpacity -= 0.1;
-                UpdateOutlineOpacityValueText();
-                SaveConfig();
-            }
+            ellipsB.DecreaseOutlineOpacity();
+            UpdateOutlineOpacityValueText();
+            SaveConfig();
         }
 
         private void UpdateOutlineOpacityValueText()
         {
-            OutlineCrosshairOpacity.Text = outlineOpacity.ToString();
+            OutlineCrosshairOpacity.Text = config.OutlineOpacity.ToString();
         }
 
         private void DecreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetX > -Limits.offsetX)
-            {
-                outlineOffsetX -= MultiplierIsChecked();
-                if (outlineOffsetX < -Limits.offsetX) outlineOffsetX = -Limits.offsetX;
-                UpdateOutlineOffsetXValueText();
-                SaveConfig();
-            }
+            ellipsB.DecreaseOutlineOffsetX(MultiplierIsChecked());
+            UpdateOutlineOffsetXValueText();
+            SaveConfig();
         }
 
         private void IncreaseOutlineOffsetX_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetX < Limits.offsetX)
-            {
-                outlineOffsetX += MultiplierIsChecked();
-                if (outlineOffsetX > Limits.offsetX) outlineOffsetX = Limits.offsetX;
-                UpdateOutlineOffsetXValueText();
-                SaveConfig();
-            }
+            ellipsB.IncreaseOutlineOffsetX(MultiplierIsChecked());
+            UpdateOutlineOffsetXValueText();
+            SaveConfig();
         }
 
         private void UpdateOutlineOffsetXValueText()
         {
-            OutlineCrosshairOffsetX.Text = outlineOffsetX.ToString();
+            OutlineCrosshairOffsetX.Text = config.OutlineOffsetX.ToString();
         }
 
         private void DecreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetY > -Limits.offsetY)
-            {
-                outlineOffsetY -= MultiplierIsChecked();
-                if (outlineOffsetY < -Limits.offsetY) outlineOffsetY = -Limits.offsetY;
-                UpdateOutlineOffsetYValueText();
-                SaveConfig();
-            }
+            ellipsB.DecreaseOutlineOffsetY(MultiplierIsChecked());
+            UpdateOutlineOffsetYValueText();
+            SaveConfig();
         }
 
         private void IncreaseOutlineOffsetY_Click(object sender, RoutedEventArgs e)
         {
-            if (outlineOffsetY < Limits.offsetY)
-            {
-                outlineOffsetY += MultiplierIsChecked();
-                if (outlineOffsetY > Limits.offsetY) outlineOffsetY = Limits.offsetY;
-                UpdateOutlineOffsetYValueText();
-                SaveConfig();
-            }
+            ellipsB.IncreaseOutlineOffsetY(MultiplierIsChecked());
+            UpdateOutlineOffsetYValueText();
+            SaveConfig();
         }
 
         private void UpdateOutlineOffsetYValueText()
         {
-            OutlineCrosshairOffsetY.Text = outlineOffsetY.ToString();
+            OutlineCrosshairOffsetY.Text = config.OutlineOffsetY.ToString();
         }
     }
 }

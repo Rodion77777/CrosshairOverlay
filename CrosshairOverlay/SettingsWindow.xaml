@@ -429,7 +429,7 @@
                                         <StackPanel Style="{StaticResource Control_List}">
                                             <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Margin="10,0"/>
-                                                <TextBlock Text="Screen Color Filter Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                                <TextBlock Text="On Screen Color Filter Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
                                             </StackPanel>
                                             <StackPanel Style="{StaticResource Control_Group_Inline}">
                                                 <TextBlock Text="Size" Style="{StaticResource TextBlock_Inline}"/>
@@ -448,9 +448,6 @@
                                                 <Button Content="-" Click="DecreaseFilterOpacity_Click"/>
                                                 <TextBlock x:Name="FilterOpacity" Style="{StaticResource TextBlock_Output}"/>
                                                 <Button Content="+" Click="IncreaseFilterOpacity_Click"/>
-                                            </StackPanel>
-                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,5,0,0">
-                                                <TextBlock Text="On-screen color filter in development!"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Grid>
