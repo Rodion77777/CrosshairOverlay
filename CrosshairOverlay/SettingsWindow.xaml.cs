@@ -176,7 +176,7 @@ namespace CrosshairOverlay
 
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                MessageBox.Show("Введите корректное имя файла!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageNoticeShow("Введите корректное имя файла!", false);
                 return;
             }
 
@@ -213,11 +213,11 @@ namespace CrosshairOverlay
 
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
-                MessageBox.Show($"Конфиг '{fileName}' успешно сохранен!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageNoticeShow($"Конфиг '{fileName}' успешно сохранен!", true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageNoticeShow($"Ошибка при сохранении: {ex.Message}", false);
             }
         }
 
@@ -243,7 +243,7 @@ namespace CrosshairOverlay
             string fileName = СonfigSelector.Text;
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                MessageBox.Show("Выберите конфиг для загрузки!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageNoticeShow("Выберите конфиг для загрузки!", false);
                 return;
             }
             try
@@ -261,14 +261,15 @@ namespace CrosshairOverlay
                 colorFilter = new ColorFilter(config);
                 SaveConfig(); // Сохраняем конфиг в файл
                 UpdateConfigDisplay(); // Обновляем отображение
+                MessageNoticeShow($"Конфиг '{fileName}' успешно загружен!", true);
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("Файл не найден!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageNoticeShow("Файл не найден!", false);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageNoticeShow($"Ошибка при загрузке: {ex.Message}", false);
             }
         }
 
@@ -281,11 +282,11 @@ namespace CrosshairOverlay
                 configManager.DeleteConfig(fileName); // Удаляем выбранный конфиг
                 ConfirmDeleteConfig.IsChecked = false; // Сбрасываем состояние чекбокса
                 LoadConfigList(); // Обновляем список конфигов
-                MessageBox.Show($"Конфиг '{fileName}' успешно удален!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageNoticeShow($"Конфиг '{fileName}' успешно удален!", true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageNoticeShow($"Ошибка при удалении: {ex.Message}", false);
             }
         }
 
@@ -297,6 +298,7 @@ namespace CrosshairOverlay
                 LoadConfigDefault();
                 CrosshairResetConfirmCheckbox.IsChecked = false; // Сбросить состояние чекбокса
                 UpdateConfigDisplay();
+                MessageNoticeShow("Конфиг сброшен к настройкам по умолчанию!", true);
             }
         }
 
@@ -306,5 +308,11 @@ namespace CrosshairOverlay
             Application.Current.Shutdown();
         }
 
+        private void MessageNoticeShow(string text, bool ok)
+        {
+            if (ok) Message_notice.Foreground = Brushes.Green;
+            else Message_notice.Foreground = Brushes.Red;
+            Message_notice.Text = text;
+        }
     }
 }

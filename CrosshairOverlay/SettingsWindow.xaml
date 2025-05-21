@@ -469,7 +469,7 @@
                                 <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
                                 <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
 
-                                <TextBlock Text="Choose your config:" Margin="0,30,0,6"/>
+                                <TextBlock Text="Choose your config:" Margin="0,20,0,6"/>
                                 <ComboBox x:Name="СonfigSelector" Width="150" Height="20">
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
@@ -478,6 +478,12 @@
                                     <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
                                 </StackPanel>
                             </StackPanel>
+                            <DockPanel VerticalAlignment="Bottom">
+                                <TextBlock DockPanel.Dock="Top" Text="Notice:" VerticalAlignment="Bottom" Margin="0,0,3,1"/>
+                                <Border DockPanel.Dock="Bottom" VerticalAlignment="Bottom" BorderBrush="#2C2C2C" BorderThickness="1" Background="White">
+                                    <TextBlock Name="Message_notice"/>
+                                </Border>
+                            </DockPanel>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Settings">
@@ -543,7 +549,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <TextBlock Text="Crosshair Overlay by 'Метелик'" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                                <TextBlock Text="Version 2.2" Margin="0,0,0,10" Style="{StaticResource TextBlock_PartitionName}"/>
+                                <TextBlock Text="Version 3.0" Margin="0,0,0,10" Style="{StaticResource TextBlock_PartitionName}"/>
                                 <TextBlock Text="Contacts: " Margin="0,0,0,10" Style="{StaticResource TextBlock_PartitionName}"/>
                                 <TextBlock Text="TG: @RodikRodik" FontSize="10"/>
                                 <TextBlock Text="Gmail: saikorodion" FontSize="10"/>
