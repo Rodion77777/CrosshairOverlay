@@ -527,7 +527,7 @@
                             <DockPanel Grid.Row="6">
                                 <TextBlock DockPanel.Dock="Top" Text="Notice:" Margin="5,2"/>
                                 <Border DockPanel.Dock="Bottom" VerticalAlignment="Bottom" BorderBrush="#2C2C2C" BorderThickness="1" Background="White">
-                                    <TextBlock Name="Message_notice" Margin="5,0"/>
+                                    <TextBlock Name="Message_notice" TextAlignment="Center" Margin="5,0"/>
                                 </Border>
                             </DockPanel>
                         </Grid>
