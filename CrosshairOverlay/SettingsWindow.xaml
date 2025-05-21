@@ -225,8 +225,8 @@
                                     <RotateTransform Angle="90"/>
                                 </StackPanel.RenderTransform>
                                 <TextBlock Text="Common Multiplier" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" Width="100" Style="{StaticResource TextBlock_Inline}"/>
-                                <CheckBox Name="CommonMultiplier_x10" Content="x10" Margin="10,0,0,0"/>
-                                <CheckBox Name="CommonMultiplier_x100" Content="x100" Margin="10,0,0,0"/>
+                                <CheckBox Name="CommonMultiplier_x10" Content="x10" Margin="10,0,0,0" Checked="CommonMultiplier_x10_Checked" Unchecked="CommonMultiplier_x10_Unchecked"/>
+                                <CheckBox Name="CommonMultiplier_x100" Content="x100" Margin="10,0,0,0" Checked="CommonMultiplier_x100_Checked" Unchecked="CommonMultiplier_x100_Unchecked"/>
                                 <TextBlock Text="/ x1000" Margin="10,0,0,0"/>
                             </StackPanel>
                             <TabControl Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch">
@@ -423,7 +423,20 @@
                     </TabItem>
                     <TabItem Header="Custom">
                         <Grid>
-                            <TabControl>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Multiplier_Group}">
+                                <StackPanel.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </StackPanel.RenderTransform>
+                                <TextBlock Text="Common Multiplier" FontSize="12" TextAlignment="Right" VerticalAlignment="Center" Width="100" Style="{StaticResource TextBlock_Inline}"/>
+                                <CheckBox Name="CommonMultiplier_x10_custom" Content="x10" Margin="10,0,0,0" Checked="CommonMultiplier_x10_custom_Checked" Unchecked="CommonMultiplier_x10_custom_Unchecked"/>
+                                <CheckBox Name="CommonMultiplier_x100_custom" Content="x100" Margin="10,0,0,0" Checked="CommonMultiplier_x100_custom_Checked" Unchecked="CommonMultiplier_x100_custom_Unchecked"/>
+                                <TextBlock Text="/ x1000" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TabControl Grid.Column="1">
                                 <TabItem Header="Filter">
                                     <Grid>
                                         <StackPanel Style="{StaticResource Control_List}">

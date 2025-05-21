@@ -133,14 +133,6 @@ namespace CrosshairOverlay
             }
         }
 
-        private int MultiplierIsChecked()
-        {
-            int multiplier = 1;
-            if (CommonMultiplier_x10.IsChecked == true) multiplier *= 10;
-            if (CommonMultiplier_x100.IsChecked == true) multiplier *= 100;
-            return multiplier;
-        }
-
         // Функционал custom window header
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
