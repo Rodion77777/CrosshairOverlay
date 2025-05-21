@@ -13,7 +13,7 @@ namespace CrosshairOverlay
         public static double screenHeight = SystemParameters.PrimaryScreenHeight;
         // Common
         public static int minRadius = 1;
-        public static int radius = Math.Min((int)screenWidth, (int)screenHeight) / 2;
+        public static int radius = Math.Min((int)screenWidth, (int)screenHeight);
         public static int minThickness = 0;
         public static double minOpacity = 0.2;
         public static double maxOpacity = 1;
@@ -31,7 +31,8 @@ namespace CrosshairOverlay
         private static int unrestrictedOffsetX;
         private static int unrestrictedOffsetY;
         // Color Filter
-        public static int maxFilterSize = radius;
+        public static int maxFilterSize = (int)screenWidth;
+        public static int maxFilterHight = (int)screenHeight;
         // Counter strafe
         public static int minCSPressDuration = 0;
         public static int maxCSPressDuration = 300;
@@ -44,25 +45,25 @@ namespace CrosshairOverlay
 
         public static int GetUnrestrictedWidth(int currentThickness)
         {
-            unrestrictedWidth = (int)screenWidth / 2 - currentThickness;
+            unrestrictedWidth = (int)screenWidth - currentThickness;
             return unrestrictedWidth;
         }
 
         public static int GetUnrestrictedHeight(int currentThickness)
         {
-            unrestrictedHeight = (int)screenHeight / 2 - currentThickness;
+            unrestrictedHeight = (int)screenHeight - currentThickness;
             return unrestrictedHeight;
         }
 
         public static int GetUnrestrictedOffsetX(int currentHeight, int currentThickness)
         {
-            unrestrictedOffsetX = (int)screenWidth / 2 - currentHeight - currentThickness;
+            unrestrictedOffsetX = (int)screenWidth - currentHeight - currentThickness;
             return unrestrictedOffsetX;
         }
 
         public static int GetUnrestrictedOffsetY(int currentWidth, int currentThickness)
         {
-            unrestrictedOffsetY = (int)screenHeight / 2 - currentWidth - currentThickness;
+            unrestrictedOffsetY = (int)screenHeight - currentWidth - currentThickness;
             return unrestrictedOffsetY;
         }
     }

@@ -14,21 +14,21 @@ namespace CrosshairOverlay
     {
         private void DecreaseFilterSize_Click(object sender, RoutedEventArgs e)
         {
-            colorFilter.DecreaseFilterSize(MultiplierIsChecked());
+            colorFilter.DecreaseFilterWidth(MultiplierIsChecked());
             UpdateFilterSizeValueText();
             SaveConfig();
         }
 
         private void IncreaseFilterSize_Click(object sender, RoutedEventArgs e)
         {
-            colorFilter.IncreaseFilterSize(MultiplierIsChecked());
+            colorFilter.IncreaseFilterWidth(MultiplierIsChecked());
             UpdateFilterSizeValueText();
             SaveConfig();
         }
 
         private void UpdateFilterSizeValueText()
         {
-            FilterSizeValueText.Text = config.FilterSize.ToString();
+            FilterSizeValueText.Text = config.FilterWidth.ToString();
         }
 
         private void FilterColorPicker_Click(object sender, RoutedEventArgs e)

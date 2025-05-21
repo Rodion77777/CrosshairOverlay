@@ -66,15 +66,16 @@ namespace CrosshairOverlay
             var outerRadius = config.OutlineRadius + config.OutlineThickness - 1;
             var unrestrictedWidth = config.UnrestrictedWidth + config.UnrestrictedTickness;
             var unrestrictedHeight = config.UnrestrictedHeight + config.UnrestrictedTickness;
-            var filterSize = config.FilterSize;
+            var filterWidth = config.FilterWidth;
+            var filterHeight = config.FilterHeight;
 
             var grid = new Grid();
 
             // Внутренний круг (прицел)
             var circle = new Ellipse
             {
-                Width = innerRadius * 2,
-                Height = innerRadius * 2,
+                Width = innerRadius,
+                Height = innerRadius,
                 Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.StrokeColor)),
                 StrokeThickness = config.Thickness,
                 Opacity = config.StrokeOpacity
@@ -83,8 +84,8 @@ namespace CrosshairOverlay
             // Внешний круг (обводка)
             var outline = new Ellipse
             {
-                Width = outerRadius * 2,
-                Height = outerRadius * 2,
+                Width = outerRadius,
+                Height = outerRadius,
                 Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.OutlineColor)),
                 StrokeThickness = config.OutlineThickness,
                 Opacity = config.OutlineOpacity,
@@ -94,8 +95,8 @@ namespace CrosshairOverlay
             // Свободный элемент (неограниченная фигура)
             var unrestricted = new Ellipse
             {
-                Width = unrestrictedWidth * 2,
-                Height = unrestrictedHeight * 2,
+                Width = unrestrictedWidth,
+                Height = unrestrictedHeight,
                 Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.UnrestrictedColor)),
                 StrokeThickness = config.UnrestrictedTickness,
                 Opacity = config.UnrestrictedOpacity,
@@ -105,8 +106,8 @@ namespace CrosshairOverlay
             // Filter
             var rectangle = new Rectangle
             {
-                Width = filterSize * 2,
-                Height = filterSize * 2,
+                Width = filterWidth,
+                Height = filterHeight,
                 Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom(config.FilterColor)),
                 Opacity = config.FilterOpacity
             };

@@ -10,7 +10,8 @@ namespace CrosshairOverlay.entity
 
     internal class ColorFilter
     {
-        private int filterSize;
+        private int filterWidth;
+        private int filterHeight;
         private string filterColor;
         private double filterOpacity;
         private CrosshairConfig config;
@@ -18,28 +19,51 @@ namespace CrosshairOverlay.entity
         public ColorFilter(CrosshairConfig config)
         {
             this.config = config;
-            this.filterSize = config.FilterSize;
+            this.filterWidth = config.FilterWidth;
+            this.filterHeight = config.FilterHeight;
             this.filterColor = config.FilterColor;
             this.filterOpacity = config.FilterOpacity;
         }
 
-        public void IncreaseFilterSize(int increaseValue)
+        public void IncreaseFilterWidth(int increaseValue)
         {
-            if (filterSize < Limits.maxFilterSize)
+            if (filterWidth < Limits.maxFilterSize)
             {
-                filterSize += increaseValue;
-                if (filterSize > Limits.maxFilterSize) filterSize = Limits.maxFilterSize;
-                config.FilterSize = filterSize;
+                filterWidth += increaseValue;
+                if (filterWidth > Limits.maxFilterSize || true) filterWidth = Limits.maxFilterSize;
+                IncreaseFilterHeight(increaseValue);
+                config.FilterWidth = filterWidth;
             }
         }
 
-        public void DecreaseFilterSize(int decreaseValue)
+        public void DecreaseFilterWidth(int decreaseValue)
         {
-            if (filterSize > Limits.minRadius)
+            if (filterWidth > Limits.minRadius)
             {
-                filterSize -= decreaseValue;
-                if (filterSize < Limits.minRadius) filterSize = Limits.minRadius;
-                config.FilterSize = filterSize;
+                filterWidth -= decreaseValue;
+                if (filterWidth < Limits.minRadius || true) filterWidth = Limits.minRadius;
+                DecreaseFilterHeight(decreaseValue);
+                config.FilterWidth = filterWidth;
+            }
+        }
+
+        public void IncreaseFilterHeight(int increaseValue)
+        {
+            if (filterHeight < Limits.maxFilterHight)
+            {
+                filterHeight += increaseValue;
+                if (filterHeight > Limits.maxFilterHight || true) filterHeight = Limits.maxFilterHight;
+                config.FilterHeight = filterHeight;
+            }
+        }
+
+        public void DecreaseFilterHeight(int decreaseValue)
+        {
+            if (filterHeight > Limits.minRadius)
+            {
+                filterHeight -= decreaseValue;
+                if (filterHeight < Limits.minRadius || true) filterHeight = Limits.minRadius;
+                config.FilterHeight = filterHeight;
             }
         }
 

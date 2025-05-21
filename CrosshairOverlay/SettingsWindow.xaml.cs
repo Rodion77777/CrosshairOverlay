@@ -204,7 +204,7 @@ namespace CrosshairOverlay
                 configTemp.UnrestrictedOffsetX = config.UnrestrictedOffsetX;
                 configTemp.UnrestrictedOffsetY = config.UnrestrictedOffsetY;
                 // Filter
-                configTemp.FilterSize = config.FilterSize;
+                configTemp.FilterWidth = config.FilterWidth;
                 configTemp.FilterColor = config.FilterColor;
                 configTemp.FilterOpacity = config.FilterOpacity;
                 // Параметры CounterStrafe
