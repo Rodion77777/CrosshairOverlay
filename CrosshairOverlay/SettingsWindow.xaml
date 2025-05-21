@@ -380,7 +380,7 @@
                             </TabControl>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Misc">
+                    <TabItem Header="Assist">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -388,7 +388,7 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Margin="0,5,0,0" Style="{StaticResource Control_List}">
                                 <StackPanel Style="{StaticResource Control_Group_Inline}">
-                                    <TextBlock Text="Misc configuration" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                    <TextBlock Text="Assistant configuration" Style="{StaticResource TextBlock_TabItem_Name}"/>
                                 </StackPanel>
                                 <UniformGrid Columns="2">
                                     <StackPanel Style="{StaticResource Control_Group_Inline}">
