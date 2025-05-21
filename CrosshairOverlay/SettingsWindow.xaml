@@ -462,6 +462,26 @@
                                                 <TextBlock x:Name="FilterOpacity" Style="{StaticResource TextBlock_Output}"/>
                                                 <Button Content="+" Click="IncreaseFilterOpacity_Click"/>
                                             </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Stock Color" Style="{StaticResource TextBlock_Inline}"/>
+                                                <StackPanel Orientation="Horizontal" Width="130">
+                                                    <UniformGrid Columns="3" Width="130">
+                                                        <Button Background="Red" Content="R" Foreground="White" HorizontalAlignment="Left" Click="StockColorRed_Click"/>
+                                                        <Button Background="Green" Content="G" Foreground="White" Click="StockColorGreen_Click"/>
+                                                        <Button Background="Blue" Content="B" Foreground="White" HorizontalAlignment="Right" Click="StockColorBlue_Click"/>
+                                                    </UniformGrid>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Stock B / W" Style="{StaticResource TextBlock_Inline}"/>
+                                                <StackPanel Orientation="Horizontal" Width="130">
+                                                    <UniformGrid Columns="3" Width="130">
+                                                        <Button Background="Black" Content="Black" Foreground="White" Width="40" HorizontalAlignment="Left" Click="StockColorBlack_Click"/>
+                                                        <Button Background="Gray" Content="Gray" Foreground="White" Width="40" HorizontalAlignment="Right" Click="StockColorGreen_Click"/>
+                                                        <Button Background="White" Content="White" Width="40" HorizontalAlignment="Right" Click="StockColorWhite_Click"/>
+                                                    </UniformGrid>
+                                                </StackPanel>
+                                            </StackPanel>
                                         </StackPanel>
                                     </Grid>
                                 </TabItem>

@@ -7,7 +7,6 @@ using System.Windows;
 
 namespace CrosshairOverlay.entity
 {
-
     internal class ColorFilter
     {
         private int filterWidth;
@@ -95,6 +94,12 @@ namespace CrosshairOverlay.entity
                 filterOpacity -= 0.1;
                 config.FilterOpacity = filterOpacity;
             }
+        }
+
+        public void SetFilterColor(string color)
+        {
+            filterColor = color;
+            config.FilterColor = color;
         }
     }
 }

@@ -67,5 +67,53 @@ namespace CrosshairOverlay
         {
             FilterOpacity.Text = config.FilterOpacity.ToString();
         }
+
+        private void StockColorRed_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("Red");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
+
+        private void StockColorGreen_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("Green");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
+
+        private void StockColorBlue_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("Blue");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
+
+        private void StockColorBlack_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("Black");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
+
+        private void StockColorGray_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("Gray");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
+
+        private void StockColorWhite_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor("White");
+            UpdateFilterColorValueText();
+            setBackgroundFilterColorIndicatorButton();
+            SaveConfig();
+        }
     }
 }
