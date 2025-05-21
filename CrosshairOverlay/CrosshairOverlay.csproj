@@ -69,12 +69,14 @@
     <Compile Include="entity\EllipsA.cs" />
     <Compile Include="entity\EllipsB.cs" />
     <Compile Include="entity\EllipsC.cs" />
+    <Compile Include="entity\Shape.cs" />
     <Compile Include="Limits.cs" />
     <Compile Include="partial\colorFilter\SettingsWindow.cs" />
     <Compile Include="partial\ellipsA\SettingsWindow.cs" />
     <Compile Include="partial\ellipsB\SettingsWindow.cs" />
     <Compile Include="partial\ellipsC\SettingsWindow.cs" />
     <Compile Include="partial\misc\SettingsWindow.cs" />
+    <Compile Include="partial\multipliers\SettingsWindow.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
