@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Crosshair Overlay by 'Метелик' (settings)"
         MinHeight="300" MinWidth="300"
-        MaxHeight="355" MaxWidth="340"
+        MaxHeight="354" MaxWidth="340"
         FontWeight="Light"
         BorderThickness="1"
         BorderBrush="#8000FF"
@@ -464,12 +464,25 @@
                     </TabItem>
                     <TabItem Header="Config">
                         <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="0" Style="{StaticResource Control_Group_Inline}">
+                                <TextBlock Text="Configuration management" Margin="0" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Orientation="Vertical" Width="150">
                                 <TextBlock Text="New config name:"/>
                                 <TextBox x:Name="ConfigNameTextBox" Margin="0,5,0,0" Width="150" Height="20" TextWrapping="Wrap"/>
                                 <Button x:Name="SaveConfigButton" HorizontalAlignment="Right" Content="Save" Width="50" Height="20" Click="SaveConfigButton_Click" Margin="0,5,0,0"/>
-
-                                <TextBlock Text="Choose your config:" Margin="0,20,0,6"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4" Orientation="Vertical" Width="150">
+                                <TextBlock Text="Choose your config:" Margin="0,0,0,5"/>
                                 <ComboBox x:Name="СonfigSelector" Width="150" Height="20">
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Width="150">
@@ -478,10 +491,10 @@
                                     <Button x:Name="DeleteConfigButton" HorizontalAlignment="Right" Content="Delete" Width="50" Height="20" Click="DeleteConfigButton_Click"/>
                                 </StackPanel>
                             </StackPanel>
-                            <DockPanel VerticalAlignment="Bottom">
-                                <TextBlock DockPanel.Dock="Top" Text="Notice:" VerticalAlignment="Bottom" Margin="0,0,3,1"/>
+                            <DockPanel Grid.Row="6">
+                                <TextBlock DockPanel.Dock="Top" Text="Notice:" Margin="5,2"/>
                                 <Border DockPanel.Dock="Bottom" VerticalAlignment="Bottom" BorderBrush="#2C2C2C" BorderThickness="1" Background="White">
-                                    <TextBlock Name="Message_notice"/>
+                                    <TextBlock Name="Message_notice" Margin="5,0"/>
                                 </Border>
                             </DockPanel>
                         </Grid>
