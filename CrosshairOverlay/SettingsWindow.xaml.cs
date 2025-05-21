@@ -119,8 +119,6 @@ namespace CrosshairOverlay
         {
             try
             {
-                //var config = configManager.LoadConfig(); // Загружаем конфиг из файла
-
                 // Параметры CounterStrafe
                 config.IsCounterStrafeEnabled = isCounterStrafeEnabled;
                 config.csPressureDuration = csPressureDuration;
@@ -129,7 +127,7 @@ namespace CrosshairOverlay
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Ошибка сохранения: " + ex.Message);
+                MessageNoticeShow("Error saving: " + ex.Message, false);
             }
         }
 
@@ -168,7 +166,7 @@ namespace CrosshairOverlay
 
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                MessageNoticeShow("Введите корректное имя файла!", false);
+                MessageNoticeShow("Enter the correct file name!", false);
                 return;
             }
 
@@ -205,11 +203,11 @@ namespace CrosshairOverlay
 
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
-                MessageNoticeShow($"Конфиг '{fileName}' успешно сохранен!", true);
+                MessageNoticeShow($"Config '{fileName}' successfully saved!", true);
             }
             catch (Exception ex)
             {
-                MessageNoticeShow($"Ошибка при сохранении: {ex.Message}", false);
+                MessageNoticeShow($"Error when saving: {ex.Message}", false);
             }
         }
 
@@ -235,7 +233,7 @@ namespace CrosshairOverlay
             string fileName = СonfigSelector.Text;
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                MessageNoticeShow("Выберите конфиг для загрузки!", false);
+                MessageNoticeShow("Select a config to download!", false);
                 return;
             }
             try
@@ -253,15 +251,15 @@ namespace CrosshairOverlay
                 colorFilter = new ColorFilter(config);
                 SaveConfig(); // Сохраняем конфиг в файл
                 UpdateConfigDisplay(); // Обновляем отображение
-                MessageNoticeShow($"Конфиг '{fileName}' успешно загружен!", true);
+                MessageNoticeShow($"Config '{fileName}' successfully loaded!", true);
             }
             catch (FileNotFoundException)
             {
-                MessageNoticeShow("Файл не найден!", false);
+                MessageNoticeShow("File not found!", false);
             }
             catch (Exception ex)
             {
-                MessageNoticeShow($"Ошибка при загрузке: {ex.Message}", false);
+                MessageNoticeShow($"Error during download: {ex.Message}", false);
             }
         }
 
@@ -274,11 +272,11 @@ namespace CrosshairOverlay
                 configManager.DeleteConfig(fileName); // Удаляем выбранный конфиг
                 ConfirmDeleteConfig.IsChecked = false; // Сбрасываем состояние чекбокса
                 LoadConfigList(); // Обновляем список конфигов
-                MessageNoticeShow($"Конфиг '{fileName}' успешно удален!", true);
+                MessageNoticeShow($"Config '{fileName}' successfully deleted!", true);
             }
             catch (Exception ex)
             {
-                MessageNoticeShow($"Ошибка при удалении: {ex.Message}", false);
+                MessageNoticeShow($"Deletion error: {ex.Message}", false);
             }
         }
 
@@ -290,7 +288,7 @@ namespace CrosshairOverlay
                 LoadConfigDefault();
                 CrosshairResetConfirmCheckbox.IsChecked = false; // Сбросить состояние чекбокса
                 UpdateConfigDisplay();
-                MessageNoticeShow("Конфиг сброшен к настройкам по умолчанию!", true);
+                MessageNoticeShow("Config reset to default settings!", true);
             }
         }
 
