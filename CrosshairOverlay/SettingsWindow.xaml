@@ -4,6 +4,7 @@
         Title="Crosshair Overlay by 'Метелик' (settings)"
         MinHeight="300" MinWidth="300"
         MaxHeight="354" MaxWidth="340"
+        Name="CrosshairWindow"
         FontWeight="Light"
         BorderThickness="1"
         BorderBrush="#8000FF"
@@ -40,9 +41,6 @@
     </Window.Resources>
     <Grid>
         <Grid.Resources>
-            <Style TargetType="Grid">
-                <Setter Property="Background" Value="#FFE5E5E5"/>
-            </Style>
             <Style x:Key="WindowCustomHeaderPanel" TargetType="DockPanel">
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Height" Value="25"/>
@@ -195,7 +193,7 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-        <Border BorderBrush="#2E2E2E" BorderThickness="1" Background="White">
+        <Border Name="WindowBorder" BorderBrush="#2E2E2E" BorderThickness="1" Background="White">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
@@ -477,7 +475,7 @@
                                                 <StackPanel Orientation="Horizontal" Width="130">
                                                     <UniformGrid Columns="3" Width="130">
                                                         <Button Background="Black" Content="Black" Foreground="White" Width="40" HorizontalAlignment="Left" Click="StockColorBlack_Click"/>
-                                                        <Button Background="Gray" Content="Gray" Foreground="White" Width="40" HorizontalAlignment="Right" Click="StockColorGray_Click"/>
+                                                        <Button Background="Gray" Content="Gray" Foreground="White" Width="40" HorizontalAlignment="Center" Click="StockColorGray_Click"/>
                                                         <Button Background="White" Content="White" Width="40" HorizontalAlignment="Right" Click="StockColorWhite_Click"/>
                                                     </UniformGrid>
                                                 </StackPanel>
@@ -536,7 +534,7 @@
                         <Grid>
                             <TabControl>
                                 <TabItem Header="Hotkey">
-                                    <Grid ShowGridLines="False">
+                                    <Grid>
                                         <Grid.Resources>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -581,6 +579,48 @@
                                                 </Grid>
                                             </ScrollViewer>
                                         </Border>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Theme">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" Style="{StaticResource Control_List}">
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Margin="10,0"/>
+                                                <TextBlock Text="Style Settings" Style="{StaticResource TextBlock_TabItem_Name}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Style="{StaticResource Control_List}">
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Design" Style="{StaticResource TextBlock_Inline}"/>
+                                                <StackPanel Orientation="Horizontal" Width="130">
+                                                    <UniformGrid Columns="3" Width="130">
+                                                        <Button Background="Black" Content="Dark" Foreground="White" Width="40" HorizontalAlignment="Left" Click="DesignThemeBlack_Click"/>
+                                                        <Button Background="Gray" Content="Stock" Foreground="White" Width="40" HorizontalAlignment="Center" Click="DesignThemeGray_Click"/>
+                                                        <Button Background="White" Content="Light" Width="40" HorizontalAlignment="Right" Click="DesignThemeWhite_Click"/>
+                                                    </UniformGrid>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Border Stock" Style="{StaticResource TextBlock_Inline}"/>
+                                                <StackPanel Orientation="Horizontal" Width="130">
+                                                    <UniformGrid Columns="3" Width="130">
+                                                        <Button Background="Black" Content="B" Foreground="White" HorizontalAlignment="Left" Click="WindowBorderColorBlack_Click"/>
+                                                        <Button Background="#8000FF" Content="P" Foreground="White" Click="WindowBorderColorPurple_Click"/>
+                                                        <Button Background="White" Content="W" Foreground="Black" HorizontalAlignment="Right" Click="WindowBorderColorWhite_Click"/>
+                                                    </UniformGrid>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Border custom" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Border Name="BorderColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
+                                                <TextBlock x:Name="BorderColorValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="RGB" Click="BorderColorPicker_Click"/>
+                                            </StackPanel>
+                                        </StackPanel>
                                     </Grid>
                                 </TabItem>
                             </TabControl>

@@ -4,16 +4,18 @@
              xmlns:local="clr-namespace:CrosshairOverlay"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="ChromeWindow" TargetType="Window">
-            <Setter Property="WindowChrome.WindowChrome">
-                <Setter.Value>
-                    <WindowChrome CaptionHeight="20"
-                              GlassFrameThickness="3"
-                              NonClientFrameEdges="None"
-                              ResizeBorderThickness="3"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="WindowStyle" Value="None"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="style/StockTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ChromeWindow" TargetType="Window">
+                <Setter Property="WindowChrome.WindowChrome">
+                    <Setter.Value>
+                        <WindowChrome CaptionHeight="20" GlassFrameThickness="3" NonClientFrameEdges="None" ResizeBorderThickness="3"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="WindowStyle" Value="None"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

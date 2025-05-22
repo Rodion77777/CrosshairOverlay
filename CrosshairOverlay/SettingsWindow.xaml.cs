@@ -239,7 +239,7 @@ namespace CrosshairOverlay
             try
             {
                 var configTemp = configManager.LoadConfig(fileName); // Загружаем конфиг
-                
+
                 // Параметры СounterStrafe
                 isCounterStrafeEnabled = configTemp?.IsCounterStrafeEnabled ?? false;
                 csPressureDuration = configTemp?.csPressureDuration ?? 100;
