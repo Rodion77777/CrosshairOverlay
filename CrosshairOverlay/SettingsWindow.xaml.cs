@@ -172,35 +172,6 @@ namespace CrosshairOverlay
 
             try
             {
-                var configTemp = new CrosshairConfig(); // Создаем объект конфигурации
-                // Параметры Ellips A
-                configTemp.Radius = config.Radius;
-                configTemp.Thickness = config.Thickness;
-                configTemp.StrokeColor = config.StrokeColor;
-                configTemp.StrokeOpacity = config.StrokeOpacity;
-                // Параметры Ellips B
-                configTemp.OutlineRadius = config.OutlineRadius;
-                configTemp.OutlineThickness = config.OutlineThickness;
-                configTemp.OutlineColor = config.OutlineColor;
-                configTemp.OutlineOpacity = config.OutlineOpacity;
-                configTemp.OutlineOffsetX = config.OutlineOffsetX;
-                configTemp.OutlineOffsetY = config.OutlineOffsetY;
-                // Параметры Ellips C
-                configTemp.UnrestrictedWidth = config.UnrestrictedWidth;
-                configTemp.UnrestrictedHeight = config.UnrestrictedHeight;
-                configTemp.UnrestrictedTickness = config.UnrestrictedTickness;
-                configTemp.UnrestrictedColor = config.UnrestrictedColor;
-                configTemp.UnrestrictedOpacity = config.UnrestrictedOpacity;
-                configTemp.UnrestrictedOffsetX = config.UnrestrictedOffsetX;
-                configTemp.UnrestrictedOffsetY = config.UnrestrictedOffsetY;
-                // Filter
-                configTemp.FilterWidth = config.FilterWidth;
-                configTemp.FilterColor = config.FilterColor;
-                configTemp.FilterOpacity = config.FilterOpacity;
-                // Параметры CounterStrafe
-                configTemp.IsCounterStrafeEnabled = isCounterStrafeEnabled;
-                configTemp.csPressureDuration = csPressureDuration;
-
                 configManager.SaveConfig(config, fileName); // Сохраняем файл
                 LoadConfigList(); // Обновляем список конфигов
                 MessageNoticeShow($"Config '{fileName}' successfully saved!", true);
@@ -238,13 +209,12 @@ namespace CrosshairOverlay
             }
             try
             {
-                var configTemp = configManager.LoadConfig(fileName); // Загружаем конфиг
+                config = configManager.LoadConfig(fileName); // Загружаем конфиг
 
                 // Параметры СounterStrafe
-                isCounterStrafeEnabled = configTemp?.IsCounterStrafeEnabled ?? false;
-                csPressureDuration = configTemp?.csPressureDuration ?? 100;
+                isCounterStrafeEnabled = config?.IsCounterStrafeEnabled ?? false;
+                csPressureDuration = config?.csPressureDuration ?? 100;
                 // Параметры Color Filter
-                config = configTemp; // Обновляем текущий конфиг
                 ellipsA = new EllipsA(config);
                 ellipsB = new EllipsB(config);
                 ellipsC = new EllipsC(config);
@@ -294,7 +264,6 @@ namespace CrosshairOverlay
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            // Закрываем главное окно, а вместе с ним и всё приложение
             Application.Current.Shutdown();
         }
 
