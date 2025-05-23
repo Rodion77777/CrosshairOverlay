@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace CrosshairOverlay
@@ -11,6 +12,8 @@ namespace CrosshairOverlay
     public partial class SettingsWindow
     {
         private string borderColor = "Purple";
+        private string highlightColor = "White";
+        private Color testColor;
 
         private void BorderColorPicker_Click(object sender, RoutedEventArgs e)
         {
@@ -27,7 +30,10 @@ namespace CrosshairOverlay
             {
                 if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    borderColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
+                    Color color = Color.FromArgb(colorDialog.Color.A, colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
+                    testColor = color;
+                    borderColor = color.ToString();
+                    highlightColor = Lighten(color, 0.3).ToString();
                     //config.windowBorderColor = borderColor;
                 }
             }
@@ -41,11 +47,34 @@ namespace CrosshairOverlay
         private void UpdateBorderColorValueText()
         {
             BorderColorValueText.Text = borderColor;
+            BorderColorValueText.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(highlightColor);
         }
 
         private void DesignThemeBlack_Click(object sender, RoutedEventArgs e)
         {
             SetDictionary("DarkTheme");
+            // Удаляем существующие стили перед добавлением новых
+            if (Application.Current.Resources.Contains(typeof(TabControl)))
+            {
+                Application.Current.Resources.Remove(typeof(TabControl));
+            }
+
+            if (Application.Current.Resources.Contains(typeof(TabItem)))
+            {
+                Application.Current.Resources.Remove(typeof(TabItem));
+            }
+
+            // Новый стиль для TabControl
+            var tabControlStyle = new Style(typeof(TabControl));
+            tabControlStyle.Setters.Add(new Setter(Control.BackgroundProperty, new SolidColorBrush(testColor)));
+
+            // Новый стиль для TabItem
+            var tabItemStyle = new Style(typeof(TabItem));
+            tabItemStyle.Setters.Add(new Setter(Control.BackgroundProperty, new SolidColorBrush(testColor)));
+
+            // Добавляем стили в глобальные ресурсы
+            Application.Current.Resources.Add(typeof(TabControl), tabControlStyle);
+            Application.Current.Resources.Add(typeof(TabItem), tabItemStyle);
         }
 
         private void DesignThemeGray_Click(object sender, RoutedEventArgs e)
@@ -96,6 +125,24 @@ namespace CrosshairOverlay
         {
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(dicrionary);
+        }
+
+        private Color Lighten(Color color, double factor)
+        {
+            factor = Math.Max(0, Math.Min(1, factor));
+            byte r = (byte)Math.Min(255, color.R + (255 - color.R) * factor);
+            byte g = (byte)Math.Min(255, color.G + (255 - color.G) * factor);
+            byte b = (byte)Math.Min(255, color.B + (255 - color.B) * factor);
+            return Color.FromRgb(r,g,b);
+        }
+
+        private Color Darken(Color color, double factor)
+        {
+            factor = Math.Max(0, Math.Min(1, factor));
+            byte r = (byte)(color.R * (1 - factor));
+            byte g = (byte)(color.G * (1 - factor));
+            byte b = (byte)(color.B * (1 - factor));
+            return Color.FromRgb(r, g, b);
         }
     }
 }
