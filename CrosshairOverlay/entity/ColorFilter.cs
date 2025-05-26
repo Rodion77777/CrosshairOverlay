@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace CrosshairOverlay.entity
 {
@@ -13,6 +15,8 @@ namespace CrosshairOverlay.entity
         private int filterHeight;
         private string filterColor;
         private double filterOpacity;
+
+        private string complementaryColor;
         private CrosshairConfig config;
 
         public ColorFilter(CrosshairConfig config)
@@ -74,6 +78,7 @@ namespace CrosshairOverlay.entity
                 {
                     filterColor = $"#{colorDialog.Color.R:X2}{colorDialog.Color.G:X2}{colorDialog.Color.B:X2}";
                     config.FilterColor = filterColor;
+                    FindCmplementaryColor();
                 }
             }
         }
@@ -100,6 +105,16 @@ namespace CrosshairOverlay.entity
         {
             filterColor = color;
             config.FilterColor = color;
+        }
+
+        public void FindCmplementaryColor()
+        {
+            complementaryColor = ColorUtil.GetComplementaryColor((Color)ColorConverter.ConvertFromString(filterColor)).ToString();
+        }
+
+        public string GetComplementaryColor()
+        {
+            return complementaryColor;
         }
     }
 }

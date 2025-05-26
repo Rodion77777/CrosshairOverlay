@@ -37,6 +37,8 @@ namespace CrosshairOverlay
             UpdateFilterColorValueText();
             setBackgroundFilterColorIndicatorButton();
             SaveConfig();
+            SetBackgroundComplementaryColorIndicatorButton();
+            UpdateComplementaryColorValueText();
         }
 
         private void UpdateFilterColorValueText()
@@ -114,6 +116,22 @@ namespace CrosshairOverlay
             UpdateFilterColorValueText();
             setBackgroundFilterColorIndicatorButton();
             SaveConfig();
+        }
+
+        private void ComplementaryColorSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            colorFilter.SetFilterColor(colorFilter.GetComplementaryColor());
+            SaveConfig();
+        }
+
+        private void SetBackgroundComplementaryColorIndicatorButton()
+        {
+            ComplementaryColorIndicatorButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(colorFilter.GetComplementaryColor());
+        }
+
+        private void UpdateComplementaryColorValueText()
+        {
+            ComplementaryColorValueText.Text = colorFilter.GetComplementaryColor();
         }
     }
 }

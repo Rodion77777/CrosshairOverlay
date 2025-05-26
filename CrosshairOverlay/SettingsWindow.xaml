@@ -480,6 +480,12 @@
                                                     </UniformGrid>
                                                 </StackPanel>
                                             </StackPanel>
+                                            <StackPanel Style="{StaticResource Control_Group_Inline}">
+                                                <TextBlock Text="Complementary" Style="{StaticResource TextBlock_Inline}"/>
+                                                <Border Name="ComplementaryColorIndicatorButton" Style="{StaticResource Border_RGB_Indocator}"/>
+                                                <TextBlock x:Name="ComplementaryColorValueText" Style="{StaticResource TextBlock_Output}"/>
+                                                <Button Content="Set" Click="ComplementaryColorSubmit_Click"/>
+                                            </StackPanel>
                                         </StackPanel>
                                     </Grid>
                                 </TabItem>
