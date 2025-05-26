@@ -33,7 +33,7 @@ namespace CrosshairOverlay
                     Color color = Color.FromArgb(colorDialog.Color.A, colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
                     testColor = color;
                     borderColor = color.ToString();
-                    highlightColor = Lighten(color, 0.3).ToString();
+                    highlightColor = ColorUtil.Lighten(color, 0.3).ToString();
                     //config.windowBorderColor = borderColor;
                 }
             }
@@ -125,24 +125,6 @@ namespace CrosshairOverlay
         {
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(dicrionary);
-        }
-
-        private Color Lighten(Color color, double factor)
-        {
-            factor = Math.Max(0, Math.Min(1, factor));
-            byte r = (byte)Math.Min(255, color.R + (255 - color.R) * factor);
-            byte g = (byte)Math.Min(255, color.G + (255 - color.G) * factor);
-            byte b = (byte)Math.Min(255, color.B + (255 - color.B) * factor);
-            return Color.FromRgb(r,g,b);
-        }
-
-        private Color Darken(Color color, double factor)
-        {
-            factor = Math.Max(0, Math.Min(1, factor));
-            byte r = (byte)(color.R * (1 - factor));
-            byte g = (byte)(color.G * (1 - factor));
-            byte b = (byte)(color.B * (1 - factor));
-            return Color.FromRgb(r, g, b);
         }
     }
 }
