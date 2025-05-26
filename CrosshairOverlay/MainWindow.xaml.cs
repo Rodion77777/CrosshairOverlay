@@ -17,13 +17,6 @@ namespace CrosshairOverlay
     {
         private FileSystemWatcher configWatcher;
         private CrosshairConfig config;
-        private SettingsWindow settingsWindow;
-        private IKeyboardMouseEvents _globalHook;
-
-        private double? lastSettingsLeft;
-        private double? lastSettingsTop;
-
-        private bool isGlobalHookEnable = true;
 
         public MainWindow()
         {
@@ -164,88 +157,6 @@ namespace CrosshairOverlay
             configWatcher.EnableRaisingEvents = true;
         }
 
-        private void SubscribeGlobalHook()
-        {
-            _globalHook = Hook.GlobalEvents();
-            _globalHook.KeyDown += GlobalHook_KeyDown;
-            _globalHook.KeyUp += GlobalHook_KeyUp;
-        }
-
-        private void GlobalHook_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (e.KeyCode == System.Windows.Forms.Keys.Home)
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    if (settingsWindow == null || !settingsWindow.IsVisible)
-                    {
-                        settingsWindow = new SettingsWindow
-                        {
-                            Owner = this,
-                            WindowStartupLocation = WindowStartupLocation.Manual
-                        };
-
-                        // Если координаты есть — применяем
-                        if (lastSettingsLeft.HasValue && lastSettingsTop.HasValue)
-                        {
-                            settingsWindow.Left = lastSettingsLeft.Value;
-                            settingsWindow.Top = lastSettingsTop.Value;
-                        }
-                        else
-                        {
-                            // Первый запуск — центрируем
-                            settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                        }
-
-                        settingsWindow.Closed += (s, args) =>
-                        {
-                            // Сохраняем позицию перед закрытием
-                            lastSettingsLeft = settingsWindow.Left;
-                            lastSettingsTop = settingsWindow.Top;
-                            settingsWindow = null;
-                        };
-
-                        settingsWindow.Show();
-                    }
-                    else
-                    {
-                        settingsWindow.Close();
-                        settingsWindow = null;
-                    }
-                });
-            }
-        }
-               
-        private void GlobalHook_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (!config.IsCounterStrafeEnabled || !isGlobalHookEnable) return;
-
-            switch (e.KeyCode)
-            {
-                case Keys.A:
-                    SimulateKeyPress(Keys.D);
-                    break;
-                case Keys.D:
-                    SimulateKeyPress(Keys.A);
-                    break;
-                case Keys.W:
-                    SimulateKeyPress(Keys.S);
-                    break;
-                case Keys.S:
-                    SimulateKeyPress(Keys.W);
-                    break;
-            }
-        }
-
-        private void SimulateKeyPress(Keys key)
-        {
-            isGlobalHookEnable = false; // отключаем глобальный хук, чтобы избежать зацикливания
-            keybd_event((byte)key, 0, 0, 0); // key down
-            Task.Delay(config.csPressureDuration).Wait();
-            keybd_event((byte)key, 0, 2, 0); // key up
-            isGlobalHookEnable = true;  // включаем глобальный хук обратно
-        }
-
         protected override void OnClosed(EventArgs e)
         {
             _globalHook.KeyDown -= GlobalHook_KeyDown;
@@ -258,10 +169,6 @@ namespace CrosshairOverlay
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_TRANSPARENT = 0x00000020;
         private const int WS_EX_LAYERED = 0x00080000;
-
-        // Импорт функции из WinAPI
-        [DllImport("user32.dll")]
-        private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
 
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hwnd, int index);
