@@ -15,6 +15,7 @@
 
     <Window.Resources>
         <Style TargetType="CheckBox">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -83,6 +84,7 @@
                 <Setter Property="Padding" Value="2,2"/>
             </Style>
             <Style TargetType="Button">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
                 <Setter Property="Width" Value="30"/>
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Background" Value="#FFE5E5E5"/>
@@ -212,7 +214,7 @@
                     <TextBlock Text="Crosshair Overlay" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,2"/>
                 </DockPanel>
                 <TabControl Grid.Row="1">
-                    <TabItem Header="Crosshair">
+                    <TabItem Name="Crosshair" Header="Crosshair">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
